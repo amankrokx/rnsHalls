@@ -1,32 +1,28 @@
 <!DOCTYPE html>
 <html>
     <head>
-
+        <meta charset="UTF-8">
+        <title>rnsHalls | Book seminar halls at RNSIT</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--<link rel="manifest" href="./manifest.webmanifest" />-->
+        <link rel="manifest" href="/manifest.json">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <script>
+            function registerServiceWorker() {
+                if ('serviceWorker' in navigator) {
+                    navigator.serviceWorker.register('/sw.js').then(reg => {
+                        console.log('Registration successful', reg);
+                    })
+                        .catch(e => console.error('Error during service worker registration:', e));
+                } else {
+                    console.warn('Service Worker is not supported');
+                }
+            }
+            
+        </script>
+        
     </head>
     <body>
-        <h1>Working !</h1>
-        <script type="module">
-            // Import the functions you need from the SDKs you need
-            import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.9/firebase-app.js";
-            import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.9/firebase-analytics.js";
-            // TODO: Add SDKs for Firebase products that you want to use
-            // https://firebase.google.com/docs/web/setup#available-libraries
-        
-            // Your web app's Firebase configuration
-            // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-            const firebaseConfig = {
-            apiKey: "AIzaSyCtXhu_B-km2JnERkRauDWYP4cLKg-jHL0",
-            authDomain: "rnshalls.firebaseapp.com",
-            projectId: "rnshalls",
-            storageBucket: "rnshalls.appspot.com",
-            messagingSenderId: "23044137424",
-            appId: "1:23044137424:web:346a1d0ee8c529ecf619d5",
-            measurementId: "G-VJFXFVZ01D"
-            };
-        
-            // Initialize Firebase
-            const app = initializeApp(firebaseConfig);
-            const analytics = getAnalytics(app);
-        </script>
+        <script src="main.js"></script>
     </body>
 </html>
