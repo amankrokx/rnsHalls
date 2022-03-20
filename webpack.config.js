@@ -6,4 +6,13 @@ module.exports = {
     filename: 'main.js',
     path: path.resolve(__dirname, 'public'),
   },
+  devtool: 'eval-source-map',
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
+      }
+    ]
+  }
 };
