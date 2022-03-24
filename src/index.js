@@ -23,11 +23,16 @@ onAuthStateChanged(auth, (user) => {
       // https://firebase.google.com/docs/reference/js/firebase.User
       const uid = user.uid;
       console.log(user)
+      switchTo('setting')
+      document.querySelector('nav.top div.signin').classList.add('hidden')
+      document.querySelector('nav.top div.logout').classList.remove('hidden')
       // ...
     } else {
         // User is signed out
         let ui = new firebaseui.auth.AuthUI(auth).start('#firebaseui-auth-container', uiConfig );
-
+        switchTo('welcome')
+        document.querySelector('nav.top div.signin').classList.remove('hidden')
+        document.querySelector('nav.top div.logout').classList.add('hidden')
         if (ui.isPendingRedirect()) {
             ui.start('#firebaseui-auth-container', uiConfig);
         }
@@ -36,8 +41,9 @@ onAuthStateChanged(auth, (user) => {
 
 
 setTimeout(() => {
+    //switchTo('welcome')
     showLoader()
-}, 2000);
+}, 3000);
 
 function component() {
     const element = document.createElement('div');

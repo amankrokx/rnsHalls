@@ -306,3 +306,19 @@ div.setting div.content input {margin-top: 15px;}
 .empty {
     border: 2px solid red;
 }
+
+nav.top div.login {
+    padding: 6px 10px 6px 10px;
+    margin: 9px;
+    border-radius: 4px;
+    margin-right: 10px;
+    background-color: #f5f9ff;
+    transition: var(--trans);
+}
+
+.fr { float: right;}
+      
+nav.top div.login:hover {
+    background-color: #e8f0fe;
+    box-shadow: var(--tbshadow);
+}

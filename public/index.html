@@ -36,15 +36,16 @@
         </div>
         <nav class="top" style="position: fixed; box-shadow: var(--shadow); height: 50px;width: 100vw;background: #FFF;z-index: 10;top: 0;">
             <span class="title" style="font-size: 1.9em; margin-left: 16px; position: relative; top: 7px;">rnsHalls</span>
-            <span class="material-icons" style="padding: 6px;float: right;border-radius: 50%;">account_circle</span>
+            <div class="login signin fr hidden" style="color: #1a73e8;" onclick="showLogin()">Login</div>
+            <div class="login logout fr hidden" style="color: #1a73e8; margin: 0;" onclick="logout()">LogOut</div>
         </nav>
-        <nav class="bottom" style="position: fixed; bottom: 0; height: 50px;width: 100vw;background: #FFF;z-index: 10;"><span class="material-icons nav-inactive">home</span><span class="material-icons nav-inactive" >notifications</span><span class="material-icons nav-inactive" >list_alt</span><span class="material-icons nav-active" >settings</span>
+        <nav class="bottom" style="position: fixed; bottom: 0; height: 50px;width: 100vw;background: #FFF;z-index: 10;"><span class="material-icons home nav-inactive" onclick="switchTo('home')">home</span><span class="material-icons notifications nav-inactive" onclick="switchTo('notifications')">notifications</span><span class="material-icons history nav-inactive" onclick="switchTo('history')">list_alt</span><span class="material-icons setting nav-inactive" onclick="switchTo('setting')">settings</span>
         </nav>
-        <div class="login hidden" style="position: fixed; top: 100px;background: #FFF; padding: 24px; width: calc(100vw - 80px); margin-left: 40px; box-shadow: var(--shadow);">
-            <span><big style="color: var(--ab);">Get Started </big><small><small>with</small></small></span>
-            <div id="firebaseui-auth-container"></div>
-        </div>
         <div id="container" style="position: fixed; background: rgba(255, 255, 255, 0.0); top: 80px; width: calc(100vw - 40px); height: calc(100% - 160px); left: 20px;">
+            <div class="login hidden" style="position: fixed; z-index: 7; top: 100px;background: #FFF; padding: 24px; width: calc(100vw - 80px); margin-left: 40px; box-shadow: var(--shadow);">
+                <span><big style="color: var(--ab);">Get Started </big><small><small>with</small></small></span>
+                <div id="firebaseui-auth-container"></div>
+            </div>
             <div class="setting hidden">
                 <div class="head">Preferences</div>
                 <div class="content">
@@ -62,11 +63,13 @@
             <div class="history hidden"></div>
             <div class="home hidden"></div>
             <div class="notifications hidden"></div>
-            <div class="welcome">
+            <div class="welcome hidden">
                 <div class="head">Welcome</div>
                 <div class="content">hi there</div>
             </div>
         </div>
+
+        <script src="script.js"></script>
         <script src="main.js"></script>
     </body>
 </html>
