@@ -4,26 +4,15 @@
         <meta charset="UTF-8">
         <title>rnsHalls | Book seminar halls at RNSIT</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!--<link rel="manifest" href="./manifest.webmanifest" />-->
-        <link rel="manifest" href="/manifest.json">
+        <link rel="manifest" href="./manifest.json">
         <meta name="apple-mobile-web-app-capable" content="yes">
-        <script>
-            function registerServiceWorker() {
-                if ('serviceWorker' in navigator) {
-                    navigator.serviceWorker.register('/sw.js').then(reg => {
-                        console.log('Registration successful', reg);
-                    })
-                        .catch(e => console.error('Error during service worker registration:', e));
-                } else {
-                    console.warn('Service Worker is not supported');
-                }
-            }
-            
-        </script>
+        <link rel="stylesheet" href="./loader.css" />
+        <link rel="stylesheet" href="./assets/material-icons.css" />
+
         
     </head>
     <body>
-        <div id="loader">
+        <div id="loader" class="hidden">
             <div class="loadingio-spinner-spinner-h9242q2dhnj">
                 <div class="ldio-gpbbhzzh67p">
                     <div></div>
@@ -45,9 +34,13 @@
                 </div>
             </div>
         </div>
-        <nav class="top" style="position: fixed;height: 50px;width: 100vw;background: #FFF;z-index: 10;top: 0;"></nav>
-        <nav class="bottom"></nav>
-        <div id="firebaseui-auth-container" style="position: relative;top: 64px;background: #b3ffa9;padding: 24px;width: 300px;"></div>
-        <script src="main.js"></script>
+        <nav class="top" style="position: fixed;height: 50px;width: 100vw;background: #FFF;z-index: 10;top: 0;">
+            <span class="title" style="font-size: 1.9em; margin-left: 16px; position: relative; top: 7px;">rnsHalls</span>
+            <span class="material-icons" style="padding: 6px;float: right;border-radius: 50%;">account_circle</span>
+        </nav>
+        <nav class="bottom" style="position: fixed; bottom: 0; height: 50px;width: 100vw;background: #FFF;z-index: 10;"><span class="material-icons nav-active">home</span><span class="material-icons nav-inactive" >notifications</span><span class="material-icons nav-inactive" >list_alt</span><span class="material-icons nav-inactive" >settings</span>
+        </nav>
+        <div id="firebaseui-auth-container" class="hidden" style="position: relative;top: 64px;background: #b3ffa9;padding: 24px;width: 300px;"></div>
+        <!--<script src="main.js"></script>-->
     </body>
 </html>
