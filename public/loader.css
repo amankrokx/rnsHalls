@@ -254,22 +254,26 @@ nav.bottom span {
     border-top: 2px solid var(--ab);
 }
 
-div.setting div.head {
+div.head {
     display: inline-block;
     padding: 10px 20px 10px 20px;
-    background: #aee600;
+    background: #fff;
     color: var(--ab);
     box-shadow: var(--shadow);
     border-top-left-radius: 18px;
     border-top-right-radius: 18px;
 }
 
-div.setting div.content {
+div.content {
     min-height: calc(100vh - 198px - 57px);
     box-shadow: var(--shadow);
     width: 100%;
     padding: 10px 20px 10px 20px;
     background: #fff;
+}
+
+div.setting div.head {
+    background-color: #aee600;
 }
 
 div.setting div.content {
