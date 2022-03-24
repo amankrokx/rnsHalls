@@ -25,7 +25,7 @@ const uiConfig = {
           document.getElementById('loader').style.display = 'none';
         }
     },
-    signInSuccessUrl: 'http://localhost:5000/',
+    signInSuccessUrl: 'http://localhost:8080/',
     signInOptions: [
         {
         provider: EmailAuthProvider.PROVIDER_ID,

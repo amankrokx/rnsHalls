@@ -1,0 +1,146 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body{
+        font-family: 'Open Sans', sans-serif;
+        font-size: 1rem;
+        background: #000000;
+        width: 100%;
+        overflow: hidden;
+    }
+    .sec{
+        background: #ffff;
+        width: 100%;
+        min-height: 100vh;
+        /* float: right; */
+        justify-content:center ;
+        max-width: 460px;
+        margin: auto;
+        animation: fadeIn 0.5s ease;
+    }
+    @keyframes fadeIn{
+        0%{
+        opacity:0;
+        }
+        100%{
+            opacity:1;
+        }
+    }
+    button{
+        display: inline-block;
+        outline: none;
+        border: none;
+        background: transparent;
+    }
+    .sec-1{
+        padding-top: 20px;
+        padding-bottom: 0;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        min-height: 100vh;
+        position: inherit;
+        /* background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='414' height='800' preserveAspectRatio='none' viewBox='0 0 414 800'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1045%26quot%3b)' fill='none'%3e%3cpath d='M247.904%2c662.34C264.144%2c662.912%2c282.08%2c661.119%2c290.885%2c647.461C300.256%2c632.927%2c297.6%2c613.92%2c288.671%2c599.11C280.042%2c584.798%2c264.616%2c576.063%2c247.904%2c576.172C231.38%2c576.279%2c216.073%2c585.19%2c208.045%2c599.633C200.233%2c613.689%2c201.241%2c631.036%2c209.868%2c644.607C217.911%2c657.26%2c232.92%2c661.812%2c247.904%2c662.34' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float3'%3e%3c/path%3e%3cpath d='M234.13 263.97 a92.51 92.51 0 1 0 185.02 0 a92.51 92.51 0 1 0 -185.02 0z' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float2'%3e%3c/path%3e%3cpath d='M222.108%2c85.611C242.734%2c86.132%2c262.772%2c76.508%2c273.215%2c58.713C283.778%2c40.712%2c282.643%2c18.356%2c272.167%2c0.305C261.733%2c-17.674%2c242.885%2c-28.723%2c222.108%2c-29.352C200.12%2c-30.018%2c177.064%2c-22.194%2c166.507%2c-2.895C156.257%2c15.843%2c163.925%2c38.154%2c175.287%2c56.239C185.792%2c72.96%2c202.367%2c85.112%2c222.108%2c85.611' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float3'%3e%3c/path%3e%3cpath d='M12.8 268.44 a100.6 100.6 0 1 0 201.2 0 a100.6 100.6 0 1 0 -201.2 0z' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float2'%3e%3c/path%3e%3cpath d='M-22.46 391.42 a77.05 77.05 0 1 0 154.1 0 a77.05 77.05 0 1 0 -154.1 0z' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float1'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1045'%3e%3crect width='414' height='800' fill='white'%3e%3c/rect%3e%3c/mask%3e%3cstyle%3e %40keyframes float1 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(-10px%2c 0)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float1 %7b animation: float1 5s infinite%3b %7d %40keyframes float2 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(-5px%2c -5px)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float2 %7b animation: float2 4s infinite%3b %7d %40keyframes float3 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(0%2c -10px)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float3 %7b animation: float3 6s infinite%3b %7d %3c/style%3e%3c/defs%3e%3c/svg%3e"); */
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='360' height='740' preserveAspectRatio='none' viewBox='0 0 360 740'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1117%26quot%3b)' fill='none'%3e%3crect width='360' height='740' x='0' y='0' fill='rgba(255%2c 255%2c 255%2c 0.6)'%3e%3c/rect%3e%3cpath d='M7 740L747 0L921 0L181 740z' fill='url(%23SvgjsLinearGradient1118)'%3e%3c/path%3e%3cpath d='M134.8 740L874.8 0L948.3 0L208.3 740z' fill='url(%23SvgjsLinearGradient1118)'%3e%3c/path%3e%3cpath d='M344 740L-396 0L-415.5 0L324.5 740z' fill='url(%23SvgjsLinearGradient1119)'%3e%3c/path%3e%3cpath d='M223.2 740L-516.8 0L-603.8 0L136.2 740z' fill='url(%23SvgjsLinearGradient1119)'%3e%3c/path%3e%3cpath d='M91.5160132161663 740L360 471.5160132161663L360 740z' fill='url(%23SvgjsLinearGradient1118)'%3e%3c/path%3e%3cpath d='M0 740L268.4839867838337 740L 0 471.5160132161663z' fill='url(%23SvgjsLinearGradient1119)'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1117'%3e%3crect width='360' height='740' fill='white'%3e%3c/rect%3e%3c/mask%3e%3clinearGradient x1='0%25' y1='100%25' x2='100%25' y2='0%25' id='SvgjsLinearGradient1118'%3e%3cstop stop-color='rgba(0%2c 22%2c 69%2c 0.58)' offset='0'%3e%3c/stop%3e%3cstop stop-opacity='0' stop-color='rgba(0%2c 22%2c 69%2c 0.58)' offset='0.66'%3e%3c/stop%3e%3c/linearGradient%3e%3clinearGradient x1='100%25' y1='100%25' x2='0%25' y2='0%25' id='SvgjsLinearGradient1119'%3e%3cstop stop-color='rgba(0%2c 22%2c 69%2c 0.58)' offset='0'%3e%3c/stop%3e%3cstop stop-opacity='0' stop-color='rgba(0%2c 22%2c 69%2c 0.58)' offset='0.66'%3e%3c/stop%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e");        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    svg{
+        overflow: hidden;
+        justify-content: center;
+    }
+
+    .sec-1 h1{
+        font-size: 2.5rem;
+        justify-content: center;
+    }
+
+    .sec-1 span{
+        color: #f05f5f;
+    }
+
+    .sec-1 h5{
+        padding: 0;
+        font-size: 10px;
+    }
+
+    .sec-1 h3{
+        font-size: 15px;
+        color: #f05f5f;
+    }
+
+    .sec-1 p{
+        margin: 10px 0 25px;
+        color: #f05f5f;
+        font-size: 14px;
+        /* border-radius: ; */
+    }
+    .sec-1 button{
+        padding: 15px 30px;
+        margin: 10px;
+        background: #215696;
+        color: rgb(255, 255, 255);
+        border-radius:50px ;
+        font-family: 'Open Sans', sans-serif;
+    }
+    .hide{
+        display:none;
+    }
+</style>
+
+</head>
+<body>
+    <section class="sec sec-1" id="sec-1">
+        <div>
+            <!-- <img src="" alt=""> -->
+            <svg width="100%" height="50%" max-width="460px"
+             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" data-name="Layer 1" width="832.20604" height="500.35625" viewBox="0 0 832.20604 500.35625">
+             <path d="M227.31663,699.06c-.05567-.24512-5.44-24.79785,5.55615-45.19043,10.99609-20.39166,34.46826-29.38477,34.7041-29.47363l1.07275-.40235.25342,1.11817c.05566.24511,5.43994,24.79785-5.55615,45.19043-10.99561,20.39166-34.46826,29.38476-34.7041,29.47363l-1.07325.40234Zm39.86181-72.33783c-4.70166,2.02246-23.25781,10.874-32.54492,28.09668-9.28809,17.22461-6.48584,37.59375-5.59229,42.63086,4.69971-2.01758,23.24854-10.85547,32.54493-28.09668C270.87375,652.1293,268.07248,631.76211,267.17844,626.72213Z" transform="translate(-183.89698 -199.82188)" fill="#f1f1f1"/>
+             <path d="M254.94373,663.14907c-19.76056,11.88861-27.371,35.50269-27.371,35.50269s24.42779,4.3388,44.18835-7.54981,27.371-35.50268,27.371-35.50268S274.70429,651.26046,254.94373,663.14907Z" transform="translate(-183.89698 -199.82188)" fill="#f1f1f1"/>
+             <path d="M554.19262,472.56441a10.83726,10.83726,0,0,0-10.47951-12.89681l-9.15082-23.01244-15.3409,2.15012,13.37918,32.31652a10.896,10.896,0,0,0,21.59205,1.44261Z" transform="translate(-183.89698 -199.82188)" fill="#9f616a"/>
+             <path d="M525.92964,464.47855l-4.75346-11.3351-29.62149-56.38484,1.61062-104.33228.30923-.041c18.954-2.50423,31.77818,84.82857,32.315,88.54784l18.71553,64.00809,4.45518,14.10849Z" transform="translate(-183.89698 -199.82188)" fill="#00b0ff"/>
+             <polygon points="296.518 484.658 310.92 484.657 317.771 429.106 296.515 429.107 296.518 484.658" fill="#9f616a"/>
+             <path d="M476.741,679.77772l28.363-.00114h.00115a18.07611,18.07611,0,0,1,18.07514,18.07485v.58737l-46.43846.00172Z" transform="translate(-183.89698 -199.82188)" fill="#2f2e41"/>
+             <polygon points="164.095 462.715 175.912 470.949 213.294 429.291 195.854 417.138 164.095 462.715" fill="#9f616a"/>
+             <path d="M347.66667,656.57887l23.27053,16.21554.00094.00065a18.07611,18.07611,0,0,1,4.49515,25.16356l-.33583.4819L336.997,671.89089Z" transform="translate(-183.89698 -199.82188)" fill="#2f2e41"/>
+             <path d="M472.49955,671.42229l-.62235-104.21007L462.81533,501.686,445.9204,559.31028l-.03285.04733-61.225,88.88515-23.82325-12.07048.13051-.31012c1.45591-3.46284,35.76216-84.7936,44.98333-84.7936a4.97985,4.97985,0,0,0,4.24236-1.86422c2.70645-3.614.50244-11.28284.47983-11.35983-2.63969-10.94588,3.99742-14.67362,5.3193-15.296l3.55555-73.397.36857.02543,96.38955,6.76108-4.04386,91.76589-8.69878,120.23153-.29881.03391Z" transform="translate(-183.89698 -199.82188)" fill="#2f2e41"/>
+             <path d="M517.781,472.20177l-.41678-.03391L413.69966,463.8117l.25589-34.29989,5.07382-89.55836.02878-.06216,20.66277-44.85865,14.6473-6.63252,21.37023-1.12461.0521.01307,19.50283,4.83187,20.288,145.63873Z" transform="translate(-183.89698 -199.82188)" fill="#00b0ff"/>
+             <circle cx="465.99537" cy="251.83011" r="27.29373" transform="translate(-247.58414 54.55847) rotate(-28.66324)" fill="#9f616a"/>
+             <path d="M438.54633,258.68144v-10.6343s-8.576-10.10035.85759-12.64464c0,0,2.57278-25.44285,24.87023-13.56952,0,0,30.87339-5.08857,27.443,12.72143,0,0,7.71835-4.64962,5.14556,7.22372L491.88689,260.904s2.40306-12.634-5.31529-14.33024l-4.288-2.54429s-12.00632,11.87334-30.0158-2.54428c0,0-7.71834-1.84217-6.86075,5.79069S438.54633,258.68144,438.54633,258.68144Z" transform="translate(-183.89698 -199.82188)" fill="#2f2e41"/>
+             <path d="M463.15358,446.58748a10.83729,10.83729,0,0,0-12.62376-10.80688l-13.13193-20.99672-14.706,4.86818,18.96129,29.391a10.896,10.896,0,0,0,21.50042-2.45556Z" transform="translate(-183.89698 -199.82188)" fill="#9f616a"/>
+             <path d="M429.23633,439.96884l-23.75756-48.2346.021-.11726c.09572-.53405,9.659-53.63372,16.97316-73.15156,7.36048-19.64146,17.43552-23.585,17.86078-23.74325l.21263-.07912,9.03379,8.66522-12.51394,83.527,13.489,40.28392Z" transform="translate(-183.89698 -199.82188)" fill="#00b0ff"/>
+             <rect x="786.20604" width="46" height="46" fill="#f1f1f1"/><rect x="426.20604" y="179" width="46" height="46" fill="#f1f1f1"/><path d="M635.92184,404.66451H999.59653V220.55582H635.92184Z" transform="translate(-183.89698 -199.82188)" fill="#fff"/>
+             <path d="M1002.59656,407.66458H632.92176V217.5557h369.6748Zm-363.6748-6h357.6748V223.5557H638.92176Z" transform="translate(-183.89698 -199.82188)" fill="#e5e5e5"/>
+             <rect x="495.67778" y="85.31585" width="279.80647" height="9.27916" fill="#e5e5e5"/>
+             <rect x="495.67778" y="107.81893" width="279.80647" height="9.27916" fill="#e5e5e5"/>
+             <rect x="723.48425" y="141.04542" width="52" height="8.05267" fill="#00b0ff"/>
+             <path d="M565.897,700.13773h-381a1,1,0,1,1,0-2h381a1,1,0,0,1,0,2Z" transform="translate(-183.89698 -199.82188)" fill="#cbcbcb"/>
+            </svg>
+            <h1>RNS <span>Halls</span></h1>
+            <p><h5>Created by Team Kela</h5></p>
+            <p><h3>Easily book the edusat hall for your department</h3></p>
+            <button onclick="showLoginPage()">Get Started</button>
+        </div>
+    </section>
+    <section class="sec sec-2" id="sec-2"></section>
+    <script>
+        const showLoginPage = () => {
+            document.querySelector(".sec-1").classList.add("hide");
+            // document.querySelector(".sec-2").classList.remove("hide);
+        }
+    </script>
+</body>
+</html>

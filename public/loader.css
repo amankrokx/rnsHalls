@@ -272,6 +272,10 @@ div.content {
     background: #fff;
 }
 
+div.welcome div.content {
+    min-height: auto;
+}
+
 div.setting div.head {
     background-color: #aee600;
 }

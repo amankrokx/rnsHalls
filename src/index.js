@@ -21,24 +21,33 @@ onAuthStateChanged(auth, (user) => {
     if (user) {
       // User is signed in, see docs for a list of available properties
       // https://firebase.google.com/docs/reference/js/firebase.User
-      const uid = user.uid;
       console.log(user)
-      switchTo('setting')
       document.querySelector('nav.top div.signin').classList.add('hidden')
       document.querySelector('nav.top div.logout').classList.remove('hidden')
+      document.querySelector('nav.bottom').classList.remove('hidden')
+      switchTo('setting')
+      const uid = user.uid;
+      if (user.photoURL) {
+            document.querySelector('nav.bottom span.setting').innerHTML = `<img src="${user.photoURL}" style="height: 36px; width: 36px; border-radius: 50%;" />`
+            //document.querySelector('div.setting div.content img').src = user.photoURL
+      }
       // ...
     } else {
         // User is signed out
-        let ui = new firebaseui.auth.AuthUI(auth).start('#firebaseui-auth-container', uiConfig );
-        switchTo('welcome')
         document.querySelector('nav.top div.signin').classList.remove('hidden')
         document.querySelector('nav.top div.logout').classList.add('hidden')
+        let ui = new firebaseui.auth.AuthUI(auth).start('#firebaseui-auth-container', uiConfig );
+        switchTo('welcome')
         if (ui.isPendingRedirect()) {
             ui.start('#firebaseui-auth-container', uiConfig);
         }
     }
   });
 
+// Event listeners...
+document.querySelector('nav.top div.logout').onclick = function () {
+    auth.signOut()
+}
 
 setTimeout(() => {
     //switchTo('welcome')
