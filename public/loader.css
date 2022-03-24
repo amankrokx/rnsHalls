@@ -188,6 +188,54 @@ body {
     /*background: linear-gradient(60deg, rgba(119, 186, 255, 1) 0%, rgba(91, 134, 249, 1) 15%, rgba(255, 104, 141, 1) 86%, rgba(255, 165, 165, 1) 100%);*/
 }
 
+label {
+    display: block;
+    font-size: 0.8em;
+    font-weight: 300;
+    color: #999999;
+    margin-left: 10px;
+    float: left;
+  }
+
+  input {
+    font-size: 0.9em;
+    padding-left: 8px;
+    display: block;
+    position: relative;
+    height: 40px;
+    border: 0;
+    border-radius: 4px;
+    color: var(--stc);
+    width: 280px;
+    outline: none;
+    background-color: var(--bgb);
+    transition: var(--trans);
+    font-family: Roboto, sans-serif;
+  }
+
+  input:focus {
+    background-color: white;
+    box-shadow: var(--tbshadow);
+    color: var(--ptc);
+  }
+  input:hover {
+    background-color: var(--bgh);
+    color: var(--ptc);
+  }
+
+  input::placeholder {
+    color: var(--ttc);
+  }
+
+  input.submit,
+  input.sendOTP {
+    color: white;
+    padding: 0;
+    background: var(--ab);
+    box-shadow: var(--shadow);
+    /*background: linear-gradient(50deg, rgba(119, 186, 255, 1) 0%, rgb(126, 165, 255) 5%, rgba(255, 104, 141, 1) 95%, rgba(255, 165, 165, 1) 100%);*/
+  }
+
 nav.bottom span {
     padding-top: 4px;
     padding-bottom: 6px;
@@ -198,8 +246,59 @@ nav.bottom span {
 
 .nav-inactive {
     border-top: 2px solid #fff;
+    color: var(--stc);
 }
 
 .nav-active {
+    color: #000;
     border-top: 2px solid var(--ab);
+}
+
+div.setting div.head {
+    display: inline-block;
+    padding: 10px 20px 10px 20px;
+    background: #aee600;
+    color: var(--ab);
+    box-shadow: var(--shadow);
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+}
+
+div.setting div.content {
+    min-height: calc(100vh - 198px - 57px);
+    box-shadow: var(--shadow);
+    width: 100%;
+    padding: 10px 20px 10px 20px;
+    background: #fff;
+}
+
+div.setting div.content {
+    /* width: 280px;
+    height: 420px;
+    background: #ffffff;
+    position: fixed;
+    top: 134px;
+     */
+    transition: height 0.5s ease-in-out;
+    overflow-y: hidden;
+    box-shadow: var(--shadow);
+    border-radius: 4px;
+    padding: 12px;
+    z-index: 4;
+    background-image: url(./media/back.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+div.setting div.content img {
+    height: 80px;
+    border-radius: 50%;
+    margin: 50px 10px 10px 10px;
+    box-shadow: 1px 3px 4px 0px rgb(0 0 0 / 40%);
+}
+
+div.setting div.content input {margin-top: 15px;}
+
+.empty {
+    border: 2px solid red;
 }

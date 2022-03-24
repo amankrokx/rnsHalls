@@ -162,7 +162,7 @@
     outline: none;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Prompt&display=swap');
+@import url('../assets/Roboto-Regular.ttf');
 
 .hidden {
     display: none;
@@ -170,6 +170,6 @@
 
 body {
     font-family: 'Prompt', sans-serif;
-    background: rgb(194 186 255);
-    /*background: linear-gradient(60deg, rgba(119, 186, 255, 1) 0%, rgba(91, 134, 249, 1) 15%, rgba(255, 104, 141, 1) 86%, rgba(255, 165, 165, 1) 100%);*/
+    /*background: rgb(194 186 255);
+    background: linear-gradient(60deg, rgba(119, 186, 255, 1) 0%, rgba(91, 134, 249, 1) 15%, rgba(255, 104, 141, 1) 86%, rgba(255, 165, 165, 1) 100%);*/
 }
