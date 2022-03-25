@@ -42,8 +42,8 @@
         <nav class="bottom hidden" style="position: fixed; bottom: 0; height: 50px;width: 100vw;background: #FFF;z-index: 10;"><span class="material-icons home nav-inactive" onclick="switchTo('home')">home</span><span class="material-icons notifications nav-inactive" onclick="switchTo('notifications')">notifications</span><span class="material-icons history nav-inactive" onclick="switchTo('history')">list_alt</span><span class="material-icons setting nav-inactive" onclick="switchTo('setting')">settings</span>
         </nav>
         <div id="container" style="position: fixed; background: rgba(255, 255, 255, 0.0); top: 80px; width: calc(100vw - 40px); height: calc(100% - 160px); left: 20px;">
-            <div class="login hidden" style="position: fixed; z-index: 7; top: 100px;background: #FFF; padding: 24px; width: calc(100vw - 80px); margin-left: 20px; box-shadow: var(--shadow);">
-                <span><big style="color: var(--ab);">Get Started </big><small><small>with</small></small></span>
+            <div class="login hidden" style="position: fixed; z-index: 7; top: 100px;background: #FFF; padding: 12px; width: calc(100vw - 80px); margin-left: 20px; box-shadow: var(--shadow);">
+                <span><big style="color: var(--ab);"> Get Started </big><small><small>with</small></small></span>
                 <div id="firebaseui-auth-container"></div>
             </div>
             <div class="setting hidden">
@@ -51,21 +51,20 @@
                 <div class="content">
                     <span class="material-icons" onclick="toggleMyProfile()" style="position: absolute;right: 12px;float: right;color: white;">close</span>
                     <center>
-                        <img src="./media/avatar.png" />    
-                        <input type="text" class="name" placeholder="Enter Name">
-                        <input type="tel" class="phone" placeholder="+91 XXX-XXX-XXXX">
-                        <input type="email" class="email" placeholder="Enter Email">
-                        <input type="file" class="photo" accept="image/*" style="display:none">
-                        <input type="submit" style="background: var(--ab);color: var(--bgh);" onclick="updateProfile()">
+                        <img src="./media/avatar.png" referrerpolicy="no-referrer"/>    
+                        <input type="text" class="name" placeholder="Enter Name" disabled>
+                        <input type="number" class="phone" placeholder="+91 XXX-XXX-XXXX" disabled>
+                        <input type="email" class="email" placeholder="Enter Email" disabled>
+                        <input type="submit" class="submit" style="background: var(--ab);color: var(--bgh);" value="Edit">
                     </center>
                 </div>
             </div>
-            <div class="history hidden">
-                <div class="head">History</div>
+            <div class="notifications hidden">
+                <div class="head">Notifications</div>
                 <div class="content">
                     <br />
                     <center>
-                        No booking History yet !
+                        No Notification History yet !
                     </center>
                 </div>
             </div>
@@ -73,11 +72,138 @@
                 <div class="head">Home</div>
                 <div class="content">hi there</div>
             </div>
-            <div class="notifications hidden">
-                <div class="head">Notifications</div>
+            <div class="history hidden">
+                <div class="head" style="background-color: #e83821;color: #fff;" >Bookings</div>
                 <div class="content">
-                    <br />
-                    <center>Your notifications will appear here</center>
+                    <center class="hidden"><br />Your notifications will appear here</center>
+                    <div id="" class="notify"> 
+                        <div class="info">
+                            <span style="color: #FFF;">Booking ID : XXX-XXX-XXXX</span><br /><br />
+                            <span style="margin-left: 15px;">08 : 40</span>
+                            <span class="fr" style="margin-right: 15px;">10 : 40</span>
+                            <br />
+                            <span style="margin-left: 7px;">06-03-22</span>
+                            <span class="fr" style="margin-right: 7px;">08-03-22</span>
+                            <hr style="margin: 15px;"/>
+                            <span style="margin-left: 7px;">Booking Status : </span>
+                            <span class="fr" style="margin-right: 7px; color: #6c3;">Approved</span>
+                            <br /><br />
+                            <input type="submit" class="otp" value="Cancel Booking" style="background: var(--ab);color: var(--bgh);" />
+                            
+                        </div>
+                    </div>
+                    <div id="" class="notify"> 
+                        <div class="info">
+                            <span style="color: #FFF;">Booking ID : XXX-XXX-XXXX</span><br /><br />
+                            <span style="margin-left: 15px;">08 : 40</span>
+                            <span class="fr" style="margin-right: 15px;">10 : 40</span>
+                            <br />
+                            <span style="margin-left: 7px;">06-03-22</span>
+                            <span class="fr" style="margin-right: 7px;">08-03-22</span>
+                            <hr style="margin: 15px;"/>
+                            <span style="margin-left: 7px;">Booking Status : </span>
+                            <span class="fr" style="margin-right: 7px; color: #6c3;">Approved</span>
+                            <br /><br />
+                            <input type="submit" class="otp" value="Cancel Booking" style="background: var(--ab);color: var(--bgh);" />
+                            
+                        </div>
+                    </div>
+                    <div id="" class="notify"> 
+                        <div class="info">
+                            <span style="color: #FFF;">Booking ID : XXX-XXX-XXXX</span><br /><br />
+                            <span style="margin-left: 15px;">08 : 40</span>
+                            <span class="fr" style="margin-right: 15px;">10 : 40</span>
+                            <br />
+                            <span style="margin-left: 7px;">06-03-22</span>
+                            <span class="fr" style="margin-right: 7px;">08-03-22</span>
+                            <hr style="margin: 15px;"/>
+                            <span style="margin-left: 7px;">Booking Status : </span>
+                            <span class="fr" style="margin-right: 7px; color: #6c3;">Approved</span>
+                            <br /><br />
+                            <input type="submit" class="otp" value="Cancel Booking" style="background: var(--ab);color: var(--bgh);" />
+                            
+                        </div>
+                    </div>
+                    <div id="" class="notify"> 
+                        <div class="info">
+                            <span style="color: #FFF;">Booking ID : XXX-XXX-XXXX</span><br /><br />
+                            <span style="margin-left: 15px;">08 : 40</span>
+                            <span class="fr" style="margin-right: 15px;">10 : 40</span>
+                            <br />
+                            <span style="margin-left: 7px;">06-03-22</span>
+                            <span class="fr" style="margin-right: 7px;">08-03-22</span>
+                            <hr style="margin: 15px;"/>
+                            <span style="margin-left: 7px;">Booking Status : </span>
+                            <span class="fr" style="margin-right: 7px; color: #6c3;">Approved</span>
+                            <br /><br />
+                            <input type="submit" class="otp" value="Cancel Booking" style="background: var(--ab);color: var(--bgh);" />
+                            
+                        </div>
+                    </div>
+                    <div id="" class="notify"> 
+                        <div class="info">
+                            <span style="color: #FFF;">Booking ID : XXX-XXX-XXXX</span><br /><br />
+                            <span style="margin-left: 15px;">08 : 40</span>
+                            <span class="fr" style="margin-right: 15px;">10 : 40</span>
+                            <br />
+                            <span style="margin-left: 7px;">06-03-22</span>
+                            <span class="fr" style="margin-right: 7px;">08-03-22</span>
+                            <hr style="margin: 15px;"/>
+                            <span style="margin-left: 7px;">Booking Status : </span>
+                            <span class="fr" style="margin-right: 7px; color: #6c3;">Approved</span>
+                            <br /><br />
+                            <input type="submit" class="otp" value="Cancel Booking" style="background: var(--ab);color: var(--bgh);" />
+                            
+                        </div>
+                    </div>
+                    <div id="" class="notify"> 
+                        <div class="info">
+                            <span style="color: #FFF;">Booking ID : XXX-XXX-XXXX</span><br /><br />
+                            <span style="margin-left: 15px;">08 : 40</span>
+                            <span class="fr" style="margin-right: 15px;">10 : 40</span>
+                            <br />
+                            <span style="margin-left: 7px;">06-03-22</span>
+                            <span class="fr" style="margin-right: 7px;">08-03-22</span>
+                            <hr style="margin: 15px;"/>
+                            <span style="margin-left: 7px;">Booking Status : </span>
+                            <span class="fr" style="margin-right: 7px; color: #6c3;">Approved</span>
+                            <br /><br />
+                            <input type="submit" class="otp" value="Cancel Booking" style="background: var(--ab);color: var(--bgh);" />
+                            
+                        </div>
+                    </div>
+                    <div id="" class="notify"> 
+                        <div class="info">
+                            <span style="color: #FFF;">Booking ID : XXX-XXX-XXXX</span><br /><br />
+                            <span style="margin-left: 15px;">08 : 40</span>
+                            <span class="fr" style="margin-right: 15px;">10 : 40</span>
+                            <br />
+                            <span style="margin-left: 7px;">06-03-22</span>
+                            <span class="fr" style="margin-right: 7px;">08-03-22</span>
+                            <hr style="margin: 15px;"/>
+                            <span style="margin-left: 7px;">Booking Status : </span>
+                            <span class="fr" style="margin-right: 7px; color: #6c3;">Approved</span>
+                            <br /><br />
+                            <input type="submit" class="otp" value="Cancel Booking" style="background: var(--ab);color: var(--bgh);" />
+                            
+                        </div>
+                    </div>
+                    <div id="" class="notify"> 
+                        <div class="info">
+                            <span style="color: #FFF;">Booking ID : XXX-XXX-XXXX</span><br /><br />
+                            <span style="margin-left: 15px;">08 : 40</span>
+                            <span class="fr" style="margin-right: 15px;">10 : 40</span>
+                            <br />
+                            <span style="margin-left: 7px;">06-03-22</span>
+                            <span class="fr" style="margin-right: 7px;">08-03-22</span>
+                            <hr style="margin: 15px;"/>
+                            <span style="margin-left: 7px;">Booking Status : </span>
+                            <span class="fr" style="margin-right: 7px; color: #6c3;">Approved</span>
+                            <br /><br />
+                            <input type="submit" class="otp" value="Cancel Booking" style="background: var(--ab);color: var(--bgh);" />
+                            
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="welcome hidden">

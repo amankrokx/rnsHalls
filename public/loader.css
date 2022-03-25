@@ -250,7 +250,7 @@ nav.bottom span {
 }
 
 .nav-active {
-    color: #000;
+    color: var(--ab);
     border-top: 2px solid var(--ab);
 }
 
@@ -266,6 +266,7 @@ div.head {
 
 div.content {
     min-height: calc(100vh - 198px - 57px);
+    max-height: calc(100vh - 198px);
     box-shadow: var(--shadow);
     width: 100%;
     padding: 10px 20px 10px 20px;
@@ -325,4 +326,19 @@ nav.top div.login {
 nav.top div.login:hover {
     background-color: #e8f0fe;
     box-shadow: var(--tbshadow);
+}
+
+div.history div.content {
+    background-image: url("./media/noti.jpg");
+    background-size: cover;
+    overflow-y: scroll;
+}
+
+div.notify{
+    padding: 10px;
+    background-color: rgba(0,0,0,0.2);
+    color: var(--ttc);
+    box-shadow: var(--tbshadow );
+    backdrop-filter: blur(10px);
+    margin-bottom: 15px;
 }

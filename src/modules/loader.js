@@ -1,4 +1,3 @@
-import '../css/loader.css'
 let tl
 function showLoader() {
     tl.classList.remove('hidden')

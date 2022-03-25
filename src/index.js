@@ -1,11 +1,10 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 
-import { getAuth, onAuthStateChanged  } from "firebase/auth";
+import { getAuth, onAuthStateChanged, updateProfile  } from "firebase/auth";
 import * as firebaseui from 'firebaseui'
 import { firebaseConfig, uiConfig } from "./config/firebaseConfig";
 import './css/firebase-ui-auth.css'
-import './modules/loader.js'
 
 //import { getAnalytics } from "firebase/analytics";
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -18,6 +17,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app)
 
 onAuthStateChanged(auth, (user) => {
+    hideLoader()
     if (user) {
       // User is signed in, see docs for a list of available properties
       // https://firebase.google.com/docs/reference/js/firebase.User
@@ -25,12 +25,15 @@ onAuthStateChanged(auth, (user) => {
       document.querySelector('nav.top div.signin').classList.add('hidden')
       document.querySelector('nav.top div.logout').classList.remove('hidden')
       document.querySelector('nav.bottom').classList.remove('hidden')
-      switchTo('setting')
+      switchTo('notifications')
       const uid = user.uid;
       if (user.photoURL) {
-            document.querySelector('nav.bottom span.setting').innerHTML = `<img src="${user.photoURL}" style="height: 36px; width: 36px; border-radius: 50%;" />`
-            //document.querySelector('div.setting div.content img').src = user.photoURL
+            document.querySelector('nav.bottom span.setting').innerHTML = `<img src="${user.photoURL}" style="height: 36px; width: 36px; border-radius: 50%;" referrerpolicy="no-referrer" />`
+            document.querySelector('div.setting div.content img').src = user.photoURL
       }
+      if (user.displayName) document.querySelector('div.setting input.name').value = user.displayName
+      if (user.email) document.querySelector('div.setting input.email').value = user.email
+      if (user.phoneNumber) document.querySelector('div.setting input.phone').value = user.phoneNumber
       // ...
     } else {
         // User is signed out
@@ -49,10 +52,38 @@ document.querySelector('nav.top div.logout').onclick = function () {
     auth.signOut()
 }
 
-setTimeout(() => {
-    //switchTo('welcome')
-    showLoader()
-}, 3000);
+document.querySelector('div.setting input.submit').onclick = function(e) {
+    if (e.target.value === 'Edit') {
+        document.querySelector('div.setting input.name').disabled = false
+        document.querySelector('div.setting input.email').disabled = false
+        document.querySelector('div.setting input.phone').disabled = false
+        e.target.value = 'Save Changes'
+    } else {
+        document.querySelector('div.setting input.name').disabled = true
+        document.querySelector('div.setting input.email').disabled = true
+        document.querySelector('div.setting input.phone').disabled = true
+        let name =  document.querySelector('div.setting input.name').value
+        let email_ = document.querySelector('div.setting input.email').value
+        let phoneNumber_ = document.querySelector('div.setting input.phone').value
+        phoneNumber_ = phoneNumber_.toString()
+        console.log(name, email_, phoneNumber_)
+        updateProfile(auth.currentUser, {
+            displayName: name,
+            email: email_,
+            phoneNumber: phoneNumber_
+          }).then(() => {
+            // Profile updated!
+            alert('Profile Updated !')
+        }).catch((error) => {
+            // An error occurred
+            console.log(error)
+            alert('Some error Occured !')
+            return
+        });
+        e.target.value = 'Edit'
+          
+    }
+}
 
 function component() {
     const element = document.createElement('div');

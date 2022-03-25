@@ -17,3 +17,12 @@ function switchTo(wind) {
     }
     active = wind
 }
+
+let tl = document.getElementById('loader')
+function showLoader() {
+    tl.classList.remove('hidden')
+}
+
+function hideLoader() {
+    tl.classList.add('hidden')
+}
