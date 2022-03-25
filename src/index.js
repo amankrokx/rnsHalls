@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 
-import { getAuth, onAuthStateChanged, updateProfile  } from "firebase/auth";
+import { getAuth, onAuthStateChanged, updatePassword, sendEmailVerification, updateProfile, updateEmail  } from "firebase/auth";
 import * as firebaseui from 'firebaseui'
 import { firebaseConfig, uiConfig } from "./config/firebaseConfig";
 import './css/firebase-ui-auth.css'
@@ -15,7 +15,7 @@ const app = initializeApp(firebaseConfig);
 //const analytics = getAnalytics(app);
 // Initialize Firebase Authentication and get a reference to the service
 const auth = getAuth(app)
-
+auth.languageCode = 'en';
 onAuthStateChanged(auth, (user) => {
     hideLoader()
     if (user) {
@@ -57,41 +57,58 @@ document.querySelector('div.setting input.submit').onclick = function(e) {
         document.querySelector('div.setting input.name').disabled = false
         document.querySelector('div.setting input.email').disabled = false
         document.querySelector('div.setting input.phone').disabled = false
+        document.querySelector('div.setting input.password').disabled = false
         e.target.value = 'Save Changes'
     } else {
         document.querySelector('div.setting input.name').disabled = true
         document.querySelector('div.setting input.email').disabled = true
         document.querySelector('div.setting input.phone').disabled = true
+        document.querySelector('div.setting input.password').disabled = true
         let name =  document.querySelector('div.setting input.name').value
         let email_ = document.querySelector('div.setting input.email').value
         let phoneNumber_ = document.querySelector('div.setting input.phone').value
+        let password = document.querySelector('div.setting input.password').value
         phoneNumber_ = phoneNumber_.toString()
         console.log(name, email_, phoneNumber_)
-        updateProfile(auth.currentUser, {
-            displayName: name,
-            email: email_,
-            phoneNumber: phoneNumber_
-          }).then(() => {
-            // Profile updated!
-            alert('Profile Updated !')
-        }).catch((error) => {
-            // An error occurred
-            console.log(error)
-            alert('Some error Occured !')
-            return
-        });
+        if (name && name !== auth.currentUser.displayName) {
+            updateProfile(auth.currentUser, {
+                displayName: name,
+              }).then(() => {
+                // Profile updated!
+                alert('Name Updated !')
+            }).catch((error) => {
+                // An error occurred
+                console.log(error)
+                alert('Some error Occured with name !')
+                return
+            })
+        }
+        if (email_ && email_ !== auth.currentUser.email) {
+            updateEmail(auth.currentUser, email_).then(() => {
+                // Email updated!
+                alert('Email ID updated ! Please verify email Sent !')
+                sendEmailVerification(auth.currentUser)
+                    .then(() => {
+                        // Email verification sent!
+                        // ...
+                    });
+              }).catch((error) => {
+                // An error occurred
+                console.log(error)
+                alert("Please Re-login and try again !")
+              });
+        }
+        if (password) {
+            updatePassword(auth.currentUser, password).then(() => {
+                // Update successful.
+                alert('Password Updated')
+              }).catch((error) => {
+                // An error ocurred
+                alert('Sign in again then try !')
+              });
+
+        }
         e.target.value = 'Edit'
           
     }
 }
-
-function component() {
-    const element = document.createElement('div');
-
-    // Lodash, currently included via a script, is required for this line to work
-    // Lodash, now imported by this script
-    element.innerHTML = "Hellow World rom webpack !"
-    return element;
-}
-
-document.body.appendChild(component());

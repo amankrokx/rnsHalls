@@ -1,4 +1,4 @@
-import { EmailAuthProvider, GoogleAuthProvider, PhoneAuthProvider } from "firebase/auth";
+import { EmailAuthProvider, RecaptchaVerifier, GoogleAuthProvider, PhoneAuthProvider } from "firebase/auth";
 
 const firebaseConfig = {
     apiKey: "AIzaSyCtXhu_B-km2JnERkRauDWYP4cLKg-jHL0",
@@ -37,8 +37,8 @@ const uiConfig = {
         provider: PhoneAuthProvider.PROVIDER_ID,
         recaptchaParameters: {
             type: 'image', // 'audio'
-            size: 'normal', // 'invisible' or 'compact'
-            badge: 'bottomleft' //' bottomright' or 'inline' applies to invisible.
+            size: 'invisible', // 'invisible' or 'compact'
+            badge: 'bottomright' //' bottomright' or 'inline' applies to invisible.
             },
             defaultCountry: 'IN', // Set default country to the United Kingdom (+44).
             // For prefilling the national number, set defaultNationNumber.
