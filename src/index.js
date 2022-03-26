@@ -25,7 +25,7 @@ onAuthStateChanged(auth, (user) => {
       document.querySelector('nav.top div.signin').classList.add('hidden')
       document.querySelector('nav.top div.logout').classList.remove('hidden')
       document.querySelector('nav.bottom').classList.remove('hidden')
-      switchTo('notifications')
+      switchTo('home')
       const uid = user.uid;
       if (user.photoURL) {
             document.querySelector('nav.bottom span.setting').innerHTML = `<img src="${user.photoURL}" style="height: 36px; width: 36px; border-radius: 50%;" referrerpolicy="no-referrer" />`

@@ -257,7 +257,7 @@ nav.bottom span {
 div.head {
     display: inline-block;
     padding: 10px 20px 10px 20px;
-    background: #fff;
+    background: rgba(14, 42, 71, 1);
     color: var(--ab);
     box-shadow: var(--shadow);
     border-top-left-radius: 18px;
@@ -267,17 +267,16 @@ div.head {
 div.content {
     min-height: calc(100vh - 198px - 57px);
     max-height: calc(100vh - 198px);
+    /* height: 100%; */
     box-shadow: var(--shadow);
     width: 100%;
     padding: 10px 20px 10px 20px;
     background: #fff;
 }
 
-div.welcome div.content {
+/* div.welcome div.content {
     min-height: auto;
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='360' height='740' preserveAspectRatio='none' viewBox='0 0 360 740'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1117%26quot%3b)' fill='none'%3e%3crect width='360' height='740' x='0' y='0' fill='rgba(255%2c 255%2c 255%2c 0.6)'%3e%3c/rect%3e%3cpath d='M7 740L747 0L921 0L181 740z' fill='url(%23SvgjsLinearGradient1118)'%3e%3c/path%3e%3cpath d='M134.8 740L874.8 0L948.3 0L208.3 740z' fill='url(%23SvgjsLinearGradient1118)'%3e%3c/path%3e%3cpath d='M344 740L-396 0L-415.5 0L324.5 740z' fill='url(%23SvgjsLinearGradient1119)'%3e%3c/path%3e%3cpath d='M223.2 740L-516.8 0L-603.8 0L136.2 740z' fill='url(%23SvgjsLinearGradient1119)'%3e%3c/path%3e%3cpath d='M91.5160132161663 740L360 471.5160132161663L360 740z' fill='url(%23SvgjsLinearGradient1118)'%3e%3c/path%3e%3cpath d='M0 740L268.4839867838337 740L 0 471.5160132161663z' fill='url(%23SvgjsLinearGradient1119)'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1117'%3e%3crect width='360' height='740' fill='white'%3e%3c/rect%3e%3c/mask%3e%3clinearGradient x1='0%25' y1='100%25' x2='100%25' y2='0%25' id='SvgjsLinearGradient1118'%3e%3cstop stop-color='rgba(0%2c 22%2c 69%2c 0.58)' offset='0'%3e%3c/stop%3e%3cstop stop-opacity='0' stop-color='rgba(0%2c 22%2c 69%2c 0.58)' offset='0.66'%3e%3c/stop%3e%3c/linearGradient%3e%3clinearGradient x1='100%25' y1='100%25' x2='0%25' y2='0%25' id='SvgjsLinearGradient1119'%3e%3cstop stop-color='rgba(0%2c 22%2c 69%2c 0.58)' offset='0'%3e%3c/stop%3e%3cstop stop-opacity='0' stop-color='rgba(0%2c 22%2c 69%2c 0.58)' offset='0.66'%3e%3c/stop%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e");
-    background-size: contain;
-}
+} */
 
 div.setting div.head {
     background-color: #aee600;
@@ -290,6 +289,8 @@ div.setting div.content {
     position: fixed;
     top: 134px;
      */
+    min-height: calc(100vh - 198px - 57px);
+    max-height: calc(100vh - 198px);
     transition: height 0.5s ease-in-out;
     overflow-y: hidden;
     box-shadow: var(--shadow);
@@ -303,6 +304,7 @@ div.setting div.content {
 
 div.setting div.content img {
     height: 80px;
+    /* height: 50px; */
     border-radius: 50%;
     margin: 50px 10px 10px 10px;
     box-shadow: 1px 3px 4px 0px rgb(0 0 0 / 40%);
@@ -336,15 +338,6 @@ div.history div.content {
     overflow-y: scroll;
 }
 
-div.notify{
-    padding: 10px;
-    background-color: rgba(0,0,0,0.2);
-    color: var(--ttc);
-    box-shadow: var(--tbshadow );
-    backdrop-filter: blur(10px);
-    margin-bottom: 15px;
-}
-
 div.home div.content{
     border-radius: 0px 4px 4px 4px;
     -webkit-border-radius: 0px 4px 4px 4px;
@@ -358,6 +351,14 @@ div.home div.content{
     overflow-y: scroll;
 }
 
+div.notify{
+    padding: 10px;
+    background-color: rgba(0,0,0,0.2);
+    color: var(--ttc);
+    box-shadow: var(--tbshadow );
+    backdrop-filter: blur(10px);
+    margin-bottom: 15px;
+}
 .calender
 {
     width: 100%;
