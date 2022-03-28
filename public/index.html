@@ -41,7 +41,7 @@
         </nav>
         <nav class="bottom hidden" style="position: fixed; bottom: 0; height: 50px;width: 100vw;background: #FFF;z-index: 10;"><span class="material-icons home nav-inactive" onclick="switchTo('home')">home</span><span class="material-icons notifications nav-inactive" onclick="switchTo('notifications')">notifications</span><span class="material-icons history nav-inactive" onclick="switchTo('history')">list_alt</span><span class="material-icons setting nav-inactive" onclick="switchTo('setting')">settings</span>
         </nav>
-        <div id="container" style="position: fixed; background: rgba(255, 255, 255, 0.0); top: 80px; width: calc(100vw - 40px); height: calc(100% - 160px); left: 20px;">
+        <div id="container" style="position: fixed; background: rgba(255, 255, 255, 0.0); top: 70px; width: calc(100vw - 40px); height: calc(100% - 160px); left: 20px;">
             <div class="login hidden" style="position: fixed; z-index: 7; top: 100px;background: #FFF; padding: 12px; width: calc(100vw - 80px); margin-left: 20px; box-shadow: var(--shadow);">
                 <span><big style="color: var(--ab);"> Get Started </big><small><small>with</small></small></span>
                 <div id="firebaseui-auth-container"></div>
@@ -57,54 +57,91 @@
                         <input type="email" class="email" placeholder="Enter Email" disabled>
                         <input type="password" class="password" placeholder="Leave Empty (unchanged)" disabled>
                         <input type="submit" class="submit" style="background: var(--ab);color: var(--bgh);" value="Edit">
+                        <input type="text" class="secret" placeholder="secret" disabled>
+                        <input type="submit" class="secret-submit" style="background: var(--ab);color: var(--bgh);" value="Modify">
                     </center>
                 </div>
             </div>
             <div class="notifications hidden">
                 <div class="head">Notifications</div>
                 <div class="content">
-                    <br />
-                    <center>
+                    <center class="hidden">
+                        <br />
                         No Notification History yet !
                     </center>
+                    <div class="notification-card">
+                        <div class="symbol">
+                            <span class="material-icons" style="float: left; font-size: 25px;">notifications</span>     
+                        </div>
+                        <div class="message_display" style="font-size: 0.6rem;">
+                            <span>Your Booking ID :XXX-XXX-XXXX<br>Has Been </span><span style="color: var(--ao);"> Accepted</span>
+                        </div><br />
+                        <span style="float: right; font-size: 0.4rem;">24:00 | dd/mm/yyyy</span>
+                    </div>
+                    <div class="notification-card">
+                        <div class="symbol">
+                            <span class="material-icons" style="float: left; font-size: 25px;">settings_suggest</span>     
+                        </div>
+                        <div class="message_display" style="font-size: 0.6rem;">
+                            <span>There is an Update....<br></span><span style="color: var(--ao);">Click Here</span>
+                        </div><br />
+                        <span style="float: right; font-size: 0.4rem;">24:00 | dd/mm/yyyy</span>
+                    </div>
                 </div>
             </div>
-            <div class="home hidden">
+            <div class="notifications-admin hidden">
+                <div class="head">Notifications</div>
+                <div class="content" style="height: 80px;">
+
+                    <!-- <center style="color: #FFF;">
+                        <span class="material-icons">history_toggle_off</span>
+                    </center> -->
+                    
+                    <div class="notification-card">
+                        <div class="symbol">
+                            <span class="material-icons" style="float: left; font-size: 25px;">admin_panel_settings</span>     
+                        </div>
+                        <div class="message_display" style="font-size: 0.6rem;">
+                            <span>Hello user, All bookings for dd/mm/yyyy<br>are <span style="color: var(--ao);">Canceled</span></span>
+                        </div><br />
+                        <span style="float: right; font-size: 0.4rem;">24:00 | dd/mm/yyyy</span>
+                    </div>
+                </div>
+                <div class="message" style="height: 20%;">
+                    <input type="text" class="inform_usr" value="Send Broadcast..."></input>
+                    <span class="material-icons" style="color: var(--ao); text-align: center; width: 20%; padding-top: 5px; padding-left: 10px; font-size: 30px;">send</span>
+                </div>
+            </div>
+            <div class="home hidden" >
                 <div class="head">Home</div>
                 <div class="content">
                     <div class="calender">
-                        <!--<div class="calender-top row">
-                            <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle month-btn" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="float: left; margin-left: 10px;">
-                                  Month
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                  <li><a class="dropdown-item ddhover" href="#">January</a></li>
-                                  <li><a class="dropdown-item ddhover" href="#">February</a></li>
-                                  <li><a class="dropdown-item ddhover" href="#">March</a></li>
-                                  <li><a class="dropdown-item ddhover" href="#">April</a></li>
-                                  <li><a class="dropdown-item ddhover" href="#">May</a></li>
-                                  <li><a class="dropdown-item ddhover" href="#">June</a></li>
-                                  <li><a class="dropdown-item ddhover" href="#">July</a></li>
-                                  <li><a class="dropdown-item ddhover" href="#">August</a></li>
-                                  <li><a class="dropdown-item ddhover" href="#">September</a></li>
-                                  <li><a class="dropdown-item ddhover" href="#">October</a></li>
-                                  <li><a class="dropdown-item ddhover" href="#">November</a></li>
-                                  <li><a class="dropdown-item ddhover" href="#">December</a></li>
-                                </ul>
-                            <div class="dropdown-week">
-                                <button class="btn btn-secondary dropdown-toggle month-btn" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="float: right;">
-                                  week
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                  <li><a class="dropdown-item ddhover" href="#">Week 1</a></li>
-                                  <li><a class="dropdown-item ddhover" href="#">Week 2</a></li>
-                                  <li><a class="dropdown-item ddhover" href="#">Week 3</a></li>
-                                  <li><a class="dropdown-item ddhover" href="#">Week 4</a></li>
-                                  <li><a class="dropdown-item ddhover" href="#">Week 5</a></li>
-                                </ul>
+                        <div class="calender-top">
+                            <div>
+                                <center>
+                                    <div class="months">
+                                        <span>January</span>
+                                        <span class="active">February</span>
+                                        <span>March</span>
+                                        <span>April</span>
+                                        <span>May</span>
+                                        <span>June</span>
+                                        <span>July</span>
+                                        <span>August</span>
+                                        <span>September</span>
+                                        <span>October</span>
+                                        <span>November</span>
+                                        <span>December</span>
+                                    </div>
+                                    <div class="weeks">
+                                        <span>Week 5</span>
+                                        <span class="active">Week 6</span>
+                                        <span>Week 7</span>
+                                        <span>Week 8</span>
+                                    </div>
+                                </center>
                             </div>
-                        </div>-->
+                        </div>
                         <div class="calender-bottom">
                                 <div class="calender-header">
                                     <div class="calender-text" style="width: 25%;">Date</div>
@@ -182,11 +219,9 @@
                                 </div>
                         </div>
                     </div>
-                    <div class="lower-content">
-                        <!-- <input type="text" value="Number od slots: 0" style="float: left;" /> -->
-                        <div class="counter">Number of slots: 0</div>
-                        <button onclick="bookSlots()" style="float: right;">Book Slots</button>
-                    </div>
+                    <br /><br />
+                    <center><input class="book" style="background-color: var(--ab); color: #fff;" type="submit" value="Book (0)" /></center>
+                    <br />
                 </div>
             </div>
             <div class="history hidden">
@@ -321,6 +356,35 @@
                             
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="history-admin hidden">
+                <div class="head" style="background-color: #e83821;color: #fff;" >Bookings</div>
+                <div class="content">
+                    <div class="request">
+                        <div class="display_page">
+                            <div class="profdiv">
+                                <span class="material-icons" style="font-size: 70px; padding-top: 15px ;">account_circle</span>
+                                <span class="material-icons" style="font-size: 20px; justify-content: center; position: absolute; top: 110px; left: 80px; color: var(--ab);">verified</span>
+                            </div>
+                            <div style ="width: 70%; padding-left: 15px;margin-top: 15px; float: right;">
+                                <span style="font-size: 0.75rem;">XXX-XXX-XXXX</span><br>
+                                <span style="font-size: 1.15rem;">YYYYYYY</span><br />
+                                <div style="display: inline;">
+                                    <span style="font-size: 0.75rem; float: left;">10/10/11</span>
+                                    <span style="font-size: 0.75rem; float: right; margin-right: 15px;">08:40 - 09:40</span>
+                                </div>
+                            </div>
+                        </div>
+                        <hr style="margin: 10px;">
+                        <a href="#textbox" onclick="this.classList.add('hidden'); document.getElementById('textbox').classList.remove('hidden');" class="comment" style="font-size: 0.6rem; margin-left: 10px; color: var(--stc)">Add Comment</a><br>
+                        <input type="text" id="textbox" class="box hidden" style="width: 100%; height: 25px; margin: 0px;">
+                        <div style="display: flex;">
+                            <input type="submit" class="otp" value="Accept" style="background: var(--ab);color: var(--bgh);width: 50%; margin: 5px; font-size: 0.75rem; height: 25px;" />
+                            <input type="submit" class="otp" value="Reject" style="color: var(--ao);width: 50%;float: right; margin: 5px;font-size: 0.75rem; height: 25px;" />
+                        </div>
+                    </div>
+                    <!-- Stop Here -->
                 </div>
             </div>
             <div class="welcome hidden">

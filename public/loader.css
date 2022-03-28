@@ -368,30 +368,35 @@ div.home div.content{
     /* remove */
     /* border: 4px solid black; */
 }
-.calender-top
-{
-    width: 100%;
-    height: 20%;
-    /* remove */
-    /* border: 2px solid black; */
-    /* background-color: #202124; */
-    position: relative;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-    display: flex;
+
+div.calender-top div {
+    height: 60px;
 }
 
-div.dropdown-month button{
-    border-radius: 4px;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    -ms-border-radius: 4px;
-    -o-border-radius: 4px;
+div.calender-top div div.months, div.calender-top div div.weeks {
+    height: 20px;
+    overflow-y: hidden;
+    margin-top: 10px;
+    overflow-x: scroll;
+    white-space: nowrap;
+    color: var(--ao);
+}
 
-    /* margin: 50px; */
-    justify-content: center;
-    
+div.calender div::-webkit-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+div.calender div::-webkit-scrollbar {
+    display: none;
+}
+
+div.calender-top div span {
+    margin-left: 40px;
+}
+
+div.calender-top div span.active {
+    color: var(--ab);
 }
 
 .calender-bottom
@@ -545,4 +550,84 @@ div.lower-content div.counter{
     color: #fff;
     text-align: center;
 
+}
+
+div.notification-card{
+    margin-top: 10px;
+    /* background-color: var(--ab); */
+    box-sizing: border-box;
+    border: none;
+    box-shadow: var(--shadow);
+    border-radius: 4px;
+    padding:10px;
+    text-align: center;
+    background: transparent;
+    color: #fff;
+}
+
+div.notifications-admin div.content, div.notifications div.content
+{
+    /* position: absolute; */
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1440' height='560' preserveAspectRatio='none' viewBox='0 0 1440 560'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1790%26quot%3b)' fill='none'%3e%3crect width='1440' height='560' x='0' y='0' fill='url(%23SvgjsLinearGradient1791)'%3e%3c/rect%3e%3cpath d='M1440 0L1091.49 0L1440 185z' fill='rgba(255%2c 255%2c 255%2c .1)'%3e%3c/path%3e%3cpath d='M1091.49 0L1440 185L1440 392.01L706.38 0z' fill='rgba(255%2c 255%2c 255%2c .075)'%3e%3c/path%3e%3cpath d='M706.38 0L1440 392.01L1440 426.06L592.65 0z' fill='rgba(255%2c 255%2c 255%2c .05)'%3e%3c/path%3e%3cpath d='M592.65 0L1440 426.06L1440 458.15L224.48999999999995 0z' fill='rgba(255%2c 255%2c 255%2c .025)'%3e%3c/path%3e%3cpath d='M0 560L87.01 560L0 286.68z' fill='rgba(0%2c 0%2c 0%2c .1)'%3e%3c/path%3e%3cpath d='M0 286.68L87.01 560L626.06 560L0 260.6z' fill='rgba(0%2c 0%2c 0%2c .075)'%3e%3c/path%3e%3cpath d='M0 260.6L626.06 560L1053.56 560L0 142.35000000000002z' fill='rgba(0%2c 0%2c 0%2c .05)'%3e%3c/path%3e%3cpath d='M0 142.35000000000002L1053.56 560L1062.3 560L0 91.03000000000003z' fill='rgba(0%2c 0%2c 0%2c .025)'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1790'%3e%3crect width='1440' height='560' fill='white'%3e%3c/rect%3e%3c/mask%3e%3clinearGradient x1='50%25' y1='0%25' x2='50%25' y2='100%25' gradientUnits='userSpaceOnUse' id='SvgjsLinearGradient1791'%3e%3cstop stop-color='rgba(3%2c 23%2c 45%2c 1)' offset='0'%3e%3c/stop%3e%3cstop stop-color='rgba(13%2c 158%2c 78%2c 1)' offset='0.67'%3e%3c/stop%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow-y: scroll;
+    box-shadow: var(--shadow);
+}
+
+
+input.inform_usr{
+    width: 80%;
+    justify-content: center;
+    /* height: 100px; */
+    padding: 20px;
+    border-left: 6px var(--ao);
+    background: var(--bgb);
+    font-size: 1rem;
+    border-radius: 4px;
+    box-shadow: var(--shadow);
+    border: none;
+}
+div.message{
+    width: 100%;
+    margin-top: 5px;
+    display: flex;
+    box-sizing: border-box;
+    box-shadow: var(--shadow);
+    border: none;
+    /* background: var(--bgh); */
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1440' height='560' preserveAspectRatio='none' viewBox='0 0 1440 560'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1790%26quot%3b)' fill='none'%3e%3crect width='1440' height='560' x='0' y='0' fill='url(%23SvgjsLinearGradient1791)'%3e%3c/rect%3e%3cpath d='M1440 0L1091.49 0L1440 185z' fill='rgba(255%2c 255%2c 255%2c .1)'%3e%3c/path%3e%3cpath d='M1091.49 0L1440 185L1440 392.01L706.38 0z' fill='rgba(255%2c 255%2c 255%2c .075)'%3e%3c/path%3e%3cpath d='M706.38 0L1440 392.01L1440 426.06L592.65 0z' fill='rgba(255%2c 255%2c 255%2c .05)'%3e%3c/path%3e%3cpath d='M592.65 0L1440 426.06L1440 458.15L224.48999999999995 0z' fill='rgba(255%2c 255%2c 255%2c .025)'%3e%3c/path%3e%3cpath d='M0 560L87.01 560L0 286.68z' fill='rgba(0%2c 0%2c 0%2c .1)'%3e%3c/path%3e%3cpath d='M0 286.68L87.01 560L626.06 560L0 260.6z' fill='rgba(0%2c 0%2c 0%2c .075)'%3e%3c/path%3e%3cpath d='M0 260.6L626.06 560L1053.56 560L0 142.35000000000002z' fill='rgba(0%2c 0%2c 0%2c .05)'%3e%3c/path%3e%3cpath d='M0 142.35000000000002L1053.56 560L1062.3 560L0 91.03000000000003z' fill='rgba(0%2c 0%2c 0%2c .025)'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1790'%3e%3crect width='1440' height='560' fill='white'%3e%3c/rect%3e%3c/mask%3e%3clinearGradient x1='50%25' y1='0%25' x2='50%25' y2='100%25' gradientUnits='userSpaceOnUse' id='SvgjsLinearGradient1791'%3e%3cstop stop-color='rgba(3%2c 23%2c 45%2c 1)' offset='0'%3e%3c/stop%3e%3cstop stop-color='rgba(13%2c 158%2c 78%2c 1)' offset='0.67'%3e%3c/stop%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e");
+
+    justify-content: center;
+    padding:10px;
+    border-radius: 4px;
+}
+
+div.history-admin div.request {
+    margin-bottom: 15px;
+    box-sizing: content-box;
+    box-shadow: var(--shadow);
+    padding: 10px;
+    padding-top: 0;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+
+    /* display: flex; */
+    height: min-content;
+}
+
+div.history-admin div.profdiv {
+    width: 30%;
+    /* float: left; */
+    justify-content: center;
+    text-align: center;
+    margin: auto;
+    /* position:absolute; */
+}
+
+div.display_page {
+    display: flex;
 }

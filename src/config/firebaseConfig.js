@@ -17,7 +17,7 @@ const uiConfig = {
           // User successfully signed in.
           // Return type determines whether we continue the redirect automatically
           // or whether we leave that to developer to handle.
-          return true;
+          return false;
         },
         uiShown: function() {
           // The widget is rendered.
@@ -25,7 +25,7 @@ const uiConfig = {
           document.getElementById('loader').style.display = 'none';
         }
     },
-    signInSuccessUrl: 'http://localhost:8080/',
+    signInSuccessUrl: window.location.origin,
     signInOptions: [
         {
         provider: EmailAuthProvider.PROVIDER_ID,

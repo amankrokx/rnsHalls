@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-
 import { getAuth, onAuthStateChanged, updatePassword, sendEmailVerification, updateProfile, updateEmail  } from "firebase/auth";
+import { getDatabase, ref, set, onValue } from "firebase/database";
 import * as firebaseui from 'firebaseui'
 import { firebaseConfig, uiConfig } from "./config/firebaseConfig";
 import './css/firebase-ui-auth.css'
@@ -16,6 +16,22 @@ const app = initializeApp(firebaseConfig);
 // Initialize Firebase Authentication and get a reference to the service
 const auth = getAuth(app)
 auth.languageCode = 'en';
+let globals = {
+    uid : false,
+    attached : false,
+}
+// Get a reference to the database service
+const db = getDatabase(app);
+
+let attachEvents = () => {
+    if (!globals.attached) {
+        globals.attached = true
+        onValue(ref(db, `users/${globals.uid}/secret`), (snapshot) => {
+            document.querySelector('div.setting input.secret').value = snapshot.val()
+        })
+    }
+}
+
 onAuthStateChanged(auth, (user) => {
     hideLoader()
     if (user) {
@@ -26,7 +42,8 @@ onAuthStateChanged(auth, (user) => {
       document.querySelector('nav.top div.logout').classList.remove('hidden')
       document.querySelector('nav.bottom').classList.remove('hidden')
       switchTo('home')
-      const uid = user.uid;
+      globals.uid = user.uid;
+      attachEvents()
       if (user.photoURL) {
             document.querySelector('nav.bottom span.setting').innerHTML = `<img src="${user.photoURL}" style="height: 36px; width: 36px; border-radius: 50%;" referrerpolicy="no-referrer" />`
             document.querySelector('div.setting div.content img').src = user.photoURL
@@ -39,7 +56,11 @@ onAuthStateChanged(auth, (user) => {
         // User is signed out
         document.querySelector('nav.top div.signin').classList.remove('hidden')
         document.querySelector('nav.top div.logout').classList.add('hidden')
-        let ui = new firebaseui.auth.AuthUI(auth).start('#firebaseui-auth-container', uiConfig );
+        try {
+            let ui = new firebaseui.auth.AuthUI(auth).start('#firebaseui-auth-container', uiConfig );
+        } catch (err) {
+            console.warn(err)
+        }
         switchTo('welcome')
         if (ui.isPendingRedirect()) {
             ui.start('#firebaseui-auth-container', uiConfig);
@@ -49,7 +70,9 @@ onAuthStateChanged(auth, (user) => {
 
 // Event listeners...
 document.querySelector('nav.top div.logout').onclick = function () {
-    auth.signOut()
+    auth.signOut().then(() => {
+        window.location.reload()
+    })
 }
 
 document.querySelector('div.setting input.submit').onclick = function(e) {
@@ -73,7 +96,7 @@ document.querySelector('div.setting input.submit').onclick = function(e) {
         if (name && name !== auth.currentUser.displayName) {
             updateProfile(auth.currentUser, {
                 displayName: name,
-              }).then(() => {
+            }).then(() => {
                 // Profile updated!
                 alert('Name Updated !')
             }).catch((error) => {
@@ -93,22 +116,44 @@ document.querySelector('div.setting input.submit').onclick = function(e) {
                         // ...
                     });
               }).catch((error) => {
-                // An error occurred
-                console.log(error)
-                alert("Please Re-login and try again !")
-              });
-        }
-        if (password) {
-            updatePassword(auth.currentUser, password).then(() => {
-                // Update successful.
-                alert('Password Updated')
-              }).catch((error) => {
-                // An error ocurred
-                alert('Sign in again then try !')
-              });
+                  // An error occurred
+                  console.log(error)
+                  alert("Please Re-login and try again !")
+                });
+            }
+            if (password) {
+                updatePassword(auth.currentUser, password).then(() => {
+                    // Update successful.
+                    alert('Password Updated')
+                }).catch((error) => {
+                    // An error ocurred
+                    alert('Sign in again then try !')
+                });
+                
+            }
+            e.target.value = 'Edit'
+            
+    }
+}
 
+document.querySelector('div.setting input.secret-submit').onclick = function(e) {
+    if (e.target.value === 'Modify') {
+        document.querySelector('div.setting input.secret').disabled = false
+        e.target.value = 'Update'
+    }
+    else {
+        let secret = document.querySelector('div.setting input.secret').value
+        if (!secret) {
+            alert('Secret Cannot be Empty !')
+        } else {
+            set(ref(db, `users/${uid}/`), {
+                secret
+            }).then(() => {
+                alert("Secret Updated !")
+            }).catch((error) => {
+                console.error(error)
+                alert("failed to update Secret")
+            })
         }
-        e.target.value = 'Edit'
-          
     }
 }

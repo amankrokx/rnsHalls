@@ -333,7 +333,9 @@ nav.top div.login:hover {
 }
 
 div.history div.content {
-    background-image: url("./media/noti.jpg");
+    /* background-image: url("./media/noti.jpg"); */
+    height: 80px;
+    background-color: var(--bgh);
     background-size: cover;
     overflow-y: scroll;
 }
@@ -546,4 +548,33 @@ div.lower-content div.counter{
     color: #fff;
     text-align: center;
 
+}
+
+div.history div.request {
+    margin-bottom: 15px;
+    box-sizing: content-box;
+    box-shadow: var(--shadow);
+    padding: 10px;
+    padding-top: 0;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+
+    /* display: flex; */
+    height: min-content;
+}
+
+div.history div.profdiv {
+    width: 30%;
+    /* float: left; */
+    justify-content: center;
+    text-align: center;
+    margin: auto;
+    /* position:absolute; */
+}
+
+div.display_page {
+    display: flex;
 }
