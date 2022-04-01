@@ -1,4 +1,4 @@
-const ids = ['login', 'welcome', 'home', 'notifications', 'history', 'setting']
+const ids = ['login', 'welcome', 'home', 'notifications', 'history', 'notifications-admin', 'history-admin', 'setting']
 let active = 0
 
 function switchTo(wind) {
@@ -11,7 +11,7 @@ function switchTo(wind) {
         document.querySelector(`#container div.${wind}`).classList.remove('hidden')
             if (wind !== 'welcome' || wind !== 'login') {
                 if (active) document.querySelector(`nav.bottom span.${active}`).classList.remove('nav-active')
-                if (active) document.querySelector(`nav.bottom span.${active}`).classList.remove('nav-inactive')
+                if (active) document.querySelector(`nav.bottom span.${active}`).classList.add('nav-inactive')
                 document.querySelector(`nav.bottom span.${wind}`).classList.add('nav-active')
             }
     }
@@ -26,3 +26,15 @@ function showLoader() {
 function hideLoader() {
     tl.classList.add('hidden')
 }
+
+let items = document.getElementsByTagName('form')
+toggle.onclick = () => {
+    items[0].classList.toggle('hidden')
+    items[1].classList.toggle('hidden')
+}
+document.querySelectorAll('form span.toggle').forEach(e => {
+    e.onclick = () => {
+        items[1].classList.toggle('hidden')
+        items[3].classList.toggle('hidden')
+    }
+})

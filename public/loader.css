@@ -631,3 +631,180 @@ div.history-admin div.profdiv {
 div.display_page {
     display: flex;
 }
+
+/* @media only screen and (max-width: 770px) { 
+    #main {
+      width: 280px;
+      height: auto;
+      background: #ffffff;
+      position: fixed;
+      top: calc((100vh - 532px)/2);
+      left: calc(50vw - 140px);
+      transition: height 0.5s ease-in-out;
+      overflow-y: hidden;
+      box-shadow: var(--shadow);
+      border-radius: 4px;
+      z-index: 7;
+    }
+  
+    #main h1 {
+      margin-top: 40px;
+      margin-bottom: 30px;
+      font-weight: bolder;
+    }
+  
+    #main div.login form {
+      width: 240px;
+    }
+  
+    label {
+      display: block;
+      font-size: 0.8em;
+      font-weight: 300;
+      color: #999999;
+      margin-left: 10px;
+      float: left;
+    }
+  
+    #main input {
+      font-size: 0.9em;
+      padding-left: 8px;
+      display: block;
+      position: relative;
+      height: 40px;
+      border: 0;
+      border-radius: 4px;
+      color: var(--stc);
+      width: 220px;
+      outline: none;
+      background-color: var(--bgb);
+      transition: var(--trans);
+      font-family: Roboto, sans-serif;
+    }
+  
+    form span.forget {
+      float: right;
+      color: #aaaaaa;
+      margin-top: 8px;
+      font-size: 0.7em;
+    }
+  
+    div.login span.alt,
+    div.login span.toggle {
+      position: relative;
+      font-size: 0.8em;
+      color: var(--ao);
+      bottom: 15px;
+    }
+  
+    div.imgs {
+      position: relative;
+      top: 5px;
+      height: 45px;
+      width: 145px;
+    }
+  
+    div.imgs img {
+      display: inline;
+      height: 40px;
+      width: 40px;
+      margin: 2.5px;
+    }
+  /* } */
+
+#main {
+    width: 280px;
+    height: auto;
+    background: #ffffff;
+    position: relative;
+    transition: height 0.5s ease-in-out;
+    overflow-y: hidden;
+    box-shadow: var(--shadow);
+    border-radius: 4px;
+    z-index: 2;
+}
+
+#main h1 {
+    margin-top: 40px;
+    margin-bottom: 30px;
+    font-weight: bolder;
+}
+
+#main div.login form {
+    width: 240px;
+}
+
+label {
+    display: block;
+    font-size: 0.8em;
+    font-weight: 300;
+    color: #999999;
+    margin-left: 10px;
+    float: left;
+}
+
+#main input {
+    font-size: 0.9em;
+    padding-left: 8px;
+    display: block;
+    position: relative;
+    height: 40px;
+    border: 0;
+    border-radius: 4px;
+    color: var(--stc);
+    width: 220px;
+    outline: none;
+    background-color: var(--bgb);
+    transition: var(--trans);
+    font-family: Roboto, sans-serif;
+}
+
+#main input:focus {
+    background-color: white;
+    box-shadow: var(--tbshadow);
+    color: var(--ptc);
+}
+#main input:hover {
+    background-color: var(--bgh);
+    color: var(--ptc);
+}
+
+#main input::placeholder {
+    color: var(--ttc);
+}
+
+#main input.submit,
+#main input.sendOTP {
+    color: white;
+    background: var(--ab);
+    box-shadow: var(--shadow);
+}
+
+form span.forget {
+    float: right;
+    color: #aaaaaa;
+    margin-top: 8px;
+    font-size: 0.7em;
+}
+
+div.login span.alt,
+div.login span.toggle {
+    position: relative;
+    font-size: 0.8em;
+    color: var(--ao);
+    bottom: 15px;
+}
+
+div.imgs {
+    position: relative;
+    top: 5px;
+    height: 45px;
+    width: 145px;
+}
+
+div.imgs img {
+    display: inline;
+    height: 40px;
+    width: 40px;
+    margin: 2.5px;
+}

@@ -1,0 +1,134 @@
+import {createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithRedirect, getRedirectResult, signInWithPhoneNumber , RecaptchaVerifier } from 'firebase/auth'
+
+let signupEmail = (auth) => {
+    console.log('Signup with email loaded')
+    document.querySelector('#main form.signup input.submit').onclick = function(e) {
+        e.preventDefault()
+        let userid = document.querySelector('#main form.signup input.email').value
+        let password = document.querySelector('#main form.signup input.password').value
+
+        createUserWithEmailAndPassword(auth, userid, password)
+            .then((userCredential) => {
+                // Signed in 
+                // const user = userCredential.user;
+                alert('Signed in with Email !')
+                alert('Please Fill your Profile !')
+            })
+            .catch((error) => {
+                console.error(error)
+                alert(error.message)
+            })
+    }
+}
+
+let loginEmail = (auth) => {
+    console.log('Login with Email loaded')
+    document.querySelector('#main form.login input.submit').onclick = function(e) {
+        e.preventDefault()
+        let userid = document.querySelector('#main form.login input.email').value
+        let password = document.querySelector('#main form.login input.password').value
+        signInWithEmailAndPassword(auth, userid, password)
+            .then((userCredential) => {
+                // Signed in 
+                // const user = userCredential.user;
+                alert('Signed in with Email !')
+            })
+            .catch((error) => {
+                console.error(error)
+                alert(error.message)
+                // ..
+            })
+    }
+}
+
+let loginGoogle = (auth) => {
+    const provider = new GoogleAuthProvider()
+    provider.addScope('https://www.googleapis.com/auth/user.phonenumbers.read')
+    signInWithRedirect(auth, provider).then((res) => {
+        getRedirectResult(auth)
+            .then((result) => {
+                // This gives you a Google Access Token. You can use it to access Google APIs.
+                // const credential = GoogleAuthProvider.credentialFromResult(result)
+                // const token = credential.accessToken;
+                // The signed-in user info.
+                // const user = result.user
+                alert('Signed in with Google !')
+            }).catch((error) => {
+                // Handle Errors here.
+                const errorMessage = error.message;
+                // The email of the user's account used.
+                const email = error.email;
+                // The AuthCredential type that was used.
+                const credential = GoogleAuthProvider.credentialFromError(error);
+                console.log(email, credential)
+                console.error(error)
+                alert(error.message)
+            })
+    }).catch((error) => {
+        console.error(error)
+        alert(error.message)
+    })
+}
+
+let submitPhoneNumberAuth = (auth) => {
+    let phone = document.querySelector('#main form.signup_phone input.phone').value
+    let appVerifier = window.recaptchaVerifier;
+    signInWithPhoneNumber(auth, phone, appVerifier)
+        .then((confirmationResult) => {
+            // SMS sent. Prompt user to type the code from the message, then sign the
+            // user in with confirmationResult.confirm(code).
+            window.confirmationResult = confirmationResult;
+            alert('OTP Sent Successfully !')
+            document.querySelector('form.signup_phone input:last-of-type').classList.add('submit')
+        }).catch((error) => {
+            // Error; SMS not sent
+            console.error(error)
+            alert(error.message)
+            grecaptcha.reset(window.recaptchaWidgetId);
+
+            // Or, if you haven't stored the widget ID:
+            window.recaptchaVerifier.render().then(function(widgetId) {
+                grecaptcha.reset(widgetId);
+            })
+        });
+}
+
+let submitPhoneNumberAuthCode = (auth) => {
+    let code = document.querySelector('#main form.signup_phone input.otp').value
+    if (code.length < 5) {
+        alert('Invalid OTP')
+        return
+    }
+    confirmationResult.confirm(code).then((result) => {
+        // User signed in successfully.
+        alert('Login Success with Phone !')
+      }).catch((error) => {
+        // User couldn't sign in (bad verification code?)
+        console.error(error)
+        alert(error.message)
+      });
+}
+
+let loginPhone = (auth) => {
+    console.log('Login with phone loaded !')
+    window.recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {
+        'size': 'invisible',
+        'callback': (response) => {
+          // reCAPTCHA solved, allow signInWithPhoneNumber.
+          //submitPhoneNumberAuth(auth)
+        },
+        'expired-callback': () => {
+            alert('ReCaptcha Loading Failed')
+        }
+    }, auth)
+    document.querySelector('div.login form.signup_phone input.sendOTP').onclick = (e) => { 
+        submitPhoneNumberAuth(auth)
+        return false
+    }
+    document.querySelector('div.login form.signup_phone input:last-of-type').onclick = (e) => { 
+        submitPhoneNumberAuthCode(auth) 
+        return false
+    }
+}
+
+export { loginEmail, signupEmail, loginGoogle, loginPhone }

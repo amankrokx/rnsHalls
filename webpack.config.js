@@ -6,7 +6,7 @@ module.exports = {
     filename: 'main.js',
     path: path.resolve(__dirname, 'public'),
   },
-  devtool: 'eval-source-map',
+  // devtool: 'eval-source-map',
   module: {
     rules: [
       {

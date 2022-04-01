@@ -39,12 +39,68 @@
             <div class="login signin fr hidden" style="color: #1a73e8;" onclick="switchTo('login')">Login</div>
             <div class="login logout fr hidden" style="color: #1a73e8;">LogOut</div>
         </nav>
-        <nav class="bottom hidden" style="position: fixed; bottom: 0; height: 50px;width: 100vw;background: #FFF;z-index: 10;"><span class="material-icons home nav-inactive" onclick="switchTo('home')">home</span><span class="material-icons notifications nav-inactive" onclick="switchTo('notifications')">notifications</span><span class="material-icons history nav-inactive" onclick="switchTo('history')">list_alt</span><span class="material-icons setting nav-inactive" onclick="switchTo('setting')">settings</span>
+        <nav class="bottom hidden" style="position: fixed; bottom: 0; height: 50px;width: 100vw;background: #FFF;z-index: 10;"><span class="material-icons home nav-inactive" onclick="switchTo('home')">home</span><span class="material-icons notifications notifications-admin nav-inactive" onclick="switchTo('notifications')">notifications</span><span class="material-icons history history-admin nav-inactive" onclick="switchTo('history')">list_alt</span><span class="material-icons setting nav-inactive" onclick="switchTo('setting')">settings</span>
         </nav>
         <div id="container" style="position: fixed; background: rgba(255, 255, 255, 0.0); top: 70px; width: calc(100vw - 40px); height: calc(100% - 160px); left: 20px;">
             <div class="login hidden" style="position: fixed; z-index: 7; top: 100px;background: #FFF; padding: 12px; width: calc(100vw - 80px); margin-left: 20px; box-shadow: var(--shadow);">
                 <span><big style="color: var(--ab);"> Get Started </big><small><small>with</small></small></span>
-                <div id="firebaseui-auth-container"></div>
+                <div id="offfirebaseui-auth-container"></div>
+                <center class="">
+                    <div id="main">
+                        <div class="login">
+            
+                            <h1>Login</h1>
+            
+                            <form class="login" onsubmit="null">
+                                <label>Email ID</label>
+                                <input type="email" class="email" placeholder="someone@example.com" required /><br />
+                                <label>Password</label>
+                                <input type="password" class="password" placeholder="PassworD" required />
+                                <span class="forget">Forget Password ?</span><br /><br />
+                                <input type="submit" class="submit" value="Login" />
+                            </form>
+                            <form class="signup hidden" onsubmit="null">
+                                <label>Email ID</label>
+                                <input type="email" class="email" placeholder="someone@example.com" required /><br />
+                                <label>Password</label>
+                                <input type="password" class="password" placeholder="PassworD" required /><br />
+                                <span class="forget toggle"><span class="loginphone" >Use Phone Number</span></span><br />
+                                <input type="submit" class="submit" value="Signup" />
+                            </form>
+                            <form class="finish_email hidden" onsubmit="null">
+                                <p>Verification Email Sent to</p>
+                                <h3><small>someone@example.com</small></h3><br />
+                                <p><small><small>Make sure to check your Spam folder</small></small>
+                                </p><br />
+                                <input type="submit" class="submit" value="Finish" />
+                            </form>
+                            <form class="signup_phone hidden" onsubmit="null">
+                                <label>Phone <sup>*</sup></label>
+                                <input type="tel" class="phone" placeholder="Ex  +91 123 456 7890" maxlength="13" minlength="12" required /><br />
+                                <div id="recaptcha-container"></div>
+                                <input type="submit" class="sendOTP" value="Send OTP" /><br />
+                                <label>Enter OTP</label>
+                                <input type="number" class="otp" maxlength="6" minlength="6" placeholder="Ex  123456" /><br />
+                                <p><small><small>Allow upto 1 minute for SMS to arrive</small></small>
+                                </p><br />
+                                <span class="forget toggle">Use Email Instead</span><br />
+                                <input type="submit" class="" value="Verify" />
+                            </form>
+                            <br /><br /><br />
+            
+            
+                            <span class="alt">Or Continue Using</span>
+                            <div class="imgs">
+                                <img async src="./media/fb.png" loading="lazy" class="fb" onclick="facebookLogin()">
+                                <img async src="./media/twitter.png" loading="lazy" class="twitter" onclick="twitterLogin()">
+                                <img async src="./media/google.png" loading="lazy" class="google">
+                            </div>
+                            <br /><br /><br /><br />
+                            <span class="toggle" id="toggle"><span id="loadsignup">Signup with Email</span></span>
+            
+                        </div>
+                    </div>
+                </center>
             </div>
             <div class="setting hidden">
                 <div class="head">Preferences</div>
@@ -219,7 +275,6 @@
                                 </div>
                         </div>
                     </div>
-                    <br /><br />
                     <center><input class="book" style="background-color: var(--ab); color: #fff;" type="submit" value="Book (0)" /></center>
                     <br />
                 </div>
