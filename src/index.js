@@ -3,6 +3,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth, onAuthStateChanged, updatePassword, sendEmailVerification, updateProfile, updateEmail  } from "firebase/auth";
 import { getDatabase, ref, set, onValue } from "firebase/database";
 import { loginEmail, loginGoogle, loginPhone, signupEmail } from './modules/auth'
+import { DBs } from './modules/db'
 import { firebaseConfig } from "./config/firebaseConfig";
 import './css/firebase-ui-auth.css'
 
@@ -22,45 +23,38 @@ let globals = {
     uid : false,
     attached : false,
     isAdmin : false,
+    db : false
 }
 // Get a reference to the database service
 const db = getDatabase(app);
 
-let attachEvents = () => {
-    if (!globals.attached) {
-        globals.attached = true
-        onValue(ref(db, `users/${globals.uid}/secret`), (snapshot) => {
-            document.querySelector('div.setting input.secret').value = snapshot.val()
-        })
-    }
-}
-
 onAuthStateChanged(auth, (user) => {
     hideLoader()
     if (user) {
-      // User is signed in, see docs for a list of available properties
-      // https://firebase.google.com/docs/reference/js/firebase.User
-      console.log(user)
-      document.querySelector('nav.top div.signin').classList.add('hidden')
-      document.querySelector('nav.top div.logout').classList.remove('hidden')
-      document.querySelector('nav.bottom').classList.remove('hidden')
-      switchTo('home')
-      globals.uid = user.uid;
-      attachEvents()
-      if (user.photoURL) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/firebase.User
+        console.log(user)
+        document.querySelector('nav.top div.signin').classList.add('hidden')
+        document.querySelector('nav.top div.logout').classList.remove('hidden')
+        document.querySelector('nav.bottom').classList.remove('hidden')
+        switchTo('home')
+        globals.uid = user.uid;
+        globals.db = new DBs(db, user.uid)
+        if (user.photoURL) {
             document.querySelector('nav.bottom span.setting').innerHTML = `<img src="${user.photoURL}" style="height: 36px; width: 36px; border-radius: 50%;" referrerpolicy="no-referrer" />`
             document.querySelector('div.setting div.content img').src = user.photoURL
-      }
-      if (admins.includes(user.email)) {
-          globals.isAdmin = true
-          document.querySelector('nav.bottom span.notifications').setAttribute('onclick', "switchTo('notifications-admin')")
-          document.querySelector('nav.bottom span.history').setAttribute('onclick', "switchTo('history-admin')")
-          alert('Welcome Admin !')
-      }
-      if (user.displayName) document.querySelector('div.setting input.name').value = user.displayName
-      if (user.email) document.querySelector('div.setting input.email').value = user.email
-      if (user.phoneNumber) document.querySelector('div.setting input.phone').value = user.phoneNumber
-      // ...
+        }
+        if (admins.includes(user.email)) {
+            globals.isAdmin = true
+            globals.db.setAdmin(true)
+            document.querySelector('nav.bottom span.notifications').setAttribute('onclick', "switchTo('notifications-admin')")
+            document.querySelector('nav.bottom span.history').setAttribute('onclick', "switchTo('history-admin')")
+            toast('Welcome Admin !')
+        } else globals.db.setAdmin(false)
+        if (user.displayName) document.querySelector('div.setting input.name').value = user.displayName
+        if (user.email) document.querySelector('div.setting input.email').value = user.email
+        if (user.phoneNumber) document.querySelector('div.setting input.phone').value = user.phoneNumber
+        // ...
     } else {
         // User is signed out
         loginEmail(auth)
@@ -107,18 +101,18 @@ document.querySelector('div.setting input.submit').onclick = function(e) {
                 displayName: name,
             }).then(() => {
                 // Profile updated!
-                alert('Name Updated !')
+                toast('Name Updated !')
             }).catch((error) => {
                 // An error occurred
                 console.log(error)
-                alert('Some error Occured with name !')
+                toast('Some error Occured with name !')
                 return
             })
         }
         if (email_ && email_ !== auth.currentUser.email) {
             updateEmail(auth.currentUser, email_).then(() => {
                 // Email updated!
-                alert('Email ID updated ! Please verify email Sent !')
+                toast('Email ID updated ! Please verify email Sent !')
                 sendEmailVerification(auth.currentUser)
                     .then(() => {
                         // Email verification sent!
@@ -127,16 +121,16 @@ document.querySelector('div.setting input.submit').onclick = function(e) {
               }).catch((error) => {
                   // An error occurred
                   console.log(error)
-                  alert("Please Re-login and try again !")
+                  toast("Please Re-login and try again !")
                 });
             }
             if (password) {
                 updatePassword(auth.currentUser, password).then(() => {
                     // Update successful.
-                    alert('Password Updated')
+                    toast('Password Updated')
                 }).catch((error) => {
                     // An error ocurred
-                    alert('Sign in again then try !')
+                    toast('Sign in again then try !')
                 });
                 
             }
@@ -153,15 +147,15 @@ document.querySelector('div.setting input.secret-submit').onclick = function(e) 
     else {
         let secret = document.querySelector('div.setting input.secret').value
         if (!secret) {
-            alert('Secret Cannot be Empty !')
+            toast('Secret Cannot be Empty !')
         } else {
             set(ref(db, `users/${globals.uid}/`), {
                 secret
             }).then(() => {
-                alert("Secret Updated !")
+                toast("Secret Updated !")
             }).catch((error) => {
                 console.error(error)
-                alert("failed to update Secret")
+                toast("failed to update Secret")
             })
         }
     }

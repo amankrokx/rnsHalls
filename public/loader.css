@@ -808,3 +808,18 @@ div.imgs img {
     width: 40px;
     margin: 2.5px;
 }
+
+#smack div.toast {
+    padding: 6px;
+    color: var(--ttc);
+    display: flow-root;
+    background: var(--stc);
+    margin-bottom: 10px;
+}
+
+#smack div.toast span.value {
+    font-size: 18px;
+    position: relative;
+    top: 8px;
+    padding-left: 6px;
+}

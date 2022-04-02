@@ -38,3 +38,19 @@ document.querySelectorAll('form span.toggle').forEach(e => {
         items[3].classList.toggle('hidden')
     }
 })
+
+function dismissToast(e) {
+    e.parentNode.remove()
+}
+
+function toast(value) {
+    let id = Math.round( Math.random() * 10000 )
+    document.querySelector('#smack').insertAdjacentHTML("afterbegin", `<div id="t${id}" class="toast"><span class="value">${value}</span><span class="material-icons fr" onclick="this.parentNode.remove()" >close</span></div>`)
+    setTimeout(() => {
+        try {
+            document.querySelector(`#t${id}`).remove()
+        } catch (error) {
+            console.log("Toast already Dismissed !")
+        }
+    }, 3500);
+}
