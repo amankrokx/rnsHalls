@@ -12,7 +12,7 @@ class DBs {
             onValue(ref(this.db, `admin/authorised/${this.secret}`), (snap) => {
                 if (snap.exists()) {
                     if (snap.val()) {
-                        toast('good to go !')
+                        toast('Secret Verified !')
                         this.secretVerified = true
                     }
                     else {
@@ -29,6 +29,10 @@ class DBs {
         })
         this.dateEntry = Array.prototype.slice.call(document.querySelectorAll('div.date div.date-entry'),  1, 8)
         this.timeEntry = Array.prototype.slice.call(document.querySelectorAll('div.time div.time-entry'),  7, 56)
+        this.cart = {
+            value: 0
+        }
+        this.bookingCache = {}
         this.initMonthSelector()
     }
 
@@ -42,19 +46,100 @@ class DBs {
         this.month = cd
         const mons = ['January', 'February', 'March', 'April', 'May' ,'June', 'July', 'August', 'September', 'October', 'November', 'December']
         let eles = document.querySelector('div.months')
-        eles.innerHTML = `<span class="active">${mons[cd - 1]}</span>`
+        eles.innerHTML = `<span class="active" id="m${cd}" >${mons[cd - 1]}</span>`
         for (let i = cd + 1; i <= 12; i++) {
-            eles.innerHTML += `<span>${mons[i - 1]}</span>`
+            eles.innerHTML += `<span id="m${i}" >${mons[i - 1]}</span>`
         }
         let week = Math.floor((new Date().getDate() - 1)/7) + 1
         this.week = week
         let elet = document.querySelector('div.weeks')
-        elet.innerHTML = `<span class="active">Week ${week}</span>`
-        for (let w = week + 1; w <= 5; w++)  elet.innerHTML += `<span>Week ${w}</span>`
+        elet.innerHTML = `<span class="active" id="w1${week}" >Week ${week}</span>`
+        for (let w = week + 1; w <= 5; w++)  elet.innerHTML += `<span id="w1${w}" >Week ${w}</span>`
         this.day = dayFromDate()
         console.log("todays date index is " + this.day)
         this.dayListeners = []
+        eles.onclick = (e) => {
+            if (e.target.id) {
+                console.log(parseInt(e.target.id.substring(1)))
+                document.querySelector(`#m${this.month}`).classList.remove('active')
+                e.target.classList.add('active')
+                this.month = parseInt(e.target.id.substring(1))
+                this.initCalender({month: this.month, week: this.week})
+            }
+        }
+        elet.onclick = (e) => {
+            if (e.target.id) {
+                console.log(parseInt(e.target.id.substring(1))%10)
+                document.querySelector(`#w1${this.week}`).classList.remove('active')
+                e.target.classList.add('active')
+                this.week = parseInt(e.target.id.substring(1))%10
+                this.initCalender({month: this.month, week: this.week})
+            }
+        }
         this.initCalender({day: this.day})
+    }
+
+    bookingCounter (c) {
+        if (c) this.cart.value += c
+        else this.cart.value = 0
+        document.querySelector('input.book').value = `Book (${this.cart.value})`
+    }
+
+    finaliseBooking () {
+        let boook = true
+        for (const key in this.cart) {
+            if (key != 'value' && Object.hasOwnProperty.call(this.cart, key)) {
+                this.cart[key].forEach(e => {
+                    if (this.bookingCache && this.bookingCache[key] && this.bookingCache[key].indexOf(e) > -1) {
+                        toast('Removed one Conflicted slot !')
+                        boook = false
+                        this.addToCart(key, e, false)
+                        this.timeEntry[((key - this.day) * 7) + (e - 1)].classList.remove('selected')
+                    }
+                    
+                })
+            }
+        }
+        if (!boook) toast('Please review and Click again !')
+        else {
+            if (this.cart.value > 0) {
+                if (this.secretVerified) {
+                    let clone = {slots : JSON.parse(JSON.stringify(this.cart)), status: "p"}
+                    delete clone.slots.value
+                    for (const key in clone.slots) {
+                        if (Object.hasOwnProperty.call(clone.slots, key)) {
+                            clone.slots[key] = clone.slots[key].join(", ")
+                        }
+                    }
+                    console.log(clone)
+                    const t = Date.now()
+                    delete this.cart
+                    this.cart = {value : 0 }
+                    this.writeToPath(`users/${this.uid}/bookingRequests/${t}`, clone)
+                    clone.uid = this.uid
+                    this.writeToPath(`admin/bookingRequests/${t}`, clone)
+                    for (let i = 0; i < this.timeEntry.length; i++) this.timeEntry[i].classList.remove('selected')
+                    toast('Booking Request Sent !')
+                } else toast('Please Enter Correct Secret !')
+            }
+            else toast("Cart value is Empty !")
+        }
+
+    }
+
+    addToCart (day, slot, status) {
+        if (status) {
+            if (this.cart[day]) this.cart[day].push(slot)
+            else this.cart[day] = [slot]
+            this.bookingCounter(1)
+        }
+        else {
+            if (this.cart[day]) {
+                while (this.cart[day].indexOf(slot) > -1)
+                this.cart[day].splice(this.cart[day].indexOf(slot), 1)
+            }
+            this.bookingCounter(-1)
+        }
     }
 
     initCalender (dates) {
@@ -63,27 +148,49 @@ class DBs {
         else if (dates && dates.month && dates.week) day = dayFromMonth(dates.month, dates.week)
         else if (dates && dates.month) day = dayFromMonth(dates.month, this.week)
         else day = dayFromDate()
+        if (day < this.day) day = this.day
         let currYear = new Date().getFullYear()
         if (this.dayListeners && this.dayListeners.length > 0) {
-            this.dayListeners.forEach(e => {
-                off(ref(this.db, `bookings/hall1/${currYear}/${e}`))
-            });
+            while (this.dayListeners.length > 0) {
+                off(ref(this.db, `bookings/hall1/${currYear}/${this.dayListeners.shift()}`))
+            }
+
         }
         for (let i = 0; i < 7; i++) {
-            this.dayListeners.push(i)
             onValue(ref(this.db, `bookings/hall1/${currYear}/${i + day}`), (snapshot) => {
+                this.dayListeners.push(i)
                 this.dateEntry[i].innerText = dateFromDay(i + day, currYear).toDateString()
                 let dayBookings = snapshot.val()
                 if (!dayBookings) dayBookings = []
                 console.log(snapshot.key, snapshot.val())
                 for (let j = 0; j < 7; j++) {
                     if (dayBookings[j+1]) {
+                        if (this.timeEntry[(i * 7) + j].classList.contains('selected')) {
+                            this.timeEntry[(i * 7) + j].classList.remove('selected')
+                            this.addToCart(i+day, j+1, false)
+                            toast('Someone Booked This Slot')
+                        }
+                        if (this.bookingCache[i+day] && !(j+1 in this.bookingCache[i+day])) this.bookingCache[i+day].push(j+1)
+                        else if (! this.bookingCache[i+day]) this.bookingCache[i+day] = [j+1]
                         this.timeEntry[(i * 7) + j].innerHTML = '<span class="bcr" >Booked</span>'
                     } else {
                         this.timeEntry[(i * 7) + j].innerHTML = '<span class="nbcr" >Available</span>'
+                        this.timeEntry[(i * 7) + j].onclick = () => {
+                            if (this.timeEntry[(i * 7) + j].classList.contains('selected')) {
+                                this.addToCart(i+day, j+1, false)
+                                this.timeEntry[(i * 7) + j].classList.remove('selected')
+                            }
+                            else {
+                                this.addToCart(i+day, j+1, true)
+                                this.timeEntry[(i * 7) + j].classList.add('selected')
+                            }
+                        }
                     }
                 }
             })
+        }
+        document.querySelector('input.book').onclick = () => {
+            this.finaliseBooking()
         }
     }
 

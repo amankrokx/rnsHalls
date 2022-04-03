@@ -358,6 +358,8 @@ div.home div.content{
     overflow-y: scroll;
 }
 
+.selected {background-color: var(--ab);}
+
 .calender
 {
     width: 100%;
