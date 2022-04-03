@@ -431,11 +431,20 @@ div.calender-text{
     -o-border-radius: 0px 4px 4px 4px;
 }
 
+.bcr {
+    color: var(--ao);
+}
+
+.nbcr {
+    color: #aee600;
+}
+
 .calender-body
 {
     min-height:calc(100vh - 350px) ;
     /* width: 303px; */
     width: 100%;
+    font-size: 0.85em;
     /* background: #b4c582; */
     /* margin-top: px solid white; */
     padding: 3px;
@@ -495,21 +504,18 @@ div.calender-text{
 }
 .time-entry
 {
-    /*height: 75px;
-    */justify-content: center;
-    /*margin: 2px 2px 2px 2px;
-    */height: inherit;
+    justify-content: center;
+    height: inherit;
     width: 80px;
     border: none;
+    padding-top: 12px;
     border-radius: 4px;
     background: blur;
+    text-align: center;
     box-shadow: var(--shadow);
     overflow-y: scroll;
     color: var(--bg);
     font-size:0.8rem;
-    /*border-right:1px solid black;
-    */
-    /* overflow: hidden; */
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     -ms-border-radius: 4px;
@@ -822,4 +828,23 @@ div.imgs img {
     position: relative;
     top: 8px;
     padding-left: 6px;
+}
+
+div.history-admin div.content div.request div.profdiv span:last-of-type {
+    font-size: 20px; justify-content: center; position: absolute; top: 135px; left: 95px; color: var(--ab);
+}
+div.history-admin div.content div.request div.reqbody {
+    width: 70%; padding-left: 15px;margin-top: 15px; float: right;
+}
+div.history-admin div.content div.request div.reqbody span {
+    font-size: 0.75rem;
+}
+.addCommentonbooking {
+    font-size: 0.6rem; margin-left: 10px; color: var(--stc)
+}
+div.history-admin div.content div.request input:first-of-type {
+    background: var(--ab);color: var(--bgh);width: 50%; margin: 5px; font-size: 0.75rem;
+}
+div.history-admin div.content div.request input:last-of-type {
+    color: var(--ao);width: 50%; margin: 5px;font-size: 0.75rem;
 }

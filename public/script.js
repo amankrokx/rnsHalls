@@ -54,3 +54,30 @@ function toast(value) {
         }
     }, 3500);
 }
+
+function dateFromDay(day, year){
+    if (!year) year = new Date().getFullYear()
+    let date = new Date(year, 0); // initialize a date in `year-01-01`
+    return new Date(date.setDate(day)); // add the number of days
+}
+
+function dayFromDate(date) {
+    // requires mm-dd-yyy or Date object instance
+    if (date) var now = new Date(date)
+    else var now = new Date()
+    var start = new Date(now.getFullYear(), 0, 0)
+    return Math.floor((now - start) / (1000 * 60 * 60 * 24))
+}
+
+const monthsday = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+function dayFromMonth(month, week) {
+    if (!week) week = 1
+    if (!month) return dayFromDate()
+    let day = 1
+    for (let i = 1; i < month; i++) {
+        day += monthsday[i]
+    }
+    if (month > 2) day++
+    day += (week - 1) * 7
+    return day
+}

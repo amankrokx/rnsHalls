@@ -11,12 +11,12 @@ let signupEmail = (auth) => {
             .then((userCredential) => {
                 // Signed in 
                 // const user = userCredential.user;
-                alert('Signed in with Email !')
-                alert('Please Fill your Profile !')
+                toast('Signed in with Email !')
+                toast('Please Fill your Profile !')
             })
             .catch((error) => {
                 console.error(error)
-                alert(error.message)
+                toast(error.message)
             })
     }
 }
@@ -31,11 +31,11 @@ let loginEmail = (auth) => {
             .then((userCredential) => {
                 // Signed in 
                 // const user = userCredential.user;
-                alert('Signed in with Email !')
+                toast('Signed in with Email !')
             })
             .catch((error) => {
                 console.error(error)
-                alert(error.message)
+                toast(error.message)
                 // ..
             })
     }
@@ -52,7 +52,7 @@ let loginGoogle = (auth) => {
                 // const token = credential.accessToken;
                 // The signed-in user info.
                 // const user = result.user
-                alert('Signed in with Google !')
+                toast('Signed in with Google !')
             }).catch((error) => {
                 // Handle Errors here.
                 const errorMessage = error.message;
@@ -62,11 +62,11 @@ let loginGoogle = (auth) => {
                 const credential = GoogleAuthProvider.credentialFromError(error);
                 console.log(email, credential)
                 console.error(error)
-                alert(error.message)
+                toast(error.message)
             })
     }).catch((error) => {
         console.error(error)
-        alert(error.message)
+        toast(error.message)
     })
 }
 
@@ -78,12 +78,12 @@ let submitPhoneNumberAuth = (auth) => {
             // SMS sent. Prompt user to type the code from the message, then sign the
             // user in with confirmationResult.confirm(code).
             window.confirmationResult = confirmationResult;
-            alert('OTP Sent Successfully !')
+            toast('OTP Sent Successfully !')
             document.querySelector('form.signup_phone input:last-of-type').classList.add('submit')
         }).catch((error) => {
             // Error; SMS not sent
             console.error(error)
-            alert(error.message)
+            toast(error.message)
             grecaptcha.reset(window.recaptchaWidgetId);
 
             // Or, if you haven't stored the widget ID:
@@ -96,16 +96,16 @@ let submitPhoneNumberAuth = (auth) => {
 let submitPhoneNumberAuthCode = (auth) => {
     let code = document.querySelector('#main form.signup_phone input.otp').value
     if (code.length < 5) {
-        alert('Invalid OTP')
+        toast('Invalid OTP')
         return
     }
     confirmationResult.confirm(code).then((result) => {
         // User signed in successfully.
-        alert('Login Success with Phone !')
+        toast('Login Success with Phone !')
       }).catch((error) => {
         // User couldn't sign in (bad verification code?)
         console.error(error)
-        alert(error.message)
+        toast(error.message)
       });
 }
 
@@ -118,7 +118,7 @@ let loginPhone = (auth) => {
           //submitPhoneNumberAuth(auth)
         },
         'expired-callback': () => {
-            alert('ReCaptcha Loading Failed')
+            toast('ReCaptcha Loading Failed')
         }
     }, auth)
     document.querySelector('div.login form.signup_phone input.sendOTP').onclick = (e) => { 

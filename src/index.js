@@ -25,6 +25,7 @@ let globals = {
     isAdmin : false,
     db : false
 }
+
 // Get a reference to the database service
 const db = getDatabase(app);
 
@@ -51,6 +52,29 @@ onAuthStateChanged(auth, (user) => {
             document.querySelector('nav.bottom span.history').setAttribute('onclick', "switchTo('history-admin')")
             toast('Welcome Admin !')
         } else globals.db.setAdmin(false)
+        globals.db.getUserProfile(user.uid, function (snapshot) {
+            let d = snapshot.val()
+            if (!d) d ={}
+            let upflag = false
+            console.log(d)
+            if (user.photoURL && d.photoURL !== user.photoURL) {
+                upflag = true
+                d.photoURL = user.photoURL
+            }
+            if (user.displayName && d.displayName !== user.displayName) {
+                upflag = true
+                d.displayName = user.displayName
+            }
+            if (user.phoneNumber && d.phoneNumber !== user.phoneNumber) {
+                upflag = true
+                d.phoneNumber = user.phoneNumber
+            }
+            if (user.email && d.email !== user.email) {
+                upflag = true
+                d.email = user.email
+            }
+            if (upflag) globals.db.writeToPath(`users/${user.uid}/profile`, d)
+        })
         if (user.displayName) document.querySelector('div.setting input.name').value = user.displayName
         if (user.email) document.querySelector('div.setting input.email').value = user.email
         if (user.phoneNumber) document.querySelector('div.setting input.phone').value = user.phoneNumber
@@ -97,6 +121,7 @@ document.querySelector('div.setting input.submit').onclick = function(e) {
         phoneNumber_ = phoneNumber_.toString()
         console.log(name, email_, phoneNumber_)
         if (name && name !== auth.currentUser.displayName) {
+            globals.db.writeToPath(`users/${globals.uid}/profile/displayName`, name)
             updateProfile(auth.currentUser, {
                 displayName: name,
             }).then(() => {
@@ -110,13 +135,14 @@ document.querySelector('div.setting input.submit').onclick = function(e) {
             })
         }
         if (email_ && email_ !== auth.currentUser.email) {
+            globals.db.writeToPath(`users/${globals.uid}/profile/email`, email_)
             updateEmail(auth.currentUser, email_).then(() => {
                 // Email updated!
-                toast('Email ID updated ! Please verify email Sent !')
+                toast('Email ID updated !')
                 sendEmailVerification(auth.currentUser)
                     .then(() => {
                         // Email verification sent!
-                        // ...
+                        toast(`Verification Sent to ${email_}`)
                     });
               }).catch((error) => {
                   // An error occurred
@@ -155,7 +181,7 @@ document.querySelector('div.setting input.secret-submit').onclick = function(e) 
                 toast("Secret Updated !")
             }).catch((error) => {
                 console.error(error)
-                toast("failed to update Secret")
+                toast("Failed to update Secret")
             })
         }
     }
