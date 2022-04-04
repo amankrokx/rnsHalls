@@ -4,12 +4,58 @@
         <meta charset="UTF-8">
         <title>rnsHalls | Book seminar halls at RNSIT</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="manifest" href="./manifest.json">
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="manifest" href="/site.webmanifest">
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#039be5">
+        <meta name="apple-mobile-web-app-title" content="rnsHalls">
+        <meta name="application-name" content="rnsHalls">
+        <meta name="msapplication-TileColor" content="#603cba">
+        <meta name="theme-color" content="#039be5">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <link rel="stylesheet" href="./loader.css" />
         <link rel="stylesheet" href="./assets/material-icons.css" />
 
-        
+        <script>
+            // make the whole serviceworker process into a promise so later on we can
+            // listen to it and in case new content is available a toast will be shown
+            window.isUpdateAvailable = new Promise(function(resolve, reject) {
+                // lazy way of disabling service workers while developing
+                if ('serviceWorker' in navigator && ['localhost', '127', '192'].indexOf(location.hostname) === -1) {
+                    // register service worker file
+                    navigator.serviceWorker.register('sw.js')
+                        .then(reg => {
+                            reg.onupdatefound = () => {
+                                const installingWorker = reg.installing;
+                                installingWorker.onstatechange = () => {
+                                    switch (installingWorker.state) {
+                                        case 'installed':
+                                            if (navigator.serviceWorker.controller) {
+                                                // new update available
+                                                resolve(true);
+                                            } else {
+                                                // no update available
+                                                resolve(false);
+                                            }
+                                            break;
+                                    }
+                                };
+                            };
+                        })
+                        .catch(err => console.error('[SW ERROR]', err));
+                }
+            });
+    
+            window['isUpdateAvailable']
+                .then(isAvailable => {
+                    if (isAvailable) {
+                        if (confirm('New Update available! Reload the webapp to see the latest juicy changes.')) {
+                            window.location.reload()
+                        }
+                    }
+                });
+        </script>
     </head>
     <body>
         <div id="smack" style="position: fixed;top: 25px;width: calc(100vw - 40px);right: 20px;height: auto;z-index: 100;">
@@ -38,8 +84,9 @@
             </div>
         </div>
         <nav class="top" style="position: fixed; box-shadow: var(--shadow); height: 50px;width: 100vw;background: #FFF;z-index: 10;top: 0;">
-            <span class="title" style="font-size: 1.9em; margin-left: 16px; position: relative; top: 7px;">rnsHalls</span>
-            <div class="login signin fr hidden" style="color: #1a73e8;" onclick="switchTo('login')">Login</div>
+            <img src="./media/icon1_96.webp" style="height: 50px;width: 50px;vertical-align: middle;"/>
+            <span class="title" style="font-size: 1.9em; position: relative; top: 7px;">rnsHalls</span>
+            <div class="login signin fr hidden" style="color: #1a73e8;" onclick="switchTo('login')" >Login</div>
             <div class="login logout fr hidden" style="color: #1a73e8;">LogOut</div>
         </nav>
         <nav class="bottom hidden" style="position: fixed; bottom: 0; height: 50px;width: 100vw;background: #FFF;z-index: 10;"><span class="material-icons home nav-inactive" onclick="switchTo('home')">home</span><span class="material-icons notifications notifications-admin nav-inactive" onclick="switchTo('notifications')">notifications</span><span class="material-icons history history-admin nav-inactive" onclick="switchTo('history')">list_alt</span><span class="material-icons setting nav-inactive" onclick="switchTo('setting')">settings</span>

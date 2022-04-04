@@ -1,0 +1,70 @@
+{
+    "name": "RNSIT Hall Booking",
+    "short_name": "rnsHalls",
+    "description": "Book the Edusat halls at RNSIT for your events !",
+    "icons": [
+        {
+            "src": "./media/logo_1.svg",
+            "sizes": "any",
+            "purpose": "any"
+        },
+        {
+            "src": "./media/icon1_96.png",
+            "sizes": "96x96",
+            "type": "image/png"
+        },
+        {
+            "src": "./media/icon1_144.png",
+            "sizes": "144x144",
+            "type": "image/png"
+        },
+        {
+            "src": "/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "./media/icon1_256.png",
+            "sizes": "256x256",
+            "type": "image/png"
+        },
+        {
+            "src": "/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "./media/icon1_1024.png",
+            "sizes": "1024x1024",
+            "type": "image/png"
+        }
+    ],
+    "screenshots" : [
+        {
+          "src": "./media/scgets.webp",
+          "sizes": "1170x2532",
+          "type": "image/webp",
+          "platform": "narrow",
+          "label": "Get Started at rnsHalls"
+        },
+        {
+          "src": "./media/schome.webp",
+          "sizes": "1170x2532",
+          "type": "image/webp",
+          "platform": "narrow",
+          "label": "Bookings at rnsHalls"
+        },
+        {
+          "src": "./media/scpref.webp",
+          "sizes": "1170x2532",
+          "type": "image/webp",
+          "platform": "narrow",
+          "label": "Set Preferences at rnsHalls"
+        }
+    ],      
+    "theme_color": "#039be5",
+    "background_color": "#039be5",
+    "display": "standalone",
+    "start_url": "./?utm_source=web_app_manifest",
+    "orientation": "portrait"
+}
