@@ -63,7 +63,7 @@
         }
     ],      
     "theme_color": "#039be5",
-    "background_color": "#039be5",
+    "background_color": "#4e5257",
     "display": "standalone",
     "start_url": "./?utm_source=web_app_manifest",
     "orientation": "portrait"

@@ -34,6 +34,9 @@ class DBs {
         }
         this.bookingCache = {}
         this.initMonthSelector()
+        setTimeout(() => {
+            console.log(this.bookingCache)
+        }, 5000);
     }
 
     getUserProfile ( _uid, callback ) {
@@ -219,28 +222,75 @@ class DBs {
         if (this.isAdmin) {
             let updates = {}
             let year = new Date().getFullYear()
+            let conflict = false
             for (const key in data.slots) {
                 if (Object.hasOwnProperty.call(data.slots, key)) {
                     let times = data.slots[key].split(",")
                     times.forEach(ele => {
-                        updates[`bookings/hall1/${year}/${parseInt(key)}/${parseInt(ele)}`] = true
+                        if (this.bookingCache && this.bookingCache[key] && this.bookingCache[key].indexOf(ele) > -1) {
+                            toast('Request has Conflicted slot !')
+                            conflict = true
+                        }
                     })
                 }
             }
-            updates[`users/${data.uid}/bookingRequests/${data.key}/status`] = "a"
+            if (conflict) {
+                this.declineBooking(data, (stat) => {
+                    if (stat) {
+                        document.querySelector(`#brq-${data.key}`).remove()
+                        toast(`Booking ${data.key} Declined !`)
+                    } else toast(`Error Declining ${data.key}`)
+                })
+            } else {
+                for (const key in data.slots) {
+                    if (Object.hasOwnProperty.call(data.slots, key)) {
+                        let times = data.slots[key].split(",")
+                        times.forEach(ele => {
+                            updates[`bookings/hall1/${year}/${parseInt(key)}/${parseInt(ele)}`] = true
+                        })
+                    }
+                }
+                updates[`users/${data.uid}/bookingRequests/${data.key}/status`] = "a"
+                updates[`admin/bookingRequests/${data.key}`] = null
+                updates[`admin/requestsHistory/${data.key}`] = data.uid
+                console.log(updates)
+                update(ref(this.db), updates).then(() => {callback(true)}).catch((error) => {
+                    console.error(error)
+                    callback(false)
+                })
+            }
+        } else callback(false)
+    }
+
+    declineBooking (data, callback) {
+        if (this.isAdmin || data.uid === this.uid) {
+            let updates = {}
+            let year = new Date().getFullYear()
+            if (data.status === "a") {
+                for (const key in data.slots) {
+                    if (Object.hasOwnProperty.call(data.slots, key)) {
+                        let times = data.slots[key].split(",")
+                        times.forEach(ele => {
+                            updates[`bookings/hall1/${year}/${parseInt(key)}/${parseInt(ele)}`] = null
+                        })
+                    }
+                }
+                updates[`admin/requestsHistory/${data.key}`] = null
+                updates[`users/${data.uid}/bookingRequests/${data.key}`] = null
+            }
+            if (data.status === "p") {
+                updates[`users/${data.uid}/bookingRequests/${data.key}`] = null
+            }
             updates[`admin/bookingRequests/${data.key}`] = null
-            updates[`admin/requestsHistory/${data.key}`] = data.uid
             console.log(updates)
             update(ref(this.db), updates).then(() => {callback(true)}).catch((error) => {
                 console.error(error)
                 callback(false)
             })
-        } else callback(false)
-    }
-
-    declineBooking (data, callback) {
-        console.log(data)
-        callback(true)
+        } else {
+            toast('Permission Denied !')
+            callback(false)
+        }
     }
     
     enableAdminFeatures () {
@@ -328,7 +378,7 @@ class DBs {
                         this.acceptBooking(data, (success) => {
                             if (success) {
                                 document.querySelector(`#brq-${snapshot.key}`).remove()
-                                toast(`Booking ${data.key} Declined !`)
+                                toast(`Booking ${data.key} Accepted !`)
                             } else toast("Some Error Occured !")
                         })
                     }
@@ -356,12 +406,14 @@ class DBs {
         })
         
         // Booking requests listner
-        const r = query(ref(this.db, `users/${this.uid}/bookingRequests`), limitToLast(10))
+        const r = query(ref(this.db, `users/${this.uid}/bookingRequests`), limitToLast(20))
         this.userBookingListElement = document.querySelector("div.history div.content")
         onChildAdded(r, (snapshot) => {
             let dt = new Date(parseInt(snapshot.key)).toUTCString()
             let data = snapshot.val()
-            console.log(data)
+            data.key = snapshot.key
+            data.uid = this.uid
+            console.warn(data)
             let stat
             if (data.status == 'p') stat = "Pending"
             if (data.status == 'd') stat = "Declined"
@@ -389,6 +441,14 @@ class DBs {
                     
                 </div>
             </div>`)
+            document.querySelector(`#book-${snapshot.key} div,info input`).onclick = (e) => {
+                this.declineBooking(data, (success) => {
+                    if (success) {
+                        document.querySelector(`#book-${snapshot.key}`).remove()
+                        toast(`Booking ${data.key} Declined !`)
+                    } else toast("Some Error Occured !")
+                })
+            }
         })
         
     }
