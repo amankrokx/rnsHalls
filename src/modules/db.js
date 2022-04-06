@@ -124,6 +124,7 @@ class DBs {
                     clone.uid = this.uid
                     this.writeToPath(`admin/bookingRequests/${t}`, clone)
                     for (let i = 0; i < this.timeEntry.length; i++) this.timeEntry[i].classList.remove('selected')
+                    this.bookingCounter(0)
                     toast('Booking Request Sent !')
                 } else toast('Please Enter Correct Secret !')
             }

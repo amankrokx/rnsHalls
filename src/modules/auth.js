@@ -1,4 +1,4 @@
-import {createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithRedirect, getRedirectResult, signInWithPhoneNumber , RecaptchaVerifier } from 'firebase/auth'
+import {createUserWithEmailAndPassword, signInWithEmailAndPassword, TwitterAuthProvider, GoogleAuthProvider, signInWithRedirect, getRedirectResult, signInWithPhoneNumber , RecaptchaVerifier, signInWithPopup, FacebookAuthProvider } from 'firebase/auth'
 
 let signupEmail = (auth) => {
     console.log('Signup with email loaded')
@@ -70,6 +70,64 @@ let loginGoogle = (auth) => {
     })
 }
 
+let loginTwitter = (auth) => {
+    const provider = new TwitterAuthProvider()
+    signInWithPopup(auth, provider).then((res) => {
+        console.log(res) 
+        getRedirectResult(auth)
+            .then((result) => {
+                // This gives you a Google Access Token. You can use it to access Google APIs.
+                // const credential = GoogleAuthProvider.credentialFromResult(result)
+                // const token = credential.accessToken;
+                // The signed-in user info.
+                // const user = result.user
+                console.log(result)
+                toast('Signed in with Twitter !')
+            }).catch((error) => {
+                // Handle Errors here.
+                // The email of the user's account used.
+                const email = error.email;
+                // The AuthCredential type that was used.
+                const credential = GoogleAuthProvider.credentialFromError(error);
+                console.log(email, credential)
+                console.error(error)
+                toast(error.message)
+            })
+    }).catch((error) => {
+        toast(error.message)
+        if (error.code == "auth/account-exists-with-different-credential") toast(`Please use ${error.customData._tokenResponse.verifiedProvider} for ${error.customData.email}`)
+    })
+}
+
+let loginFb = (auth) => {
+    const provider = new FacebookAuthProvider()
+    signInWithPopup(auth, provider).then((res) => {
+        console.log(res) 
+        getRedirectResult(auth)
+            .then((result) => {
+                // This gives you a Google Access Token. You can use it to access Google APIs.
+                // const credential = GoogleAuthProvider.credentialFromResult(result)
+                // const token = credential.accessToken;
+                // The signed-in user info.
+                // const user = result.user
+                console.log(result)
+                toast('Signed in with Facebook !')
+            }).catch((error) => {
+                // Handle Errors here.
+                // The email of the user's account used.
+                const email = error.email;
+                // The AuthCredential type that was used.
+                const credential = FacebookAuthProvider.credentialFromError(error);
+                console.log(email, credential)
+                console.error(error)
+                toast(error.message)
+            })
+    }).catch((error) => {
+        toast(error.message)
+        if (error.code == "auth/account-exists-with-different-credential") toast(`Please use ${error.customData._tokenResponse.verifiedProvider} for ${error.customData.email}`)
+    })
+}
+
 let submitPhoneNumberAuth = (auth) => {
     let phone = document.querySelector('#main form.signup_phone input.phone').value
     let appVerifier = window.recaptchaVerifier;
@@ -131,4 +189,4 @@ let loginPhone = (auth) => {
     }
 }
 
-export { loginEmail, signupEmail, loginGoogle, loginPhone }
+export { loginEmail, signupEmail, loginGoogle, loginPhone, loginTwitter, loginFb }

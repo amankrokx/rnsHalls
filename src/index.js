@@ -1,8 +1,8 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAuth, onAuthStateChanged, updatePassword, sendEmailVerification, updateProfile, updateEmail  } from "firebase/auth";
+import { getAuth, onAuthStateChanged, updatePassword, sendEmailVerification, updateProfile, updateEmail, getRedirectResult  } from "firebase/auth";
 import { getDatabase, ref, set, onValue } from "firebase/database";
-import { loginEmail, loginGoogle, loginPhone, signupEmail } from './modules/auth'
+import { loginEmail, loginGoogle, loginPhone, loginTwitter, signupEmail, loginFb } from './modules/auth'
 import { DBs } from './modules/db'
 import { firebaseConfig } from "./config/firebaseConfig";
 import './css/firebase-ui-auth.css'
@@ -28,7 +28,7 @@ let globals = {
 
 // Get a reference to the database service
 const db = getDatabase(app);
-
+    
 onAuthStateChanged(auth, (user) => {
     hideLoader()
     if (user) {
@@ -88,6 +88,8 @@ onAuthStateChanged(auth, (user) => {
             else e.target.innerHTML = 'Signup with Email'
         }
         document.querySelector('div.login div.imgs img.google').onclick = () => { loginGoogle(auth) }
+        document.querySelector('div.login div.imgs img.fb').onclick = () => { loginFb(auth) }
+        document.querySelector('div.login div.imgs img.twitter').onclick = () => { loginTwitter(auth) }
         document.querySelector('div.login form.signup span.loginphone').onclick = () => { loginPhone(auth) }
         document.querySelector('nav.top div.signin').classList.remove('hidden')
         document.querySelector('nav.top div.logout').classList.add('hidden')

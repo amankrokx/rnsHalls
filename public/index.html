@@ -90,7 +90,7 @@
             <div class="login signin fr hidden" style="color: #1a73e8;" onclick="switchTo('login')" >Login</div>
             <div class="login logout fr hidden" style="color: #1a73e8;">LogOut</div>
         </nav>
-        <nav class="bottom " style="position: fixed; bottom: 0; height: 50px;width: 100vw;background: #ffffff26;z-index: 10;color: #fff;"><span class="material-icons home nav-inactive" onclick="switchTo('home')">home</span><span class="material-icons notifications notifications-admin nav-inactive" onclick="switchTo('notifications')">notifications</span><span class="material-icons history history-admin nav-inactive" onclick="switchTo('history')">list_alt</span><span class="material-icons setting nav-inactive" onclick="switchTo('setting')">settings</span>
+        <nav class="bottom hidden" style="position: fixed; bottom: 0; height: 50px;width: 100vw;background: #ffffff26;z-index: 10;color: #fff;"><span class="material-icons home nav-inactive" onclick="switchTo('home')">home</span><span class="material-icons notifications notifications-admin nav-inactive" onclick="switchTo('notifications')">notifications</span><span class="material-icons history history-admin nav-inactive" onclick="switchTo('history')">list_alt</span><span class="material-icons setting nav-inactive" onclick="switchTo('setting')">settings</span>
         </nav>
         <div id="container" style="position: absolute;  top: 70px; width: calc(100vw - 40px); height: calc(100% - 160px); left: 20px;">
             <div class="login hidden" style=" z-index: 7;     box-shadow: var(--shadow);">
@@ -143,8 +143,8 @@
             
                             <span class="alt">Or Continue Using</span>
                             <div class="imgs">
-                                <img async="" src="./media/fb.png" loading="lazy" class="fb" onclick="facebookLogin()">
-                                <img async="" src="./media/twitter.png" loading="lazy" class="twitter" onclick="twitterLogin()">
+                                <img async="" src="./media/fb.png" loading="lazy" class="fb" >
+                                <img async="" src="./media/twitter.png" loading="lazy" class="twitter">
                                 <img async="" src="./media/google.png" loading="lazy" class="google">
                             </div>
                             <br><br><br><br>
@@ -250,80 +250,80 @@
                             </div>
                         </div>
                         <div class="calender-bottom">
-                                <div class="calender-header">
-                                    <div class="calender-text" style="width: 25%;">Date</div>
-                                    <div class="calender-text" style="width: 75%; margin-left: 2px;">Time</div>
+                            <div class="calender-header">
+                                <div class="calender-text" style="width: 25%;">Date</div>
+                                <div class="calender-text" style="width: 75%; margin-left: 2px;">Time</div>
+                            </div>
+                            <div class="calender-body">
+                                <div class="date" style="min-height:calc(100vh - 250px - 107px);width: 25%;">
+                                    <div class="date-entry"></div>
+                                    <div class="date-entry">14 Feb</div>
+                                    <div class="date-entry">14 Feb</div>
+                                    <div class="date-entry">14 Feb</div>
+                                    <div class="date-entry">14 Feb</div>
+                                    <div class="date-entry">14 Feb</div>
+                                    <div class="date-entry">14 Feb</div>
+                                    <div class="date-entry">14 Feb</div>
                                 </div>
-                                <div class="calender-body">
-                                    <div class="date" style="min-height:calc(100vh - 250px - 107px);width: 25%;">
-                                        <div class="date-entry"></div>
-                                        <div class="date-entry">14 Feb</div>
-                                        <div class="date-entry">14 Feb</div>
-                                        <div class="date-entry">14 Feb</div>
-                                        <div class="date-entry">14 Feb</div>
-                                        <div class="date-entry">14 Feb</div>
-                                        <div class="date-entry">14 Feb</div>
-                                        <div class="date-entry">14 Feb</div>
-                                    </div>
-                                    <div class="time">
-                                        <div class="time-entry">08:40-09:40</div>
-                                        <div class="time-entry">09:40-10:40</div>
-                                        <div class="time-entry">11:00-12:00</div>
-                                        <div class="time-entry">12:00-01:00</div>
-                                        <div class="time-entry">01:40-02:30</div>
-                                        <div class="time-entry">02:30-03:20</div>
-                                        <div class="time-entry">03:20-04:10</div>
-                                        <div class="time-entry"></div>
-                                        <div class="time-entry"></div>
-                                        <div class="time-entry"></div>
-                                        <div class="time-entry"></div>
-                                        <div class="time-entry"></div>
-                                        <div class="time-entry"></div>
-                                        <div class="time-entry"></div>
-                                        <div class="time-entry"></div>
-                                        <div class="time-entry"></div>
-                                        <div class="time-entry"></div>
-                                        <div class="time-entry"></div>
-                                        <div class="time-entry"></div>
-                                        <div class="time-entry"></div>
-                                        <div class="time-entry"></div>
-                                        <div class="time-entry"></div>
-                                        <div class="time-entry"></div>
-                                        <div class="time-entry"></div>
-                                        <div class="time-entry"></div>
-                                        <div class="time-entry"></div>
-                                        <div class="time-entry"></div>
-                                        <div class="time-entry"></div>
-                                        <div class="time-entry"></div>
-                                        <div class="time-entry"></div>
-                                        <div class="time-entry"></div>
-                                        <div class="time-entry"></div>
-                                        <div class="time-entry"></div>
-                                        <div class="time-entry"></div>
-                                        <div class="time-entry"></div>
-                                        <div class="time-entry"></div>
-                                        <div class="time-entry"></div>
-                                        <div class="time-entry"></div>
-                                        <div class="time-entry"></div>
-                                        <div class="time-entry"></div>
-                                        <div class="time-entry"></div>
-                                        <div class="time-entry"></div>
-                                        <div class="time-entry"></div>
-                                        <div class="time-entry"></div>
-                                        <div class="time-entry"></div>
-                                        <div class="time-entry"></div>
-                                        <div class="time-entry"></div>
-                                        <div class="time-entry"></div>
-                                        <div class="time-entry"></div>
-                                        <div class="time-entry"></div>
-                                        <div class="time-entry"></div>
-                                        <div class="time-entry"></div>
-                                        <div class="time-entry"></div>
-                                        <div class="time-entry"></div>
-                                        <div class="time-entry"></div>
-                                        <div class="time-entry"></div>
-                                    </div>
+                                <div class="time">
+                                    <div class="time-entry">08:40-09:40</div>
+                                    <div class="time-entry">09:40-10:40</div>
+                                    <div class="time-entry">11:00-12:00</div>
+                                    <div class="time-entry">12:00-01:00</div>
+                                    <div class="time-entry">01:40-02:30</div>
+                                    <div class="time-entry">02:30-03:20</div>
+                                    <div class="time-entry">03:20-04:10</div>
+                                    <div class="time-entry"></div>
+                                    <div class="time-entry"></div>
+                                    <div class="time-entry"></div>
+                                    <div class="time-entry"></div>
+                                    <div class="time-entry"></div>
+                                    <div class="time-entry"></div>
+                                    <div class="time-entry"></div>
+                                    <div class="time-entry"></div>
+                                    <div class="time-entry"></div>
+                                    <div class="time-entry"></div>
+                                    <div class="time-entry"></div>
+                                    <div class="time-entry"></div>
+                                    <div class="time-entry"></div>
+                                    <div class="time-entry"></div>
+                                    <div class="time-entry"></div>
+                                    <div class="time-entry"></div>
+                                    <div class="time-entry"></div>
+                                    <div class="time-entry"></div>
+                                    <div class="time-entry"></div>
+                                    <div class="time-entry"></div>
+                                    <div class="time-entry"></div>
+                                    <div class="time-entry"></div>
+                                    <div class="time-entry"></div>
+                                    <div class="time-entry"></div>
+                                    <div class="time-entry"></div>
+                                    <div class="time-entry"></div>
+                                    <div class="time-entry"></div>
+                                    <div class="time-entry"></div>
+                                    <div class="time-entry"></div>
+                                    <div class="time-entry"></div>
+                                    <div class="time-entry"></div>
+                                    <div class="time-entry"></div>
+                                    <div class="time-entry"></div>
+                                    <div class="time-entry"></div>
+                                    <div class="time-entry"></div>
+                                    <div class="time-entry"></div>
+                                    <div class="time-entry"></div>
+                                    <div class="time-entry"></div>
+                                    <div class="time-entry"></div>
+                                    <div class="time-entry"></div>
+                                    <div class="time-entry"></div>
+                                    <div class="time-entry"></div>
+                                    <div class="time-entry"></div>
+                                    <div class="time-entry"></div>
+                                    <div class="time-entry"></div>
+                                    <div class="time-entry"></div>
+                                    <div class="time-entry"></div>
+                                    <div class="time-entry"></div>
+                                    <div class="time-entry"></div>
                                 </div>
+                            </div>
                         </div>
                     </div>
                     <center><input class="book" style="background-color: var(--ab); color: #fff;" type="submit" value="Book (0)" /></center>
@@ -333,8 +333,8 @@
             <div class="history hidden">
                 <div class="head">Bookings</div>
                 <div class="content padded">
-                    <center class="hidden"><br />Your notifications will appear here</center>
-                    <div id="" class="notify"> 
+                    <center class=""><br />Your notifications will appear here</center>
+                    <!-- <div id="" class="notify"> 
                         <div class="info">
                             <span style="color: #FFF;">Booking ID : XXX-XXX-XXXX</span><br /><br />
                             <span style="margin-left: 15px;">08 : 40</span>
@@ -349,13 +349,13 @@
                             <input type="submit" class="otp" value="Cancel Booking" style="background: var(--ab);color: var(--bgh);" />
                             
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="history-admin hidden">
                 <div class="head" style="background-color: #e83821;color: #fff;" >Bookings</div>
                 <div class="content padded">
-                    <div class="request">
+                    <!-- <div class="request">
                         <div class="display_page">
                             <div class="profdiv">
                                 <span class="material-icons" style="font-size: 70px; padding-top: 15px ;">account_circle</span>
@@ -377,8 +377,7 @@
                             <input type="submit" class="otp" value="Accept" />
                             <input type="submit" class="otp fr" value="Reject" />
                         </div>
-                    </div>
-                    <!-- Stop Here -->
+                    </div> -->
                 </div>
             </div>
             <div class="welcome hidden">
