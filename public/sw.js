@@ -1,6 +1,5 @@
- // version development 1.8.10 oyea oyea
- // ALMOST WROKING oh yeaysvgadjkfvgvgh
- //new update
+ // version development 1.2.10 oyea oyea
+ // ALMOST WROKING oh yeaysvgadjkfvgvgh696969
  self.addEventListener('install', function(e) {
     e.waitUntil(
         caches.open('rnsHalls').then(function(cache) {
