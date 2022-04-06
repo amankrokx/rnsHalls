@@ -81,3 +81,5 @@ function dayFromMonth(month, week) {
     day += (week - 1) * 7
     return day
 }
+
+setTimeout(function() {window.scrollTo(0, 1)}, 100)

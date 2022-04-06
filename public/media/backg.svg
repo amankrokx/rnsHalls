@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="440 -440 560 1440" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <mask id="SvgjsMask1790">
+      <rect width="1440" height="560" fill="white"/>
+    </mask>
+    <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" gradientUnits="userSpaceOnUse" id="SvgjsLinearGradient1791" gradientTransform="matrix(1, 0, 0, 1, -1440, 0)">
+      <stop stop-color="rgba(3, 23, 45, 1)" offset="0"/>
+      <stop stop-color="rgba(13, 158, 78, 1)" offset="0.67"/>
+    </linearGradient>
+  </defs>
+  <g mask="url(#SvgjsMask1790)" fill="none" transform="matrix(0, 1, -1, 0, 1000, -440)">
+    <g>
+      <rect width="1440" height="560" fill="url(#SvgjsLinearGradient1791)" transform="matrix(-1, 0, 0, 1, 0, 0)" x="-1440"/>
+      <path d="M 348.51 185 L 0 185 L 348.51 0 L 348.51 185 Z" fill="rgba(255, 255, 255, .1)" transform="matrix(-1, 0, 0, -1, 348.51001, 185)"/>
+      <path d="M 385.11 392.01 L 733.62 207.01 L 733.62 0 L 0 392.01 L 385.11 392.01 Z" fill="rgba(255, 255, 255, .075)" transform="matrix(-1, 0, 0, -1, 733.619995, 392.01001)"/>
+      <path d="M 113.73 426.06 L 847.35 34.05 L 847.35 0 L 0 426.06 L 113.73 426.06 Z" fill="rgba(255, 255, 255, .05)" transform="matrix(-1, 0, 0, -1, 847.349976, 426.059998)"/>
+      <path d="M 368.16 458.15 L 1215.51 32.09 L 1215.51 0 L 0 458.15 L 368.16 458.15 Z" fill="rgba(255, 255, 255, .025)" transform="matrix(-1, 0, 0, -1, 1215.51001, 458.149994)"/>
+      <path d="M 1352.99 286.68 L 1440 286.68 L 1352.99 560 L 1352.99 286.68 Z" fill="rgba(0, 0, 0, .1)" transform="matrix(-1, 0, 0, -1, 2792.98999, 846.679993)"/>
+      <path d="M 813.94 533.92 L 900.95 260.6 L 1440 260.6 L 813.94 560 L 813.94 533.92 Z" fill="rgba(0, 0, 0, .075)" transform="matrix(-1, 0, 0, -1, 2253.940002, 820.600006)"/>
+      <path d="M 386.44 441.75 L 1012.5 142.35 L 1440 142.35 L 386.44 560 L 386.44 441.75 Z" fill="rgba(0, 0, 0, .05)" transform="matrix(-1, 0, 0, -1, 1826.440063, 702.350006)"/>
+      <path d="M 377.7 508.68 L 1431.26 91.03 L 1440 91.03 L 377.7 560 L 377.7 508.68 Z" fill="rgba(0, 0, 0, .025)" transform="matrix(-1, 0, 0, -1, 1817.700073, 651.029999)"/>
+    </g>
+  </g>
+</svg>

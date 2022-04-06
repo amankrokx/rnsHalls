@@ -68,6 +68,7 @@ class DBs {
                 e.target.classList.add('active')
                 this.month = parseInt(e.target.id.substring(1))
                 this.initCalender({month: this.month, week: this.week})
+                document.querySelector('input.book').scrollIntoView()
             }
         }
         elet.onclick = (e) => {
@@ -77,6 +78,7 @@ class DBs {
                 e.target.classList.add('active')
                 this.week = parseInt(e.target.id.substring(1))%10
                 this.initCalender({month: this.month, week: this.week})
+                document.querySelector('input.book').scrollIntoView()
             }
         }
         this.initCalender({day: this.day})

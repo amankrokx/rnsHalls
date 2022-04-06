@@ -42,7 +42,7 @@ onAuthStateChanged(auth, (user) => {
         globals.uid = user.uid;
         globals.db = new DBs(db, user.uid)
         if (user.photoURL) {
-            document.querySelector('nav.bottom span.setting').innerHTML = `<img src="${user.photoURL}" style="height: 36px; width: 36px; border-radius: 50%;" referrerpolicy="no-referrer" />`
+            document.querySelector('nav.bottom span.setting').innerHTML = `<img src="${user.photoURL}" style="height: 30px; width: 30px; border-radius: 50%;" referrerpolicy="no-referrer" />`
             document.querySelector('div.setting div.content img').src = user.photoURL
         }
         if (admins.includes(user.email)) {
