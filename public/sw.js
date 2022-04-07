@@ -1,6 +1,7 @@
  // version development 1.2.10 oyea oyea
  // ALMOST WROKING oh yeaysvgadjkfvgvgh696969jv
- // sd
+ // final preview
+ // lets see
  self.addEventListener('install', function(e) {
     e.waitUntil(
         caches.open('rnsHalls').then(function(cache) {
@@ -10,6 +11,10 @@
                 './browserconfig.xml',
                 './favicon-16x16.png',
                 './favicon-32x32.png',
+                './main.js',
+                './script.js',
+                './loader.css',
+                './index.html',
                 './favicon.ico',
                 './mstile-144x144.png',
                 './mstile-70x70.png',

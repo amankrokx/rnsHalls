@@ -283,8 +283,9 @@ div.head {
 }
 
 div.content {
-    min-height: calc(100vh - 248px);
-    max-height: calc(100% - 240px);
+    min-height: calc(100vh - 190px);
+    max-height: calc(100vh - 170px);
+    overflow: scroll;
     box-shadow: var(--shadow);
     width: 100%;
     background: #ffffff26;
@@ -387,6 +388,37 @@ div.calender div::-webkit-scrollbar {
 
 div.calender div::-webkit-scrollbar {
     display: none;
+}
+nav.bottom::-webkit-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+nav.bottom::-webkit-scrollbar {
+    display: none;
+}
+
+::-webkit-scrollbar-corner { background: var(--scrollbg); }
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--ab) #0084ff31;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+    background: var(--scrollbg);
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbg);
+    border-radius: 20px;
+    border: 3px solid #0084ff31;
 }
 
 div.calender-top div span {
@@ -584,6 +616,7 @@ input.inform_usr, input.add_secret {
     width: -webkit-fill-available;
 }
 div.message, div.add_secret{
+    position: absolute; bottom: 0; left: 0;
     width: 100%;
     margin-top: 5px;
     display: flex;
@@ -605,22 +638,34 @@ div.history-admin div.request {
     padding: 10px;
     padding-top: 0;
     border-radius: 10px;
+    color: #fff;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     -ms-border-radius: 10px;
     -o-border-radius: 10px;
-
+    
     /* display: flex; */
     height: min-content;
 }
 
+div.reqbody span:first-of-type {
+    color: var(--ao);
+}
+div.reqbody span:last-of-type {
+    color: var(--ab);
+}
+
+div.history-admin div.profdiv img {
+    height: 65px;
+    width: 65px;
+    border-radius: 50%;
+}
 div.history-admin div.profdiv {
-    width: 30%;
-    /* float: left; */
     justify-content: center;
     text-align: center;
-    margin: auto;
-    /* position:absolute; */
+    width: 75px;
+    height: 75px;
+    padding: 10px;
 }
 
 div.display_page {
@@ -803,10 +848,15 @@ div.imgs img {
 }
 
 div.history-admin div.content div.request div.profdiv span:last-of-type {
-    font-size: 20px; justify-content: center; position: absolute; top: 135px; left: 95px; color: var(--ab);
+    font-size: 20px;
+    justify-content: center;
+    top: -20px;
+    left: 25px;
+    color: var(--ab);
+    position: relative;
 }
 div.history-admin div.content div.request div.reqbody {
-    width: 70%; padding-left: 15px;margin-top: 15px; float: right;
+    padding: 10px 10px 0 25px;
 }
 div.history-admin div.content div.request div.reqbody span {
     font-size: 0.75rem;

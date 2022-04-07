@@ -90,9 +90,9 @@
             <div class="login signin fr hidden" style="color: #1a73e8;" onclick="switchTo('login')" >Login</div>
             <div class="login logout fr hidden" style="color: #1a73e8;">LogOut</div>
         </nav>
-        <nav class="bottom hidden" style="position: fixed; bottom: 0; overflow: scroll; height: 50px;width: 100vw;background: #ffffff26;z-index: 10;color: #fff; text-align: center;"><span class="material-icons home nav-inactive" onclick="switchTo('home')">home</span><span class="material-icons notifications notifications-admin nav-inactive" onclick="switchTo('notifications')">notifications</span><span class="material-icons history history-admin nav-inactive" onclick="switchTo('history')">list_alt</span><span class="material-icons setting nav-inactive" onclick="switchTo('setting')">settings</span>
+        <nav class="bottom hidden" style="position: fixed; bottom: 0; overflow-x: scroll; overflow-y: hidden; white-space: nowrap; height: 50px;width: 100vw;background: #ffffff26;z-index: 10;color: #fff; text-align: center;"><span class="material-icons home nav-inactive" onclick="switchTo('home')">home</span><span class="material-icons notifications notifications-admin nav-inactive" onclick="switchTo('notifications')">notifications</span><span class="material-icons history history-admin nav-inactive" onclick="switchTo('history')">list_alt</span><span class="material-icons setting nav-inactive" onclick="switchTo('setting')">settings</span>
         </nav>
-        <div id="container" style="position: absolute;  top: 70px; width: calc(100vw - 40px); height: calc(100% - 160px); left: 20px;">
+        <div id="container" style="position: relative;  top: 70px; width: calc(100vw - 40px); height: calc(100% - 160px); max-width: 856px;margin: 0 auto;">
             <div class="login hidden" style=" z-index: 7;     box-shadow: var(--shadow);">
                 
                 <center>
@@ -173,28 +173,10 @@
             <div class="notifications hidden">
                 <div class="head">Notifications</div>
                 <div class="content padded">
-                    <center class="hidden">
+                    <center>
                         <br />
-                        No Notification History yet !
+                        Your notifications will appear Here !
                     </center>
-                    <div class="notification-card">
-                        <div class="symbol">
-                            <span class="material-icons" style="float: left; font-size: 25px;">notifications</span>     
-                        </div>
-                        <div class="message_display" style="font-size: 0.6rem;">
-                            <span>Your Booking ID :XXX-XXX-XXXX<br>Has Been </span><span style="color: var(--ao);"> Accepted</span>
-                        </div><br />
-                        <span style="float: right; font-size: 0.4rem;">24:00 | dd/mm/yyyy</span>
-                    </div>
-                    <div class="notification-card">
-                        <div class="symbol">
-                            <span class="material-icons" style="float: left; font-size: 25px;">settings_suggest</span>     
-                        </div>
-                        <div class="message_display" style="font-size: 0.6rem;">
-                            <span>There is an Update....<br></span><span style="color: var(--ao);">Click Here</span>
-                        </div><br />
-                        <span style="float: right; font-size: 0.4rem;">24:00 | dd/mm/yyyy</span>
-                    </div>
                 </div>
             </div>
             <div class="notifications-admin hidden">
@@ -214,10 +196,10 @@
                         </div><br />
                         <span style="float: right; font-size: 0.4rem;">24:00 | 69/69/6969</span>
                     </div>
-                </div>
-                <div class="message" style="height: 20%;">
-                    <input type="text" class="inform_usr" placeholder="Send Broadcast..."></input>
-                    <span class="material-icons" style="color: var(--ao); text-align: center; width: 20%; padding-top: 5px; padding-left: 10px; font-size: 30px;">send</span>
+                    <div class="message">
+                        <input type="text" class="inform_usr" placeholder="Send Broadcast..."></input>
+                        <span class="material-icons" style="color: var(--ao); text-align: center; width: 70px;   font-size: 30px;padding: 5px;">send</span>
+                    </div>
                 </div>
             </div>
             <div class="home hidden" >
@@ -355,6 +337,9 @@
             <div class="bookingHistory hidden">
                 <div class="head">Accepted Requests</div>
                 <div class="content padded">
+                    <div class="doload" style="position: absolute;z-index: 5;background: #ffffff29;width: calc(100% - 20px);min-height: calc(100vh - 210px);max-height: calc(100vh - 190px);backdrop-filter: blur(16px);">
+                        <input type="submit" class="otp" value="Click to Load" style="position: relative;margin: auto;top: calc((100vh - 230px)/2);">
+                    </div>
                     <center class="hidden"><br />Accepted Requests will Appear here !</center>
                     <div id="" class="notify"> 
                         <div class="info">
@@ -419,7 +404,7 @@
             </div>
             <div class="welcome hidden">
                 <div class="head">Welcome</div>
-                <div class="content" style="padding: 15px;">
+                <div class="content" style="padding: 15px; max-height: fit-content;">
                     <br />
                     <svg width="100%" height="50%" max-width="460px"
                         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" data-name="Layer 1" width="832.20604" height="500.35625" viewBox="0 0 832.20604 500.35625">

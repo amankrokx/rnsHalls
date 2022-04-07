@@ -1,7 +1,7 @@
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword, TwitterAuthProvider, GoogleAuthProvider, signInWithRedirect, getRedirectResult, signInWithPhoneNumber , RecaptchaVerifier, signInWithPopup, FacebookAuthProvider } from 'firebase/auth'
 
 let signupEmail = (auth) => {
-    console.log('Signup with email loaded')
+    // console.log('Signup with email loaded')
     document.querySelector('#main form.signup input.submit').onclick = function(e) {
         e.preventDefault()
         let userid = document.querySelector('#main form.signup input.email').value
@@ -22,7 +22,7 @@ let signupEmail = (auth) => {
 }
 
 let loginEmail = (auth) => {
-    console.log('Login with Email loaded')
+    // console.log('Login with Email loaded')
     document.querySelector('#main form.login input.submit').onclick = function(e) {
         e.preventDefault()
         let userid = document.querySelector('#main form.login input.email').value
@@ -60,7 +60,7 @@ let loginGoogle = (auth) => {
                 const email = error.email;
                 // The AuthCredential type that was used.
                 const credential = GoogleAuthProvider.credentialFromError(error);
-                console.log(email, credential)
+                // console.log(email, credential)
                 console.error(error)
                 toast(error.message)
             })
@@ -73,7 +73,7 @@ let loginGoogle = (auth) => {
 let loginTwitter = (auth) => {
     const provider = new TwitterAuthProvider()
     signInWithPopup(auth, provider).then((res) => {
-        console.log(res) 
+        // console.log(res) 
         getRedirectResult(auth)
             .then((result) => {
                 // This gives you a Google Access Token. You can use it to access Google APIs.
@@ -81,7 +81,7 @@ let loginTwitter = (auth) => {
                 // const token = credential.accessToken;
                 // The signed-in user info.
                 // const user = result.user
-                console.log(result)
+                // console.log(result)
                 toast('Signed in with Twitter !')
             }).catch((error) => {
                 // Handle Errors here.
@@ -89,7 +89,7 @@ let loginTwitter = (auth) => {
                 const email = error.email;
                 // The AuthCredential type that was used.
                 const credential = GoogleAuthProvider.credentialFromError(error);
-                console.log(email, credential)
+                // console.log(email, credential)
                 console.error(error)
                 toast(error.message)
             })
@@ -102,7 +102,7 @@ let loginTwitter = (auth) => {
 let loginFb = (auth) => {
     const provider = new FacebookAuthProvider()
     signInWithPopup(auth, provider).then((res) => {
-        console.log(res) 
+        // console.log(res) 
         getRedirectResult(auth)
             .then((result) => {
                 // This gives you a Google Access Token. You can use it to access Google APIs.
@@ -110,7 +110,7 @@ let loginFb = (auth) => {
                 // const token = credential.accessToken;
                 // The signed-in user info.
                 // const user = result.user
-                console.log(result)
+                // console.log(result)
                 toast('Signed in with Facebook !')
             }).catch((error) => {
                 // Handle Errors here.
@@ -118,7 +118,7 @@ let loginFb = (auth) => {
                 const email = error.email;
                 // The AuthCredential type that was used.
                 const credential = FacebookAuthProvider.credentialFromError(error);
-                console.log(email, credential)
+                // console.log(email, credential)
                 console.error(error)
                 toast(error.message)
             })
@@ -168,7 +168,7 @@ let submitPhoneNumberAuthCode = (auth) => {
 }
 
 let loginPhone = (auth) => {
-    console.log('Login with phone loaded !')
+    // console.log('Login with phone loaded !')
     window.recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {
         'size': 'invisible',
         'callback': (response) => {

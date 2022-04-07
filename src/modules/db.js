@@ -35,7 +35,7 @@ class DBs {
         this.bookingCache = {}
         this.initMonthSelector()
         setTimeout(() => {
-            console.log(this.bookingCache)
+            // console.log(this.bookingCache)
         }, 5000);
     }
 
@@ -59,11 +59,11 @@ class DBs {
         elet.innerHTML = `<span class="active" id="w1${week}" >Week ${week}</span>`
         for (let w = week + 1; w <= 5; w++)  elet.innerHTML += `<span id="w1${w}" >Week ${w}</span>`
         this.day = dayFromDate()
-        console.log("todays date index is " + this.day)
+        // console.log("todays date index is " + this.day)
         this.dayListeners = []
         eles.onclick = (e) => {
             if (e.target.id) {
-                console.log(parseInt(e.target.id.substring(1)))
+                // console.log(parseInt(e.target.id.substring(1)))
                 document.querySelector(`#m${this.month}`).classList.remove('active')
                 e.target.classList.add('active')
                 this.month = parseInt(e.target.id.substring(1))
@@ -73,7 +73,7 @@ class DBs {
         }
         elet.onclick = (e) => {
             if (e.target.id) {
-                console.log(parseInt(e.target.id.substring(1))%10)
+                // console.log(parseInt(e.target.id.substring(1))%10)
                 document.querySelector(`#w1${this.week}`).classList.remove('active')
                 e.target.classList.add('active')
                 this.week = parseInt(e.target.id.substring(1))%10
@@ -116,7 +116,7 @@ class DBs {
                             clone.slots[key] = clone.slots[key].join(", ")
                         }
                     }
-                    console.log(clone)
+                    // console.log(clone)
                     const t = Date.now()
                     delete this.cart
                     this.cart = {value : 0 }
@@ -168,7 +168,7 @@ class DBs {
                 this.dateEntry[i].innerText = dateFromDay(i + day, currYear).toDateString()
                 let dayBookings = snapshot.val()
                 if (!dayBookings) dayBookings = []
-                console.log(snapshot.key, snapshot.val())
+                // console.log(snapshot.key, snapshot.val())
                 for (let j = 0; j < 7; j++) {
                     if (dayBookings[j+1]) {
                         if (this.timeEntry[(i * 7) + j].classList.contains('selected')) {
@@ -212,12 +212,12 @@ class DBs {
     }
 
     writeToPath (path, data) {
-        console.log('Writing to ' + path, data)
+        // console.log('Writing to ' + path, data)
         set(ref(this.db, path) , data)
     }
 
     readFromPath (path, callback) {
-        console.log('Reading from ' + path)
+        // console.log('Reading from ' + path)
         get(child(ref(this.db), path)).then(snapshot => callback(snapshot) )
     }
 
@@ -256,7 +256,7 @@ class DBs {
                 updates[`users/${data.uid}/bookingRequests/${data.key}/status`] = "a"
                 updates[`admin/bookingRequests/${data.key}`] = null
                 updates[`admin/requestsHistory/${data.key}`] = data.uid
-                console.log(updates)
+                // console.log(updates)
                 update(ref(this.db), updates).then(() => {callback(true)}).catch((error) => {
                     console.error(error)
                     callback(false)
@@ -285,7 +285,7 @@ class DBs {
                 updates[`users/${data.uid}/bookingRequests/${data.key}`] = null
             }
             updates[`admin/bookingRequests/${data.key}`] = null
-            console.log(updates)
+            // console.log(updates)
             update(ref(this.db), updates).then(() => {callback(true)}).catch((error) => {
                 console.error(error)
                 callback(false)
@@ -335,14 +335,14 @@ class DBs {
                     if (prof.displayName) names += `<span style="font-size: 1rem;">${prof.displayName}</span><br />`
                     if (prof.email) names += `<span style="font-size: 0.7rem;">${prof.email}</span><br />`
                     if (prof.phoneNumber) names += `<span style="font-size: 0.7rem;">${prof.phoneNumber}</span><br />`
-                    if (prof.photoURL) photo += `<img src="${prof.photoURL}" style="height: 70px; width: 70px; border-radius: 50%;"/>`
-                    else photo += `<span class="material-icons" style="font-size: 70px; padding-top: 15px ;">account_circle</span>`
+                    if (prof.photoURL) photo += `<img src="${prof.photoURL}" />`
+                    else photo += `<span class="material-icons" style="font-size: 70px; padding: 10px ;">account_circle</span>`
                     let htm = ""
                     for (const key in data.slots) {
                         if (Object.hasOwnProperty.call(data.slots, key)) {
                             let dat = dateFromDay(key).toDateString()
                             htm += `<span>${dat}</span>
-                            <span class="fr" style="margin-right: 15px;">${data.slots[key]}</span><br />`
+                            <span class="fr" style="color: var(--ao);">${data.slots[key]}</span><br />`
                         }
                     }
                     this.adminBookingElement.insertAdjacentHTML("afterbegin", `
@@ -391,7 +391,6 @@ class DBs {
         // keys management
         this.adminKeysElement = document.querySelector('div.keys div.content div.keyslist')
         onChildAdded(ref(this.db, 'admin/authorised/'), (snapshot) => {
-            console.error(snapshot)
             if (snapshot.val()) {
                 this.adminKeysElement.innerHTML += `<li class="key"><span>${snapshot.key}</span><span class="material-icons" id="${snapshot.key}">delete</span> </li>`
             }
@@ -404,10 +403,47 @@ class DBs {
             }
         }
         document.querySelector('div.add_secret span').onclick = () => {
-            console.log('asd')
+            // console.log('asd')
             let secret = document.querySelector('div.add_secret input').value.replace(/\s/g,'')
             this.writeToPath(`admin/authorised/${secret}`, true)
             document.querySelector('div.add_secret input').value = ""
+        }
+        // Seek accepted history only if clicked
+        this.adminAcceptedElement = document.querySelector('div.bookingHistory div.content')
+        this.adminAcceptedElement.children[0].children[0].onclick = () => {
+            this.adminAcceptedElement.children[0].remove()
+            const q = query(ref(this.db, `admin/requestsHistory`), limitToLast(8))
+            onChildAdded(q, (snapshot) => {
+                let dt = new Date(parseInt(snapshot.key))
+                let uid = snapshot.val()
+                this.readFromPath( `users/${uid}/bookingRequests/${snapshot.key}`, (snap) => {
+                    let data = snap.val()
+                    data.key = snapshot.key
+                    data.uid = uid
+                    // console.warn(data)
+                    let stat
+                    if (data.status == 'p') stat = `<span class="fr" style="margin-right: 7px; color: var(--ab);">Pending</span>`
+                    if (data.status == 'd') stat = `<span class="fr" style="margin-right: 7px; color: var(--ao);">Declined</span>`
+                    if (data.status == 'a') stat = `<span class="fr" style="margin-right: 7px; color: #6c3;">Aproved</span>`
+                    let htm = ""
+                    for (const key in data.slots) {
+                        if (Object.hasOwnProperty.call(data.slots, key)) {
+                            let dat = dateFromDay(key).toDateString()
+                            htm += `<span style="margin-left: 7px;">${dat}</span><span class="fr" style="margin-right: 7px;">${data.slots[key]}</span><br />`
+                        }
+                    }
+                    this.adminAcceptedElement.insertAdjacentHTML("afterbegin", `<div id="booked-${snapshot.key}" class="notify"> <div class="info"><span style="color: #FFF;">Booking ID : ${snapshot.key}</span><br /><br />${htm}<span class="fr" style="font-size: 0.7em; display: block;">${dt}</span><hr style="margin: 15px;"/><span style="margin-left: 7px;">Booking Status : </span>${stat}<br /><br /><center><input type="submit" class="otp" value="Cancel Booking" style="background: var(--ab);color: var(--bgh);" /></center></div></div>`)
+                    document.querySelector(`#booked-${snapshot.key} div,info input`).onclick = (e) => {
+                        this.declineBooking(data, (success) => {
+                            if (success) {
+                                document.querySelector(`#booked-${snapshot.key}`).remove()
+                                toast(`Booking ${data.key} Declined !`)
+                            } else toast("Some Error Occured !")
+                        })
+                    }
+                })
+            })
+
         }
     }
 
@@ -437,7 +473,7 @@ class DBs {
             let data = snapshot.val()
             data.key = snapshot.key
             data.uid = this.uid
-            console.warn(data)
+            // console.warn(data)
             let stat
             if (data.status == 'p') stat = "Pending"
             if (data.status == 'd') stat = "Declined"

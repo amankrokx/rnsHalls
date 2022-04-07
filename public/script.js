@@ -52,7 +52,7 @@ function toast(value) {
         } catch (error) {
             console.log("Toast already Dismissed !")
         }
-    }, 3500);
+    }, 5000);
 }
 
 function dateFromDay(day, year){

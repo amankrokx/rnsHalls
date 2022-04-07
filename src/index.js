@@ -33,7 +33,7 @@ onAuthStateChanged(auth, (user) => {
     if (user) {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/firebase.User
-        console.log(user)
+        // console.log(user)
         document.querySelector('nav.top div.signin').classList.add('hidden')
         document.querySelector('nav.top div.logout').classList.remove('hidden')
         document.querySelector('nav.bottom').classList.remove('hidden')
@@ -58,7 +58,7 @@ onAuthStateChanged(auth, (user) => {
             let d = snapshot.val()
             if (!d) d ={}
             let upflag = false
-            console.log(d)
+            // console.log(d)
             if (user.photoURL && d.photoURL !== user.photoURL) {
                 upflag = true
                 d.photoURL = user.photoURL
@@ -123,7 +123,7 @@ document.querySelector('div.setting input.submit').onclick = function(e) {
         let phoneNumber_ = document.querySelector('div.setting input.phone').value
         let password = document.querySelector('div.setting input.password').value
         phoneNumber_ = phoneNumber_.toString()
-        console.log(name, email_, phoneNumber_)
+        // console.log(name, email_, phoneNumber_)
         if (name && name !== auth.currentUser.displayName) {
             globals.db.writeToPath(`users/${globals.uid}/profile/displayName`, name)
             updateProfile(auth.currentUser, {
@@ -133,7 +133,7 @@ document.querySelector('div.setting input.submit').onclick = function(e) {
                 toast('Name Updated !')
             }).catch((error) => {
                 // An error occurred
-                console.log(error)
+                // console.log(error)
                 toast('Some error Occured with name !')
                 return
             })
@@ -150,7 +150,7 @@ document.querySelector('div.setting input.submit').onclick = function(e) {
                     });
               }).catch((error) => {
                   // An error occurred
-                  console.log(error)
+                  // console.log(error)
                   toast("Please Re-login and try again !")
                 });
             }
