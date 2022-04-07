@@ -243,11 +243,23 @@ input {
     /*background: linear-gradient(50deg, rgba(119, 186, 255, 1) 0%, rgb(126, 165, 255) 5%, rgba(255, 104, 141, 1) 95%, rgba(255, 165, 165, 1) 100%);*/
   }
 
+div.content li.key span:first-of-type {
+    color: var(--ttc);
+}
+div.content li.key span {
+    vertical-align: middle;
+}
+div.content li.key {
+    font-size: 24px;
+    height: 36px;
+    padding: 15px 10px 40px 20px;
+    border-bottom: 2px solid var(--ttc);
+}
+div.content li.key span:last-of-type {float: right;font-size: 24px;}
+
 nav.bottom span {
+    padding: 15px;
     padding-top: 7px;
-    padding-bottom: 9px;
-    padding-left: calc((100vw - 4 * 30px)/8);
-    padding-right: calc((100vw - 4 * 30px)/8);
     margin: 0;
     font-size: 30px;
 }
@@ -560,19 +572,18 @@ div.notifications-admin div.content, div.notifications div.content
 }
 
 
-input.inform_usr{
-    width: 80%;
+input.inform_usr, input.add_secret {
     justify-content: center;
     /* height: 100px; */
     padding: 20px;
     border-left: 6px var(--ao);
-    background: var(--bgb);
     font-size: 1rem;
     border-radius: 4px;
     box-shadow: var(--shadow);
     border: none;
+    width: -webkit-fill-available;
 }
-div.message{
+div.message, div.add_secret{
     width: 100%;
     margin-top: 5px;
     display: flex;

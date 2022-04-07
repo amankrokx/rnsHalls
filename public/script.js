@@ -1,4 +1,4 @@
-const ids = ['login', 'welcome', 'home', 'notifications', 'history', 'notifications-admin', 'history-admin', 'setting']
+const ids = ['login', 'welcome', 'home', 'notifications', 'keys', 'bookingHistory', 'history', 'notifications-admin', 'history-admin', 'setting']
 let active = 0
 
 function switchTo(wind) {

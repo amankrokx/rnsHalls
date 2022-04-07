@@ -1,5 +1,6 @@
  // version development 1.2.10 oyea oyea
- // ALMOST WROKING oh yeaysvgadjkfvgvgh696969
+ // ALMOST WROKING oh yeaysvgadjkfvgvgh696969jv
+ // sd
  self.addEventListener('install', function(e) {
     e.waitUntil(
         caches.open('rnsHalls').then(function(cache) {

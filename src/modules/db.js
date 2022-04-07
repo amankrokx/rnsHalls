@@ -323,7 +323,7 @@ class DBs {
         }
         // Booking accepter list
         this.adminBookingElement = document.querySelector('div.history-admin div.content')
-        onChildAdded(ref(this.db, 'admin/bookingRequests/'), (snapshot) => {
+        onChildAdded(ref(this.db, 'admin/bookingRequests'), (snapshot) => {
             let dt = new Date(parseInt(snapshot.key)).toUTCString()
             let data = snapshot.val()
             data.key = snapshot.key
@@ -388,6 +388,27 @@ class DBs {
                 })
             }
         })
+        // keys management
+        this.adminKeysElement = document.querySelector('div.keys div.content div.keyslist')
+        onChildAdded(ref(this.db, 'admin/authorised/'), (snapshot) => {
+            console.error(snapshot)
+            if (snapshot.val()) {
+                this.adminKeysElement.innerHTML += `<li class="key"><span>${snapshot.key}</span><span class="material-icons" id="${snapshot.key}">delete</span> </li>`
+            }
+        })
+        this.adminKeysElement.onclick = (e) => {
+            if (e.target.id) {
+                this.writeToPath(`admin/authorised/${e.target.id}`, null)
+                e.target.parentElement.remove()
+                toast(`Removed access key ${e.target.id}`)
+            }
+        }
+        document.querySelector('div.add_secret span').onclick = () => {
+            console.log('asd')
+            let secret = document.querySelector('div.add_secret input').value.replace(/\s/g,'')
+            this.writeToPath(`admin/authorised/${secret}`, true)
+            document.querySelector('div.add_secret input').value = ""
+        }
     }
 
     enableUserFeatures () {

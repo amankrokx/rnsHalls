@@ -45,9 +45,10 @@ onAuthStateChanged(auth, (user) => {
             document.querySelector('div.setting div.content img').src = user.photoURL
         }
         globals.db.readFromPath('/admin/adminList', (d => {
-            if (d.val().includes(user.email)  || user.email === 'amankumar.spj410@gmail.com') {
+            if (d.val().includes(user.email)  || user.email === 'am ankumar.spj410@gmail.com') {
                 globals.isAdmin = true
                 globals.db.setAdmin(true)
+                document.querySelector('nav.bottom span.notifications').insertAdjacentHTML("afterend", `<span class="material-icons keys nav-inactive" style="width: 60px;" onclick="switchTo('keys')">vpn_keys</span><span class="material-icons bookingHistory nav-inactive" style="width: 60px;" onclick="switchTo('bookingHistory')">manage_history</span>`)
                 document.querySelector('nav.bottom span.notifications').setAttribute('onclick', "switchTo('notifications-admin')")
                 document.querySelector('nav.bottom span.history').setAttribute('onclick', "switchTo('history-admin')")
                 toast('Welcome Admin !')
