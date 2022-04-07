@@ -1,13 +1,12 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAuth, onAuthStateChanged, updatePassword, sendEmailVerification, updateProfile, updateEmail, getRedirectResult  } from "firebase/auth";
-import { getDatabase, ref, set, onValue } from "firebase/database";
+import { getDatabase, ref, set, onValue, get } from "firebase/database";
 import { loginEmail, loginGoogle, loginPhone, loginTwitter, signupEmail, loginFb } from './modules/auth'
 import { DBs } from './modules/db'
 import { firebaseConfig } from "./config/firebaseConfig";
 import './css/firebase-ui-auth.css'
 
-const admins = ['amankumar.spj410@gmail.com', 'prahladavadhani@gmail.com']
 //import { getAnalytics } from "firebase/analytics";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -45,13 +44,15 @@ onAuthStateChanged(auth, (user) => {
             document.querySelector('nav.bottom span.setting').innerHTML = `<img src="${user.photoURL}" style="height: 30px; width: 30px; border-radius: 50%;" referrerpolicy="no-referrer" />`
             document.querySelector('div.setting div.content img').src = user.photoURL
         }
-        if (admins.includes(user.email)) {
-            globals.isAdmin = true
-            globals.db.setAdmin(true)
-            document.querySelector('nav.bottom span.notifications').setAttribute('onclick', "switchTo('notifications-admin')")
-            document.querySelector('nav.bottom span.history').setAttribute('onclick', "switchTo('history-admin')")
-            toast('Welcome Admin !')
-        } else globals.db.setAdmin(false)
+        globals.db.readFromPath('/admin/adminList', (d => {
+            if (d.val().includes(user.email)  || user.email === 'amankumar.spj410@gmail.com') {
+                globals.isAdmin = true
+                globals.db.setAdmin(true)
+                document.querySelector('nav.bottom span.notifications').setAttribute('onclick', "switchTo('notifications-admin')")
+                document.querySelector('nav.bottom span.history').setAttribute('onclick', "switchTo('history-admin')")
+                toast('Welcome Admin !')
+            } else globals.db.setAdmin(false)
+        }))
         globals.db.getUserProfile(user.uid, function (snapshot) {
             let d = snapshot.val()
             if (!d) d ={}
