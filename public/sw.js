@@ -2,6 +2,7 @@
  // ALMOST WROKING oh yeaysvgadjkfvgvgh696969jv
  // final preview
  // lets see
+ //changes done
  self.addEventListener('install', function(e) {
     e.waitUntil(
         caches.open('rnsHalls').then(function(cache) {
