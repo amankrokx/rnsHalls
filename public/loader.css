@@ -7,7 +7,8 @@
     --ptc: #202124;
     --stc: #4e5257;
     --ttc: #bdc1c6;
-    --shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    --shadow_old: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    --shadow:0 1px 3px rgba(0,0,0,0.24), 0 1px 2px rgba(0,0,0,0.48);
     --tbshadow: 0 1px 2px 0 rgba(60,64,67,0.3),0 1px 3px 1px rgba(60,64,67,0.15);
     --trans: width 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
   }
@@ -190,9 +191,6 @@ body {
     min-height: 760px;
     font-family: 'Prompt', sans-serif;
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='560' height='1440' preserveAspectRatio='none' viewBox='0 0 560 1440'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1884%26quot%3b)' fill='none'%3e%3crect width='560' height='1440' x='0' y='0' fill='url(%23SvgjsLinearGradient1885)'%3e%3c/rect%3e%3cpath d='M560 0L435.78 0L560 549.61z' fill='rgba(255%2c 255%2c 255%2c .1)'%3e%3c/path%3e%3cpath d='M435.78 0L560 549.61L560 553.27L205.72999999999996 0z' fill='rgba(255%2c 255%2c 255%2c .075)'%3e%3c/path%3e%3cpath d='M205.73000000000002 0L560 553.27L560 812.72L120.05000000000001 0z' fill='rgba(255%2c 255%2c 255%2c .05)'%3e%3c/path%3e%3cpath d='M120.05000000000001 0L560 812.72L560 1065.44L54.98000000000002 0z' fill='rgba(255%2c 255%2c 255%2c .025)'%3e%3c/path%3e%3cpath d='M0 1440L194.21 1440L0 1287.19z' fill='rgba(0%2c 0%2c 0%2c .1)'%3e%3c/path%3e%3cpath d='M0 1287.19L194.21 1440L382.85 1440L0 1057.83z' fill='rgba(0%2c 0%2c 0%2c .075)'%3e%3c/path%3e%3cpath d='M0 1057.83L382.85 1440L435.02000000000004 1440L0 768z' fill='rgba(0%2c 0%2c 0%2c .05)'%3e%3c/path%3e%3cpath d='M0 768L435.02000000000004 1440L483.11 1440L0 460.75z' fill='rgba(0%2c 0%2c 0%2c .025)'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1884'%3e%3crect width='560' height='1440' fill='white'%3e%3c/rect%3e%3c/mask%3e%3clinearGradient x1='100%25' y1='50%25' x2='0%25' y2='50%25' gradientUnits='userSpaceOnUse' id='SvgjsLinearGradient1885'%3e%3cstop stop-color='rgba(3%2c 23%2c 45%2c 1)' offset='0'%3e%3c/stop%3e%3cstop stop-color='rgba(0%2c 0%2c 0%2c 1)' offset='0.42'%3e%3c/stop%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e");
-    /* background: var(--bg); */
-    /* background: url(./media/backg.webp) no-repeat center center fixed; */
-    /* background: linear-gradient(60deg, rgba(119, 186, 255, 1) 0%, rgba(91, 134, 249, 1) 15%, rgba(255, 104, 141, 1) 86%, rgba(255, 165, 165, 1) 100%); */
     background-size: cover;
 }
 
@@ -259,8 +257,10 @@ div.content li.key {
 div.content li.key span:last-of-type {float: right;font-size: 24px;}
 
 nav.bottom span {
-    padding: 15px;
+    /* padding: 15px;
     padding-top: 7px;
+    padding-bottom: 7px; */
+    padding: 5px 15px 5px 15px;
     margin: 0;
     font-size: 30px;
 }
@@ -272,7 +272,7 @@ nav.bottom span {
 
 .nav-active {
     color: var(--ab);
-    border-top: 2px solid var(--ab);
+    border-bottom: 3px solid var(--ab);
 }
 
 div.head {
@@ -624,9 +624,7 @@ div.message, div.add_secret{
     box-sizing: border-box;
     box-shadow: var(--shadow);
     border: none;
-    /* background: var(--bgh); */
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1440' height='560' preserveAspectRatio='none' viewBox='0 0 1440 560'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1790%26quot%3b)' fill='none'%3e%3crect width='1440' height='560' x='0' y='0' fill='url(%23SvgjsLinearGradient1791)'%3e%3c/rect%3e%3cpath d='M1440 0L1091.49 0L1440 185z' fill='rgba(255%2c 255%2c 255%2c .1)'%3e%3c/path%3e%3cpath d='M1091.49 0L1440 185L1440 392.01L706.38 0z' fill='rgba(255%2c 255%2c 255%2c .075)'%3e%3c/path%3e%3cpath d='M706.38 0L1440 392.01L1440 426.06L592.65 0z' fill='rgba(255%2c 255%2c 255%2c .05)'%3e%3c/path%3e%3cpath d='M592.65 0L1440 426.06L1440 458.15L224.48999999999995 0z' fill='rgba(255%2c 255%2c 255%2c .025)'%3e%3c/path%3e%3cpath d='M0 560L87.01 560L0 286.68z' fill='rgba(0%2c 0%2c 0%2c .1)'%3e%3c/path%3e%3cpath d='M0 286.68L87.01 560L626.06 560L0 260.6z' fill='rgba(0%2c 0%2c 0%2c .075)'%3e%3c/path%3e%3cpath d='M0 260.6L626.06 560L1053.56 560L0 142.35000000000002z' fill='rgba(0%2c 0%2c 0%2c .05)'%3e%3c/path%3e%3cpath d='M0 142.35000000000002L1053.56 560L1062.3 560L0 91.03000000000003z' fill='rgba(0%2c 0%2c 0%2c .025)'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1790'%3e%3crect width='1440' height='560' fill='white'%3e%3c/rect%3e%3c/mask%3e%3clinearGradient x1='50%25' y1='0%25' x2='50%25' y2='100%25' gradientUnits='userSpaceOnUse' id='SvgjsLinearGradient1791'%3e%3cstop stop-color='rgba(3%2c 23%2c 45%2c 1)' offset='0'%3e%3c/stop%3e%3cstop stop-color='rgba(13%2c 158%2c 78%2c 1)' offset='0.67'%3e%3c/stop%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e");
-
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='560' height='1440' preserveAspectRatio='none' viewBox='0 0 560 1440'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1884%26quot%3b)' fill='none'%3e%3crect width='560' height='1440' x='0' y='0' fill='url(%23SvgjsLinearGradient1885)'%3e%3c/rect%3e%3cpath d='M560 0L435.78 0L560 549.61z' fill='rgba(255%2c 255%2c 255%2c .1)'%3e%3c/path%3e%3cpath d='M435.78 0L560 549.61L560 553.27L205.72999999999996 0z' fill='rgba(255%2c 255%2c 255%2c .075)'%3e%3c/path%3e%3cpath d='M205.73000000000002 0L560 553.27L560 812.72L120.05000000000001 0z' fill='rgba(255%2c 255%2c 255%2c .05)'%3e%3c/path%3e%3cpath d='M120.05000000000001 0L560 812.72L560 1065.44L54.98000000000002 0z' fill='rgba(255%2c 255%2c 255%2c .025)'%3e%3c/path%3e%3cpath d='M0 1440L194.21 1440L0 1287.19z' fill='rgba(0%2c 0%2c 0%2c .1)'%3e%3c/path%3e%3cpath d='M0 1287.19L194.21 1440L382.85 1440L0 1057.83z' fill='rgba(0%2c 0%2c 0%2c .075)'%3e%3c/path%3e%3cpath d='M0 1057.83L382.85 1440L435.02000000000004 1440L0 768z' fill='rgba(0%2c 0%2c 0%2c .05)'%3e%3c/path%3e%3cpath d='M0 768L435.02000000000004 1440L483.11 1440L0 460.75z' fill='rgba(0%2c 0%2c 0%2c .025)'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1884'%3e%3crect width='560' height='1440' fill='white'%3e%3c/rect%3e%3c/mask%3e%3clinearGradient x1='100%25' y1='50%25' x2='0%25' y2='50%25' gradientUnits='userSpaceOnUse' id='SvgjsLinearGradient1885'%3e%3cstop stop-color='rgba(3%2c 23%2c 45%2c 1)' offset='0'%3e%3c/stop%3e%3cstop stop-color='rgba(0%2c 0%2c 0%2c 1)' offset='0.42'%3e%3c/stop%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e");
     justify-content: center;
     padding:10px;
     border-radius: 4px;
@@ -636,16 +634,12 @@ div.history-admin div.request {
     margin-bottom: 15px;
     box-sizing: content-box;
     box-shadow: var(--shadow);
+    backdrop-filter: blur(10px);
+    background-color: rgba(0,0,0,0.2);
     padding: 10px;
     padding-top: 0;
-    border-radius: 10px;
+    border-radius: 4px;
     color: #fff;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    -ms-border-radius: 10px;
-    -o-border-radius: 10px;
-    
-    /* display: flex; */
     height: min-content;
 }
 
@@ -838,11 +832,12 @@ div.imgs img {
     color: var(--ttc);
     display: flow-root;
     background: var(--stc);
+    border-radius: 4px;
     margin-bottom: 10px;
 }
 
 #smack div.toast span.value {
-    font-size: 18px;
+    font-size: 15px;
     position: relative;
     top: 8px;
     padding-left: 6px;
