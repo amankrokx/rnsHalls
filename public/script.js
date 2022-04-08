@@ -82,4 +82,6 @@ function dayFromMonth(month, week) {
     return day
 }
 
-setTimeout(function() {window.scrollTo(0, 1)}, 100)
+document.querySelector('body').onclick = () => {
+    navigator.vibrate(14);
+}

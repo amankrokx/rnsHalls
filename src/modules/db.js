@@ -303,15 +303,8 @@ class DBs {
         onChildAdded(q, (snapshot) => {
             // attach notifications here
             let dt = new Date(parseInt(snapshot.key))
-            this.adminNotififcationElement.insertAdjacentHTML("afterbegin", `<div id="notif-${snapshot.key}" class="notification-card">
-            <div class="symbol">
-                <span class="material-icons" style="float: left; font-size: 25px;">admin_panel_settings</span>     
-            </div>
-            <div class="message_display" style="font-size: 0.6rem;">
-                <span>${snapshot.val()}<span style="color: var(--ao);"></span></span>
-            </div><br />
-                <span style="float: right; font-size: 0.4rem;">${dt}</span>
-            </div>`)
+            this.adminNotififcationElement.insertAdjacentHTML("afterbegin", `<div id="notif-${snapshot.key}" class="notification-card"><span class="material-icons">campaign</span><span>${snapshot.val()}</span><br><span>${dt}</span></div>`)
+            
         })
         // Broadcaster
         document.querySelector("div.notifications-admin div.message span").onclick = () => {
@@ -332,7 +325,7 @@ class DBs {
                     let prof = snap.val()
                     let names = ``
                     let photo = ``
-                    if (prof.displayName) names += `<span style="font-size: 1rem;">${prof.displayName}</span><br />`
+                    if (prof.displayName) names += `<span style="font-size: 1rem; font-weight: bold;">${prof.displayName}</span><br />`
                     if (prof.email) names += `<span style="font-size: 0.7rem;">${prof.email}</span><br />`
                     if (prof.phoneNumber) names += `<span style="font-size: 0.7rem;">${prof.phoneNumber}</span><br />`
                     if (prof.photoURL) photo += `<img src="${prof.photoURL}" />`
@@ -341,34 +334,10 @@ class DBs {
                     for (const key in data.slots) {
                         if (Object.hasOwnProperty.call(data.slots, key)) {
                             let dat = dateFromDay(key).toDateString()
-                            htm += `<span>${dat}</span>
-                            <span class="fr" style="color: var(--ao);">${data.slots[key]}</span><br />`
+                            htm += `<span>${dat}</span><span class="fr" style="color: var(--ao);">${data.slots[key]}</span><br />`
                         }
                     }
-                    this.adminBookingElement.insertAdjacentHTML("afterbegin", `
-                    <div id="brq-${snapshot.key}" class="request">
-                        <div class="display_page">
-                            <div class="profdiv">
-                                ${photo}
-                                <span class="material-icons">verified</span>
-                            </div>
-                            <div class="reqbody">
-                                <span>${snapshot.key}</span><br>
-                                ${names}
-                                <div style="display: inline;">
-                                    ${htm}
-                                </div>
-                            </div>
-                        </div>
-                        <hr style="margin: 10px;">
-                        <span class="fr" style="font-size: 0.6rem" >${dt}</span>
-                        <span onclick="this.classList.add('hidden'); document.querySelector('#bnq-${snapshot.key} input.bookingcommentinput').classList.remove('hidden');" class="comment addCommentonbooking" >Add Comment</span><br>
-                        <input type="text" class="box bookingcommentinput hidden" style="width: 100%;">
-                        <div style="display: flex;">
-                            <input type="submit" class="otp" value="Accept" />
-                            <input type="submit" class="otp fr" value="Reject" />
-                        </div>
-                    </div>`)
+                    this.adminBookingElement.insertAdjacentHTML("afterbegin", `<div id="brq-${snapshot.key}" class="request"><div class="display_page"><div class="profdiv">${photo}<span class="material-icons">verified</span></div><div class="reqbody"><span>${snapshot.key}</span><br>${names}<div style="display: inline; font-weight: bold;">${htm}</div></div></div><hr style="margin: 10px;"><span class="fr" style="font-size: 0.6rem" >${dt}</span><br><div style="display: flex;"><input type="submit" class="otp" value="Accept" /><input type="submit" class="otp fr" value="Reject" /></div></div>`)
                     document.querySelector(`#brq-${snapshot.key} div input.otp:last-of-type`).onclick = (e) => {
                         this.declineBooking(data, (success) => {
                             if (success) {
@@ -454,15 +423,7 @@ class DBs {
         onChildAdded(q, (snapshot) => {
             // attach notifications here
             let dt = new Date(parseInt(snapshot.key))
-            this.userNotififcationElement.insertAdjacentHTML("afterbegin", `<div id="noti-${snapshot.key}" class="notification-card">
-            <div class="symbol">
-            <span class="material-icons" style="float: left; font-size: 25px;">admin_panel_settings</span>     
-            </div>
-            <div class="message_display" style="font-size: 0.6rem;">
-                <span>${snapshot.val()}<span style="color: var(--ao);"></span></span>
-            </div><br />
-            <span style="float: right; font-size: 0.4rem;">${dt}</span>
-            </div>`)
+            this.userNotififcationElement.insertAdjacentHTML("afterbegin", `<div id="notif-${snapshot.key}" class="notification-card"><span class="material-icons">campaign</span><span>${snapshot.val()}</span><br><span>${dt}</span></div>`)
         })
         
         // Booking requests listner
@@ -475,32 +436,17 @@ class DBs {
             data.uid = this.uid
             // console.warn(data)
             let stat
-            if (data.status == 'p') stat = "Pending"
-            if (data.status == 'd') stat = "Declined"
-            if (data.status == 'a') stat = "Aproved"
+            if (data.status == 'p') stat = `<span class="fr" style="margin-right: 7px; color: var(--ab);">Pending</span>`
+            if (data.status == 'd') stat = `<span class="fr" style="margin-right: 7px; color: var(--ao);">Declined</span>`
+            if (data.status == 'a') stat = `<span class="fr" style="margin-right: 7px; color: #6c3;">Aproved</span>`
             let htm = ""
             for (const key in data.slots) {
                 if (Object.hasOwnProperty.call(data.slots, key)) {
                     let dat = dateFromDay(key).toDateString()
-                    htm += `<span style="margin-left: 7px;">${dat}</span>
-                    <span class="fr" style="margin-right: 7px;">${data.slots[key]}</span>
-                    <br />`
+                    htm += `<span style="margin-left: 7px;">${dat}</span><span class="fr" style="margin-right: 7px;">${data.slots[key]}</span><br />`
                 }
             }
-            this.userBookingListElement.insertAdjacentHTML("afterbegin", `
-            <div id="book-${snapshot.key}" class="notify"> 
-                <div class="info">
-                    <span style="color: #FFF;">Booking ID : ${snapshot.key}</span><br /><br />
-                    ${htm}
-                    <span class="fr" style="font-size: 0.7em; display: block;">${dt}</span>
-                    <hr style="margin: 15px;"/>
-                    <span style="margin-left: 7px;">Booking Status : </span>
-                    <span class="fr" style="margin-right: 7px; color: #6c3;">${stat}</span>
-                    <br /><br />
-                    <center><input type="submit" class="otp" value="Cancel Booking" style="background: var(--ab);color: var(--bgh);" /></center>
-                    
-                </div>
-            </div>`)
+            this.userBookingListElement.insertAdjacentHTML("afterbegin", `<div id="book-${snapshot.key}" class="notify"><div class="info"><span style="color: #FFF;">Booking ID : ${snapshot.key}</span><br /><br /><b>${htm}</b><span class="fr" style="font-size: 0.7em; display: block;"><b>${dt}</b></span><hr style="margin: 15px;"/><span style="margin-left: 7px;">Booking Status : </span><b>${stat}</b><br /><br /><center><input type="submit" class="otp" value="Cancel Booking" style="background: var(--ab);color: var(--bgh);" /></center></div></div>`)
             document.querySelector(`#book-${snapshot.key} div,info input`).onclick = (e) => {
                 this.declineBooking(data, (success) => {
                     if (success) {

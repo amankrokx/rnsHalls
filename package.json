@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Hall booking webapp",
   "main": "index.js",
+  "sideEffects": ["./src/index.js"],
   "scripts": {
     "webpack-dev-server": "webpack-dev-server",
     "dev": "webpack-dev-server --mode=development",

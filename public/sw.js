@@ -3,6 +3,7 @@
  // final preview
  // lets see
  //changes done
+ // very good
  self.addEventListener('install', function(e) {
     e.waitUntil(
         caches.open('rnsHalls').then(function(cache) {
@@ -24,9 +25,11 @@
                 './assets/material-icons.css',
                 './assets/material-icons.woff2',
                 './assets/Roboto-Regular.ttf',
-                './media/fb.png',
-                './media/google.png',
-                './media/twitter.png',
+                './media/fb.webp',
+                './media/google.webp',
+                './media/twitter.webp',
+                './media/back.webp',
+                './media/avatar.webp',
             ]);
         })
     );
