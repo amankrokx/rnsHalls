@@ -1,20 +1,10 @@
-<<<<<<< HEAD
- // version development 1.2.10 oyea oyea
- // ALMOST WROKING oh yeaysvgadjkfvgvgh696969jv
- // final preview
- // lets see
- //changes done
- self.addEventListener('install', function(e) {
-=======
 // version development 1.1.0 oyea oyea
 // ALMOST WROKING oh yeaysvgadjkfvgvgh696969jv
 // final preview
 // lets see
 //changes done
-// very good
 // halls selection now available ! !
 self.addEventListener("install", function (e) {
->>>>>>> 1c3234d823dd35b39ae79ab76dc9d132c6c0e662
     e.waitUntil(
         caches.open("rnsHalls").then(function (cache) {
             return cache.addAll([
