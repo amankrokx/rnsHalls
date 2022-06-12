@@ -134,9 +134,9 @@ class DBs {
                     const t = Date.now()
                     delete this.cart
                     this.cart = { value: 0 }
-                    this.writeToPath(`users/${this.uid}/bookingRequests/${this.hallid}/${t}`, clone)
+                    this.writeToPath(`users/${this.uid}/bookingRequests/${t}`, clone)
                     clone.uid = this.uid
-                    this.writeToPath(`admin/bookingRequests/${this.hallid}/${t}`, clone)
+                    this.writeToPath(`admin/bookingRequests/${t}`, clone)
                     for (let i = 0; i < this.timeEntry.length; i++) this.timeEntry[i].classList.remove("selected")
                     this.bookingCounter(0)
                     toast("Booking Request Sent !")
@@ -269,9 +269,9 @@ class DBs {
                         })
                     }
                 }
-                updates[`users/${data.uid}/bookingRequests/${this.hallid}/${data.key}/status`] = "a"
-                updates[`admin/bookingRequests/${this.hallid}/${data.key}`] = null
-                updates[`admin/requestsHistory/${this.hallid}/${data.key}`] = data.uid
+                updates[`users/${data.uid}/bookingRequests/${data.key}/status`] = "a"
+                updates[`admin/bookingRequests/${data.key}`] = null
+                updates[`admin/requestsHistory/${data.key}`] = data.uid
                 // console.log(updates)
                 update(ref(this.db), updates)
                     .then(() => {
@@ -298,13 +298,13 @@ class DBs {
                         })
                     }
                 }
-                updates[`admin/requestsHistory/${this.hallid}/${data.key}`] = null
-                updates[`users/${data.uid}/bookingRequests/${this.hallid}/${data.key}`] = null
+                updates[`admin/requestsHistory/${data.key}`] = null
+                updates[`users/${data.uid}/bookingRequests/${data.key}`] = null
             }
             if (data.status === "p") {
-                updates[`users/${data.uid}/bookingRequests/${this.hallid}/${data.key}`] = null
+                updates[`users/${data.uid}/bookingRequests/${data.key}`] = null
             }
-            updates[`admin/bookingRequests/${this.hallid}/${data.key}`] = null
+            updates[`admin/bookingRequests/${data.key}`] = null
             // console.log(updates)
             update(ref(this.db), updates)
                 .then(() => {
@@ -342,7 +342,7 @@ class DBs {
         }
         // Booking accepter list
         this.adminBookingElement = document.querySelector("div.history-admin div.content")
-        onChildAdded(ref(this.db, `admin/bookingRequests/${this.hallid}`), snapshot => {
+        onChildAdded(ref(this.db, "admin/bookingRequests"), snapshot => {
             let dt = new Date(parseInt(snapshot.key)).toUTCString()
             let data = snapshot.val()
             data.key = snapshot.key
@@ -410,11 +410,11 @@ class DBs {
         this.adminAcceptedElement = document.querySelector("div.bookingHistory div.content")
         this.adminAcceptedElement.children[0].children[0].onclick = () => {
             this.adminAcceptedElement.children[0].remove()
-            const q = query(ref(this.db, `admin/requestsHistory/${this.hallid}`), limitToLast(8))
+            const q = query(ref(this.db, `admin/requestsHistory`), limitToLast(8))
             onChildAdded(q, snapshot => {
                 let dt = new Date(parseInt(snapshot.key))
                 let uid = snapshot.val()
-                this.readFromPath(`users/${uid}/bookingRequests/${this.hallid}/${snapshot.key}`, snap => {
+                this.readFromPath(`users/${uid}/bookingRequests/${snapshot.key}`, snap => {
                     let data = snap.val()
                     data.key = snapshot.key
                     data.uid = uid
@@ -461,8 +461,7 @@ class DBs {
         })
 
         // Booking requests listner
-        // later upgrade to be able to view all hall's bookings
-        const r = query(ref(this.db, `users/${this.uid}/bookingRequests/${this.hallid}`), limitToLast(20))
+        const r = query(ref(this.db, `users/${this.uid}/bookingRequests`), limitToLast(20))
         this.userBookingListElement = document.querySelector("div.history div.content")
         onChildAdded(r, snapshot => {
             let dt = new Date(parseInt(snapshot.key)).toUTCString()

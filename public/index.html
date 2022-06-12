@@ -87,6 +87,11 @@
         <nav class="top" style="position: fixed; height: 50px;width: 100vw;z-index: 10;top: 0;color: #fff;">
             <img src="./media/icon1_96.webp" style="height: 50px;width: 50px;vertical-align: middle;"/>
             <span class="title" style="font-size: 1.9em; position: relative; top: 7px;">rnsHalls</span>
+            <select name="halls" id="hallid" style="height: 30px;border: 0;background-color: #8ebbff2e;border-radius: 5px;display: inline-block;color: var(--ab);padding: 0 0 0 5px;">
+                <option value="hall1">Edusat CSE</option>
+                <option value="hall2">Seminar CSE</option>
+                <option value="hall3">Auditorium</option>
+            </select>
             <div class="login signin fr hidden" style="color: var(--ab); font-weight: bolder;" onclick="switchTo('login')" >Login</div>
             <div class="login logout fr hidden" style="color: var(--ao); font-weight: bolder;">LogOut</div>
         </nav>
@@ -181,7 +186,7 @@
             </div>
             <div class="notifications-admin hidden">
                 <div class="head">Notifications</div>
-                <div class="content padded" style="height: 80px;">
+                <div class="content padded">
 
                     <!-- <center style="color: #FFF;">
                         <span class="material-icons">history_toggle_off</span>
@@ -409,6 +414,7 @@
                             <input type="submit" class="otp fr" value="Reject" />
                         </div>
                     </div> -->
+                    <center style="color: var(--stc);">Booking Requests will show up Here !</center>
                 </div>
             </div>
             <div class="welcome hidden">
