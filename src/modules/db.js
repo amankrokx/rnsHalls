@@ -70,13 +70,14 @@ class DBs {
                 // console.log(parseInt(e.target.id.substring(1)))
                 document.querySelector(`#m${this.month}`).classList.remove("active")
                 e.target.classList.add("active")
-                if (this.month < parseInt(e.target.id.substring(1))) {
+                if (new Date().getMonth() + 1 != parseInt(e.target.id.substring(1))) {
                     this.month = parseInt(e.target.id.substring(1))
                     this.week = 1
                     week = 1
                     elet.innerHTML = `<span class="active" id="w1${week}" >Week ${week}</span>`
                     for (let w = week + 1; w <= 5; w++) elet.innerHTML += `<span id="w1${w}" >Week ${w}</span>`
                 } else {
+                    this.month = parseInt(e.target.id.substring(1))
                     week = Math.floor((new Date().getDate() - 1) / 7) + 1
                     this.week = week
                     elet.innerHTML = `<span class="active" id="w1${week}" >Week ${week}</span>`
