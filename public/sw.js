@@ -3,7 +3,6 @@
 // final preview
 // lets see
 //changes done
-// very good
 // halls selection now available ! !
 self.addEventListener("install", function (e) {
     e.waitUntil(
