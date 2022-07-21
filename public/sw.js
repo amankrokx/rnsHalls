@@ -4,6 +4,7 @@
 // lets see
 //changes done
 // halls selection now available ! !
+// gfhgfh
 self.addEventListener("install", function (e) {
     e.waitUntil(
         caches.open("rnsHalls").then(function (cache) {
