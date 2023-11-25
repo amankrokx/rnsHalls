@@ -654,11 +654,7 @@ div.history-admin div.request {
     box-sizing: content-box;
     box-shadow: var(--shadow);
     backdrop-filter: blur(10px);
-<<<<<<< HEAD
     background-color: rgba(0,0,0,0.2);
-=======
-    background-color: rgba(0, 0, 0, 0.2);
->>>>>>> 1c3234d823dd35b39ae79ab76dc9d132c6c0e662
     padding: 10px;
     padding-top: 0;
     border-radius: 4px;
@@ -792,10 +788,11 @@ div.display_page {
 
 label {
     display: block;
-    font-size: 0.8em;
+    font-size: 1em;
     font-weight: 300;
     color: #999999;
-    margin-left: 10px;
+    margin-left: 0;
+    margin-bottom: 4px;
     float: left;
 }
 
@@ -821,6 +818,14 @@ input.sendOTP {
     color: white;
     background: var(--ab);
     box-shadow: var(--shadow);
+}
+
+#main div.login form div {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: flex-start;
 }
 
 form span.forget {

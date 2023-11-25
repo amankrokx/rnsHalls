@@ -109,20 +109,24 @@
                             <h1>Login</h1>
             
                             <form class="login" onsubmit="null">
-                                <label>Email ID</label>
-                                <input type="email" class="email" placeholder="someone@example.com" required=""><br>
-                                <label>Password</label>
-                                <input type="password" class="password" placeholder="PassworD" required="">
-                                <span class="forget">Forget Password ?</span><br><br>
-                                <input type="submit" class="submit" value="Login">
+                                <div>
+                                    <label>Email ID</label>
+                                    <input type="email" class="email" placeholder="someone@example.com" required=""><br>
+                                    <label>Password</label>
+                                    <input type="password" class="password" placeholder="PassworD" required="">
+                                    <span class="forget">Forget Password ?</span><br><br>
+                                    <input type="submit" class="submit" value="Login">
+                                </div>
                             </form>
                             <form class="signup hidden" onsubmit="null">
-                                <label>Email ID</label>
-                                <input type="email" class="email" placeholder="someone@example.com" required=""><br>
-                                <label>Password</label>
-                                <input type="password" class="password" placeholder="PassworD" required=""><br>
-                                <span class="forget toggle"><span class="loginphone">Use Phone Number</span></span><br>
-                                <input type="submit" class="submit" value="Signup">
+                                <div>
+                                    <label>Email ID</label>
+                                    <input type="email" class="email" placeholder="someone@example.com" required=""><br>
+                                    <label>Password</label>
+                                    <input type="password" class="password" placeholder="PassworD" required=""><br>
+                                    <span class="forget toggle"><span class="loginphone">Use Phone Number</span></span><br>
+                                    <input type="submit" class="submit" value="Signup">
+                                </div>
                             </form>
                             <form class="finish_email hidden" onsubmit="null">
                                 <p>Verification Email Sent to</p>
@@ -132,16 +136,18 @@
                                 <input type="submit" class="submit" value="Finish">
                             </form>
                             <form class="signup_phone hidden" onsubmit="null">
-                                <label>Phone <sup>*</sup></label>
-                                <input type="tel" class="phone" placeholder="Ex  +91 123 456 7890" maxlength="13" minlength="12" required=""><br>
-                                <div id="recaptcha-container"></div>
-                                <input type="submit" class="sendOTP" value="Send OTP"><br>
-                                <label>Enter OTP</label>
-                                <input type="number" class="otp" maxlength="6" minlength="6" placeholder="Ex  123456"><br>
-                                <p><small><small>Allow upto 1 minute for SMS to arrive</small></small>
-                                </p><br>
-                                <span class="forget toggle">Use Email Instead</span><br>
-                                <input type="submit" class="" value="Verify">
+                                <div>
+                                    <label>Phone <sup>*</sup></label>
+                                    <input type="tel" class="phone" placeholder="Ex  +91 123 456 7890" maxlength="13" minlength="12" required=""><br>
+                                    <div id="recaptcha-container"></div>
+                                    <input type="submit" class="sendOTP" value="Send OTP"><br>
+                                    <label>Enter OTP</label>
+                                    <input type="number" class="otp" maxlength="6" minlength="6" placeholder="Ex  123456"><br>
+                                    <p><small><small>Allow upto 1 minute for SMS to arrive</small></small>
+                                    </p><br>
+                                    <span class="forget toggle">Use Email Instead</span><br>
+                                    <input type="submit" class="" value="Verify">
+                                </div>
                             </form>
                             <br><br><br>
             

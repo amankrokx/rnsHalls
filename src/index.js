@@ -26,27 +26,28 @@ let globals = {
 
 // Get a reference to the database service
 const db = getDatabase(app)
-// #hallid is a <select> element, fill it with all the halls as <option> elements from /hallList as key and value
-// document.querySelector("#hallid")
-get(child(ref(db), "hallList")).then(snapshot => {
-    let d = snapshot.val()
-    console.log(d)
-    if (!d) d = {}
-    let hallid = window.location.hash.substring(1) || "hall1"
-    // console.log(hallid)
-    let html = ""
-    for (let i in d) {
-        html += `<option value="${i}" ${i === hallid ? "selected" : ""}>${d[i]}</option>`
-    }
-    document.querySelector("#hallid").innerHTML = html
-    document.querySelector("#hallid").onchange = e => {
-        window.location.hash = e.target.value
-        window.location.reload()
-    }
-})
+
 
 onAuthStateChanged(auth, user => {
     hideLoader()
+    // #hallid is a <select> element, fill it with all the halls as <option> elements from /hallList as key and value
+    // document.querySelector("#hallid")
+    get(child(ref(db), "hallList")).then(snapshot => {
+        let d = snapshot.val()
+        console.log(d)
+        if (!d) d = {}
+        let hallid = window.location.hash.substring(1) || "hall1"
+        // console.log(hallid)
+        let html = ""
+        for (let i in d) {
+            html += `<option value="${i}" ${i === hallid ? "selected" : ""}>${d[i]}</option>`
+        }
+        document.querySelector("#hallid").innerHTML = html
+        document.querySelector("#hallid").onchange = e => {
+            window.location.hash = e.target.value
+            window.location.reload()
+        }
+    })
     if (user) {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/firebase.User

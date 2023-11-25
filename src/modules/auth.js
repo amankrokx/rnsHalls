@@ -1,4 +1,4 @@
-import {createUserWithEmailAndPassword, signInWithEmailAndPassword, TwitterAuthProvider, GoogleAuthProvider, signInWithRedirect, getRedirectResult, signInWithPhoneNumber , RecaptchaVerifier, signInWithPopup, FacebookAuthProvider } from 'firebase/auth'
+import { FacebookAuthProvider, GoogleAuthProvider, RecaptchaVerifier, TwitterAuthProvider, createUserWithEmailAndPassword, getRedirectResult, signInWithEmailAndPassword, signInWithPhoneNumber, signInWithPopup, signInWithRedirect } from 'firebase/auth'
 
 let signupEmail = (auth) => {
     // console.log('Signup with email loaded')
@@ -43,7 +43,7 @@ let loginEmail = (auth) => {
 
 let loginGoogle = (auth) => {
     const provider = new GoogleAuthProvider()
-    provider.addScope('https://www.googleapis.com/auth/user.phonenumbers.read')
+    // provider.addScope('https://www.googleapis.com/auth/user.phonenumbers.read')
     signInWithRedirect(auth, provider).then((res) => {
         getRedirectResult(auth)
             .then((result) => {
@@ -189,4 +189,4 @@ let loginPhone = (auth) => {
     }
 }
 
-export { loginEmail, signupEmail, loginGoogle, loginPhone, loginTwitter, loginFb }
+export { loginEmail, loginFb, loginGoogle, loginPhone, loginTwitter, signupEmail }

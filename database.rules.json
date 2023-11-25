@@ -1,6 +1,19 @@
 {
     "rules": {
-        ".read": true,
-        ".write": true
+        "admin": {
+            "adminList": {
+                "rules": {
+                    ".write": false
+                }
+            }
+        },
+        "hallList": {
+            "rules": {
+                ".write": false,
+                ".read": true
+            }
+        },
+        ".read": "auth != null",
+        ".write": "auth != null"
     }
 }
