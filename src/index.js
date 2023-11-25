@@ -1,11 +1,11 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app"
-import { getAuth, onAuthStateChanged, updatePassword, sendEmailVerification, updateProfile, updateEmail, getRedirectResult } from "firebase/auth"
-import { getDatabase, ref, set, onValue, get } from "firebase/database"
-import { loginEmail, loginGoogle, loginPhone, loginTwitter, signupEmail, loginFb } from "./modules/auth"
-import { DBs } from "./modules/db"
+import { getAuth, onAuthStateChanged, sendEmailVerification, updateEmail, updatePassword, updateProfile } from "firebase/auth"
+import { child, get, getDatabase, ref, set } from "firebase/database"
 import { firebaseConfig } from "./config/firebaseConfig"
 import "./css/firebase-ui-auth.css"
+import { loginEmail, loginFb, loginGoogle, loginPhone, loginTwitter, signupEmail } from "./modules/auth"
+import { DBs } from "./modules/db"
 
 //import { getAnalytics } from "firebase/analytics";
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -26,6 +26,24 @@ let globals = {
 
 // Get a reference to the database service
 const db = getDatabase(app)
+// #hallid is a <select> element, fill it with all the halls as <option> elements from /hallList as key and value
+// document.querySelector("#hallid")
+get(child(ref(db), "hallList")).then(snapshot => {
+    let d = snapshot.val()
+    console.log(d)
+    if (!d) d = {}
+    let hallid = window.location.hash.substring(1) || "hall1"
+    // console.log(hallid)
+    let html = ""
+    for (let i in d) {
+        html += `<option value="${i}" ${i === hallid ? "selected" : ""}>${d[i]}</option>`
+    }
+    document.querySelector("#hallid").innerHTML = html
+    document.querySelector("#hallid").onchange = e => {
+        window.location.hash = e.target.value
+        window.location.reload()
+    }
+})
 
 onAuthStateChanged(auth, user => {
     hideLoader()
@@ -46,7 +64,7 @@ onAuthStateChanged(auth, user => {
             document.querySelector("div.setting div.content img").src = user.photoURL
         }
         globals.db.readFromPath("/admin/adminList", d => {
-            if (d.val().includes(user.email) || user.email === "am ankumar.spj410@gmail.com") {
+            if (d.val().includes(user.email) || user.email === "amankumar.spj410@gmail.com") {
                 globals.isAdmin = true
                 globals.db.setAdmin(true)
                 document
@@ -109,7 +127,11 @@ onAuthStateChanged(auth, user => {
         }
         document.querySelector("nav.top div.signin").classList.remove("hidden")
         document.querySelector("nav.top div.logout").classList.add("hidden")
-        switchTo("welcome")
+        try {
+            switchTo("welcome")
+        } catch (error) {
+            console.error(error)
+        }
     }
 })
 

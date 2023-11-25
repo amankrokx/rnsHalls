@@ -1,19 +1,19 @@
 const ids = ["login", "welcome", "home", "notifications", "keys", "bookingHistory", "history", "notifications-admin", "history-admin", "setting"]
-const halls = ["hall1", "hall2", "hall3"]
+// const halls = ["hall1", "hall2", "hall3"]
 let active = 0
 
-let cHall = window.location.hash.substring(1) || "hall1"
-if (!halls.includes(cHall)) {
-    window.location.hash = "hall1"
-    window.location.reload()
-} else document.querySelector("select").value = cHall
+// let cHall = window.location.hash.substring(1) || "hall1"
+// if (!halls.includes(cHall)) {
+//     window.location.hash = "hall1"
+//     window.location.reload()
+// } else document.querySelector("select").value = cHall
 
-document.querySelector("select").onchange = e => {
-    if (halls.includes(e.target.value)) {
-        window.location.hash = e.target.value
-        window.location.reload()
-    }
-}
+// document.querySelector("select").onchange = e => {
+//     if (halls.includes(e.target.value)) {
+//         window.location.hash = e.target.value
+//         window.location.reload()
+//     }
+// }
 
 function switchTo(wind) {
     console.log(active, wind)
