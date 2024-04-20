@@ -424,7 +424,7 @@ nav.bottom::-webkit-scrollbar {
 }
 
 * {
-    scrollbar-width: thin;
+    scrollbar-width: none;
     scrollbar-color: var(--ab) #0084ff31;
 }
 
