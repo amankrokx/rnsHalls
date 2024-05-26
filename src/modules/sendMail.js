@@ -2,9 +2,9 @@
  *
  * @param {string?} name user's name
  * @param {string?} message
-//  * @param {string} email Email address of the Admin
+//  * @param {string?} email Email address of the Admin
  */
-function sendMail(name = "RNSHalls User", message = "", email = "amankrokx@gmail.com") {
+function sendMail(name = "RNSHalls User", message = "", email) {
     // send email
     if (message === "") {
         message = `${new Date()}\nNew Hall Booking request for RNS Halls by ${name}\nVisit at https://rnshalls.web.app  or  https://halls.rnsit.ac.in\n\n RNS Halls`
@@ -17,7 +17,7 @@ function sendMail(name = "RNSHalls User", message = "", email = "amankrokx@gmail
         redirect: "follow",
         body: JSON.stringify({
             name,
-            email,
+            email: email || undefined,
             message,
         }),
     }).then((response) => {

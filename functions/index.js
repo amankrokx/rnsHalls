@@ -7,7 +7,8 @@ dotenv.config()
 const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-        // credentials from firebase
+        // credentials for email sending
+        // configure gmail or use SMTP for other services
         user: process.env.EMAIL,
         pass: process.env.PASSWORD,
     },
@@ -33,7 +34,8 @@ exports.mail = onRequest(
         if (request.method !== "POST") {
             response.status(405).send("Method not allowed")
         }
-        const { name, email, message } = request.body
+        // default values for email of Admin used if not provided
+        const { name, email = process.env.ADMIN_EMAIL || "cto@rnsit.ac.in", message } = request.body
 
         // validate request
         if (!name || !email || !message) {
@@ -47,7 +49,7 @@ exports.mail = onRequest(
         }
 
         const mailOptions = {
-            from: process.env.EMAIL,
+            from: process.env.EMAIL_FROM || process.env.EMAIL,
             to: email,
             subject: `New Hall Booking request for RNS Halls by ${name}`,
             text: message,

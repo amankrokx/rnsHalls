@@ -324,6 +324,11 @@ class DBs {
         }
     }
 
+    async getUser(uid) {
+        const data = await get(ref(this.db, `users/${uid}/profile`))
+        return data.val()
+    }
+
     enableAdminFeatures() {
         // Enable notifications and booking requests
         const q = query(ref(this.db, `notifications/`), limitToLast(15))
@@ -384,6 +389,7 @@ class DBs {
                             if (success) {
                                 document.querySelector(`#brq-${snapshot.key}`).remove()
                                 toast(`Booking ${data.key} Accepted !`)
+                                this.getUser(data.uid) .then(({ email, displayName }) => sendMail(displayName, `Your Booking Request for RNS Halls has been Approved !`, email))
                             } else toast("Some Error Occured !")
                         })
                     }
