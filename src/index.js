@@ -49,6 +49,8 @@ onAuthStateChanged(auth, user => {
         }
     })
     if (user) {
+        window.userDisplayName = user.displayName
+        window.userEmail = user.email
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/firebase.User
         // console.log(user)
