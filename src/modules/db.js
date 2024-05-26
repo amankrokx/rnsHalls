@@ -1,4 +1,5 @@
-import { ref, set, update, onValue, get, child, onChildAdded, query, limitToLast, off } from "firebase/database"
+import { child, get, limitToLast, off, onChildAdded, onValue, query, ref, set, update } from "firebase/database"
+import sendMail from "./sendMail.js"
 
 class DBs {
     constructor(db, uid, hid) {
@@ -137,6 +138,8 @@ class DBs {
                     this.cart = { value: 0 }
                     this.writeToPath(`users/${this.uid}/bookingRequests/${this.hallid}/${t}`, clone)
                     clone.uid = this.uid
+                    // send email to admin
+                    sendMail(window.userDisplayName || window.userEmail || "RNSHalls User")
                     this.writeToPath(`admin/bookingRequests/${this.hallid}/${t}`, clone)
                     for (let i = 0; i < this.timeEntry.length; i++) this.timeEntry[i].classList.remove("selected")
                     this.bookingCounter(0)
@@ -499,3 +502,4 @@ class DBs {
 }
 
 export { DBs }
+
