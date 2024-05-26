@@ -1,6 +1,7 @@
 // version development 1.1.0
 // halls selection now available ! !
 // added email sending feature
+// added email to requestee feature
 self.addEventListener("install", function (e) {
     e.waitUntil(
         caches.open("rnsHalls").then(function (cache) {
